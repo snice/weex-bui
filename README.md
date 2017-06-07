@@ -1,41 +1,27 @@
-# WeexTemplate
+# bui-weex
 
-> WeexTemplate
+> bui-weex 是 BingoSoft 专门为 weex 前端开发者打造的UI框架
 
-## getting start
+## 安装
 
 ```bash
-npm install
+git clone git@github.com:bingo-oss/bui-weex.git
+
+cd bui-weex && npm install
 ```
 
-## file structure
-
-* `src/*`: all source code
-* `app.js`: entrance of the Weex page
-* `build/*`: some build scripts
-* `dist/*`: where places generated code
-* `assets/*`: some assets for Web preview
-* `index.html`: a page with Web preview and qrcode of Weex js bundle
-* `weex.html`: Web render
-* `.babelrc`: babel config (preset-2015 by default)
-* `.eslintrc`: eslint config (standard by default)
-
-## npm scripts
+## 运行
 
 ```bash
-# build both two js bundles for Weex and Web
-npm run build
+# build scss file
+npm run sass
 
-# build the two js bundles and watch file changes
+# build js bundles and watch file changes
 npm run dev
 
-# start a Web server at 8080 port
+# start a Web server at 8686(default) port
 npm run serve
 
 # start weex-devtool for debugging with native
 npm run debug
 ```
-
-## notes
-
-You can config more babel, ESLint and PostCSS plugins in `webpack.config.js`.

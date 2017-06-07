@@ -1,6 +1,6 @@
 {
-  "name": "WeexTemplate",
-  "description": "WeexTemplate",
+  "name": "bui-weex",
+  "description": "UI Framework for weex developer",
   "version": "0.1.0",
   "private": true,
   "main": "index.js",
@@ -9,11 +9,11 @@
     "vue"
   ],
   "scripts": {
-    "build": "webpack",
+    "sass": "sass --watch src/css:src/css",
     "dev": "webpack --watch",
     "serve": "node build/init.js && serve -p 8686",
     "debug": "weex-devtool",
-    "sass": "sass --watch src/css:src/css"
+    "build": "webpack"
   },
   "dependencies": {
     "vue": "^2.1.8",
