@@ -56,7 +56,6 @@
                     {name: "浏览器(web)", text: "", url: "webview-demo.weex.js"},
                     {name: "视频播放", text: "", url: "video-demo.weex.js"},
                     {name: "选择器(Picker)", text: "单选Picker,日期时间Picker", url: "picker-demo.weex.js"},
-//                    {name: "摄像头(CameraModule)", text: "", url: "camera-demo.weex.js"},
                     {name: "单页面路由(vue-router)", text: "", url: "vue-router-demo.weex.js"},
                     {name: "延迟加载(lazy-render)", text: "内容延迟加载", url: "lazy-render-demo.weex.js"},
                 ]
