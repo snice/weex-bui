@@ -2,12 +2,21 @@
   "name": "bui-weex",
   "description": "UI Framework for weex developer",
   "version": "0.1.0",
-  "private": true,
   "main": "index.js",
   "keywords": [
     "weex",
     "vue"
   ],
+  "author": "<yulsh@bingosoft.net> (tonyyls <yulsh@bingosoft.net>)  <liyueqing@bingosoft.net> (liyueqing <liyueqing@bingosoft.net>)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bingo-oss/bui-weex.git"
+  },
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/bingo-oss/bui-weex/issues"
+  },
+  "homepage": "https://github.com/bingo-oss/bui-weex",
   "scripts": {
     "sass": "sass --watch src/css:src/css",
     "dev": "webpack --watch",
