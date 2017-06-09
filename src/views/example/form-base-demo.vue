@@ -7,7 +7,7 @@
         </bui-header>
 
         <scroller class="bui-container span1 flex-column">
-            <div style="height:2500px; padding-bottom:30px;">
+            <div style="padding-bottom:30px;">
                 <bui-panel title="搜索布局——图标在左边" border="1">
                     <bui-searchbar-left v-on:onSearch="onSearch"></bui-searchbar-left>
                 </bui-panel>

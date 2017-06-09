@@ -9,7 +9,7 @@
 
         <!--选项卡内容-->
         <bui-tabbar :tabItems="tabItems"
-                    top="117px" @tabItemOnClick="tabItemOnClick"></bui-tabbar>
+                    :top="top" @tabItemOnClick="tabItemOnClick"></bui-tabbar>
     </div>
 </template>
 <style src="../../css/layout.css"></style>
@@ -21,6 +21,7 @@
                 leftItem: {
                     icons: 'icon-back',
                 },
+                top: '0px',
                 dir: 'examples',
                 currentTab: "首页",
                 tabItems: [
@@ -66,8 +67,24 @@
             for (var i = 0; i < this.tabItems.length; i++) {
                 var path = this.tabItems[i].src;
                 this.tabItems[i].src = buiweex.getContextPath() + path;
-            }
+            };
 
+            //tabbar的top值根据头部位置适配
+            var _this = this;
+            var env = weex.config.env.platform.toLowerCase();
+            switch (env) {
+                case "ios":
+                    _this.top = '117px';
+                    break;
+                case "android":
+                    _this.top = '100px';
+                    break;
+                case "web":
+                    _this.top = '100px';
+                    break;
+                default:
+                    _this.top = '100px';
+            }
         },
         methods: {
             "back": function () {

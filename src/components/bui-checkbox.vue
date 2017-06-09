@@ -1,9 +1,8 @@
 <template>
     <div :class="[flexDirection]">
-        <div class="radioBox flex-row" :class="[v.disabled ? 'disabled':'']" @click="select(v)" v-for="v in checkboxItems">
-            <div><bui-icon @click="select(v)" v-if="v.select" name="icon-checkbox-on" color="#00cc66"></bui-icon></div>
-            <div><bui-icon @click="select(v)" v-if="!v.select" name="icon-radio" color="#9ea7b4"></bui-icon></div>
-            <!--<bui-icon :name="v.select ? 'icon-checkbox-on' : 'icon-radio'" :color="v.select ? '#00cc66':'#9ea7b4'"></bui-icon>-->
+        <div class="radioBox flex-row" :class="[v.disabled ? 'disabled':'']" @click="select(v)" v-for="v in checkboxItem">
+            <div v-if="v.select"><bui-icon @click="select(v)" name="icon-checkbox-on" color="#00cc66"></bui-icon></div>
+            <div v-if="!v.select"><bui-icon @click="select(v)" name="icon-radio" color="#9ea7b4"></bui-icon></div>
             <text :class="['label']">{{v.title}}</text>
         </div>
     </div>
@@ -26,7 +25,8 @@
         },
         data: function () {
             return {
-                "selectItems" : []
+                "selectItems" : [],
+                "checkboxItem": ""
             }
         },
         methods: {
@@ -38,7 +38,7 @@
 
                 //选择组数据
                 var newAry = [];
-                self.checkboxItems.forEach(function (val, i) {
+                self.checkboxItem.forEach(function (val, i) {
                     if(val.select) newAry.push(val);
                 });
                 console.log(newAry);
@@ -46,14 +46,10 @@
                 this.$emit("change", [v, newAry]);
             }
         },
-        mounted: function () {
-            console.log(11);
-//            this.checkboxItems.forEach(function (val, i) {
-//                if(val.select) this.selectItems.push(val);
-//            });
+        created: function () {
+            var data = JSON.parse(JSON.stringify(this.checkboxItems));
+            this.checkboxItem = data;
         }
     }
 </script>
-
-<style src="../css/layout.css"></style>
 <style src="../css/radio.css"></style>

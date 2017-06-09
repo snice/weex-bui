@@ -61,7 +61,11 @@
         },
         computed: {
             iosItem: function () {
-                if (!this.ios) return;
+                var _this = this;
+                if (!this.ios) {
+                    _this.height = '100px';
+                    return;
+                }
                 //头部位置适配
                 var ios = false;
                 var env = weex.config.env.platform.toLowerCase();
@@ -70,6 +74,7 @@
                         ios = true;
                         break;
                     case "android":
+                        _this.height = '100px';
                         ios = false;
                         break;
                     case "web":
