@@ -4,6 +4,7 @@
         <bui-header
                 :ios=false
                 :title="'BUI-Weex v0.1.0'"></bui-header>
+        <div class="bg"></div>
 
         <!--内容区域-->
         <bui-content class="span1">
@@ -31,7 +32,6 @@
 
 <script>
     var buiweex = require("../js/buiweex.js");
-
     module.exports = {
         data: function () {
             return {
