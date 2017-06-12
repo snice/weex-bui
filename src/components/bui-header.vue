@@ -29,6 +29,9 @@
         text: ''
     };
     module.exports = {
+        data:function () {
+          return {}
+        },
         props: {
             title: {
                 type: String,

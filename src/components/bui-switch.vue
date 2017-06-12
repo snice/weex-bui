@@ -4,7 +4,6 @@
         <switch class="switchstyle" @change="onchange($event)" :checked="checked" :disabled="disabled"></switch>
     </div>
 </template>
-<style lang="sass" src="../css/buiweex.scss"></style>
 <style lang="sass" src="../css/radio.scss"></style>
 
 <script>
