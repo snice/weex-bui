@@ -26,7 +26,7 @@
 
 </template>
 
-<style src="../../css/layout.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
 <script>
     var buiweex = require("../../js/buiweex.js");
     export default {
@@ -48,6 +48,3 @@
         }
     }
 </script>
-<style>
-
-</style>

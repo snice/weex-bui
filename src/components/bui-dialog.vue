@@ -19,7 +19,7 @@
     </div>
 </template>
 
-<style src="../css/dialog.css"></style>
+<style lang="sass" src="../css/dialog.scss"></style>
 <script>
     module.exports = {
         props: {

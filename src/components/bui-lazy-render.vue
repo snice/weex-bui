@@ -7,24 +7,7 @@
     </div>
 </template>
 
-<style scoped>
-    .lazy-load {
-
-    }
-
-    .lazy-tip {
-        text-align: center;
-        font-size: 30px;
-    }
-
-    .lazy-load-mask {
-        height: 60px;
-        padding-top: 10px;
-        opacity: 1;
-    }
-</style>
-
-<script type="text/babel">
+<script>
     export default {
         data: function () {
             return {
@@ -99,3 +82,20 @@
         }
     };
 </script>
+
+<style>
+    .lazy-load {
+
+    }
+
+    .lazy-tip {
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .lazy-load-mask {
+        height: 60px;
+        padding-top: 10px;
+        opacity: 1;
+    }
+</style>

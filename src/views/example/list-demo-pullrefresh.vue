@@ -40,11 +40,11 @@
     </div>
 
 </template>
-<style src="../../css/layout.css"></style>
-<style src="../../css/list.css"></style>
-<style src="../../css/refresh.css"></style>
-<style src="../../css/loading.css"></style>
-<style src="../../css/example.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/list.scss"></style>
+<style lang="sass" src="../../css/refresh.scss"></style>
+<style lang="sass" src="../../css/loading.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
 <script>
     var iconDev = "/image/icon_dev.png";
     var iconChat = "/image/icon_chat.png";

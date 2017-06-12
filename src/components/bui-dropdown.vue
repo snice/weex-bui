@@ -42,29 +42,7 @@
             showArrow: {
                 type: Boolean,
                 default: false
-            },
-//            position: {
-//                type: Object,
-//                default: {
-//                    width: '0px',
-//                    height: '0px',
-//                    left: '0px',
-//                    right: '0px'
-//                }
-//            }
-//            widthDrop: {
-//                default: "260px"
-//            },
-//            left: {
-//                default: "0px"
-//            },
-//            top: {
-//                default: "0px"
-//            },
-//            sanjiaoLeft: {
-//                default: "40px"
-//            },
-
+            }
         },
         computed:{
         },
@@ -93,7 +71,6 @@
                 var el = _this.$refs.dropdownBox;
 
                 _this.position = data.position;
-                console.log();
                 //showArrow为false,宽度按触发元素宽度自适应,如果控制宽度可设置为true,默认宽度为400px,也可自传宽度
                 if(!_this.showArrow){
                     if(_this.position.width >= 260) {
@@ -165,6 +142,4 @@
     }
 </script>
 
-<style src="../css/dropdown.css"></style>
-<style>
-</style>
+<style lang="sass" src="../css/dropdown.scss"></style>

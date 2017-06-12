@@ -14,8 +14,7 @@
 
 </template>
 
-<!--<style src="../css/layout.css"></style>-->
-<style src="../css/slider-bar.css"></style>
+<style lang="sass" src="../css/slider-bar.scss"></style>
 
 <script>
     var animation = weex.requireModule('animation');
@@ -35,21 +34,6 @@
         methods: {
             //动画操作
             animationFn : function (el, translate, timing, fn) {
-
-//                animation.transition(el, {
-//                    styles: {
-//                        transform: translate,
-//                        transformOrigin: 'center center'
-//                    },
-//                    duration: 200,
-//                    timingFunction: timing,
-//                    delay: 0
-//                }, function () {
-//                    console.log(5656);
-//                    fn && fn();
-//                });
-
-
                 animation.transition(el, {
                     styles:{
                         transform: translate,
@@ -113,7 +97,3 @@
         },
     }
 </script>
-
-<style>
-
-</style>

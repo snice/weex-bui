@@ -47,9 +47,9 @@
 </template>
 
 
-<style src="../../css/layout.css"></style>
-<style src="../../css/header.css"></style>
-<style src="../../css/example.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/header.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
 <script>
     var buiweex = require("../../js/buiweex.js");
     export default {
@@ -83,19 +83,15 @@
             }
         },
         created: function () {
-            var domModule = weex.requireModule("dom");
-            domModule.addRule('fontFace',{
-                'fontFamily': 'iconfont',
-                'src': "url(\'https://at.alicdn.com/t/font_5kli64cf6n9g4x6r.ttf\')"
-            });
         }
     }
 </script>
 <style>
-    .pdl10{
+    .pdl10 {
         padding-left: 10px;
     }
-    .pdr10{
+
+    .pdr10 {
         padding-right: 10px;
     }
 </style>

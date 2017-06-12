@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<style src="../css/panel.css"></style>
+<style lang="sass" src="../css/panel.scss"></style>
 
 <script>
   module.exports = {

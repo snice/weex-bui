@@ -12,7 +12,7 @@
                     :top="top" @tabItemOnClick="tabItemOnClick"></bui-tabbar>
     </div>
 </template>
-<style src="../../css/layout.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
 <script>
     var buiweex = require("../../js/buiweex.js");
     module.exports = {

@@ -9,7 +9,7 @@
 
 
 </template>
-<style src="../css/radio.css"></style>
+<style lang="sass" src="../css/radio.scss"></style>
 
 <script>
     module.exports = {

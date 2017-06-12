@@ -4,9 +4,9 @@
     </div>
 </template>
 
-<style src="../../css/layout.css"></style>
-<style src="../../css/example.css"></style>
-<style src="../../css/form.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
+<style lang="sass" src="../../css/form.scss"></style>
 
 <script>
     var buiweex= require("../../js/buiweex.js");
@@ -22,7 +22,6 @@
         components: {
             'bui-switch': require('../../components/bui-switch.vue'),
         },
-
         methods: {
         },
         mounted: function () {

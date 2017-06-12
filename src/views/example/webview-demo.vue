@@ -18,7 +18,7 @@
 
 </template>
 
-<style src="../../css/layout.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
 <script>
     var webview = weex.requireModule('webview');
     var buiweex = require("../../js/buiweex.js");

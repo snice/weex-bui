@@ -29,7 +29,7 @@
     </div>
 </template>
 
-<style src="../css/tabbar.css"></style>
+<style lang="sass" src="../css/tabbar.scss"></style>
 
 <script>
     module.exports = {

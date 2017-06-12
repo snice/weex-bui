@@ -31,7 +31,6 @@
             //点击mask遮罩层
             "layoutClick": function () {
                 var _this = this;
-//                _this.showmask = false;
                 _this.$emit("close");
             },
             "open": function () {
@@ -45,4 +44,4 @@
     }
 </script>
 
-<style src="../css/loading.css"></style>
+<style lang="sass" src="../css/loading.scss"></style>
