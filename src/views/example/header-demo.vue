@@ -44,11 +44,9 @@
     </div>
 
 </template>
-
-
-<style src="../../css/layout.scss"></style>
-<style src="../../css/header.scss"></style>
-<style src="../../css/example.scss"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/header.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
 <script>
     var buiweex = require("../../js/buiweex.js");
     export default {
@@ -80,14 +78,17 @@
             "centerclick": function () {
                 buiweex.toast('center')
             }
+        },
+        created: function () {
         }
     }
 </script>
 <style>
-    .pdl10{
+    .pdl10 {
         padding-left: 10px;
     }
-    .pdr10{
+
+    .pdr10 {
         padding-right: 10px;
     }
 </style>
