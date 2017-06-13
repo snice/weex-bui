@@ -36,7 +36,6 @@
                 <bui-header :ios=false
                             :title="'软件设置'"
                             :backgroundColor="'#ff4e24'"
-                            :height="'80px'"
                             :leftItem="leftItem">
                     <bui-icon slot="right" :name="'icon-search'" size="45px" color="#ffffff" class="pdl10"></bui-icon>
                 </bui-header>
@@ -45,8 +44,6 @@
     </div>
 
 </template>
-
-
 <style lang="sass" src="../../css/layout.scss"></style>
 <style lang="sass" src="../../css/header.scss"></style>
 <style lang="sass" src="../../css/example.scss"></style>
