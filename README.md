@@ -4,11 +4,21 @@
 
 ## 安装
 
+首先，安装sass模块
+
 ```bash
-在package.json中添加依赖：
 
-"bui-weex": "^0.1.0"
+npm install node-sass
 
-npm install
+npm install sass-loader
+
+```
+
+接下来安装bui-weex模块
+
+```bash
+
+npm install --save-dev bui-weex
+
 ```
 
