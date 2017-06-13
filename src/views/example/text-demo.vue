@@ -15,9 +15,9 @@
         </bui-content>
     </div>
 </template>
-<style src="../../css/layout.css"></style>
-<style src="../../css/text.css"></style>
-<style src="../../css/example.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/text.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
 
 <script>
 

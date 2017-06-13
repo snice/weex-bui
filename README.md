@@ -1,27 +1,14 @@
 # bui-weex
 
-> bui-weex 是 BingoSoft 专门为 weex 前端开发者打造的UI框架
+> bui-weex是品高软件专门为weex前端开发者打造的UI套件
 
 ## 安装
 
 ```bash
-git clone git@github.com:bingo-oss/bui-weex.git
+在package.json中添加依赖：
 
-cd bui-weex && npm install
+"bui-weex": "^0.1.0"
+
+npm install
 ```
 
-## 运行
-
-```bash
-# build scss file
-npm run sass
-
-# build js bundles and watch file changes
-npm run dev
-
-# start a Web server at 8686(default) port
-npm run serve
-
-# start weex-devtool for debugging with native
-npm run debug
-```

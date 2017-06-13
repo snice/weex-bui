@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<style src="../css/tip.css"></style>
+<style lang="sass" src="../css/tip.scss"></style>
 <script>
     module.exports = {
         props: {

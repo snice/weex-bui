@@ -22,9 +22,9 @@
 
 </template>
 
-<style src="../../css/layout.css"></style>
-<style src="../../css/list.css"></style>
-<style src="../../css/example.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/list.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
 <script>
     var buiweex = require("../../js/buiweex.js");
     export default {
@@ -35,7 +35,7 @@
                 },
                 listData: [
                     {'text': '整屏上方内容切换卡', 'url': 'tabbar-demo.weex.js'},
-                    {'text': '横向滚动下方内容切换卡', 'url': 'tabbar-scroll-demo.weex.js'},
+                    {'text': '横向滚动下方内容切换卡', 'url': 'tabbar-scroll-demo.weex.js'}
                 ]
             }
         },

@@ -35,8 +35,8 @@
 
 </template>
 
-<style src="../../css/layout.css"></style>
-<style src="../../css/example.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
 <script>
     var buiweex=require("../../js/buiweex.js");
     export default {

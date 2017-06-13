@@ -10,8 +10,8 @@
     </div>
 </template>
 
-<style src="../css/layout.css"></style>
-<style src="../css/searchbar.css"></style>
+<style lang="sass" src="../css/layout.scss"></style>
+<style lang="sass" src="../css/searchbar.scss"></style>
 
 <script>
     module.exports = {

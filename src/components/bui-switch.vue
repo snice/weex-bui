@@ -4,8 +4,7 @@
         <switch class="switchstyle" @change="onchange($event)" :checked="checked" :disabled="disabled"></switch>
     </div>
 </template>
-<style src="../css/buiweex.css"></style>
-<style src="../css/radio.css"></style>
+<style lang="sass" src="../css/radio.scss"></style>
 
 <script>
     module.exports = {
@@ -39,7 +38,3 @@
         }
     }
 </script>
-
-<style>
-
-</style>

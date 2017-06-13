@@ -21,7 +21,7 @@
         </div>
     </div>
 </template>
-<style src="../css/header.css"></style>
+<style lang="sass" src="../css/header.scss"></style>
 
 <script>
     var defaultItem = {
@@ -29,6 +29,9 @@
         text: ''
     };
     module.exports = {
+        data:function () {
+          return {}
+        },
         props: {
             title: {
                 type: String,
@@ -96,7 +99,7 @@
             },
             _centerClick: function ($event) {
                 this.$emit('centerClick', $event);
-            },
+            }
         }
     }
 </script>

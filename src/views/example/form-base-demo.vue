@@ -44,14 +44,13 @@
 
 </template>
 
-<style src="../../css/layout.css"></style>
-<style src="../../css/header.css"></style>
-<style src="../../css/example.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
 
 <script>
-    var buiweex=require("../../js/buiweex.js");
+    var buiweex = require("../../js/buiweex.js");
     module.exports = {
-        data: function(){
+        data: function () {
             return {
                 leftItem: {
                     icons: 'icon-back',
@@ -147,8 +146,8 @@
             radiohh: function (yy) {
                 console.log(yy);
             },
-            "onSearch":function (value) {
-                buiweex.toast("搜索事件"+value);
+            "onSearch": function (value) {
+                buiweex.toast("搜索事件" + value);
             }
         }
     }

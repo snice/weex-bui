@@ -5,7 +5,7 @@
           @click="_click()">{{value}}
     </text>
 </template>
-<style src="../css/button.css"></style>
+<style lang="sass" src="../css/button.scss"></style>
 
 <script>
     var radius = "0px";

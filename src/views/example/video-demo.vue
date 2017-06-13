@@ -21,10 +21,9 @@
 
 </template>
 
-<style src="../../css/layout.css"></style>
-<style src="../../css/header.css"></style>
-<style src="../../css/example.css"></style>
-<style src="../../css/video.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
+<style lang="sass" src="../../css/video.scss"></style>
 <script>
     var buiweex = require("../../js/buiweex.js");
     export default {

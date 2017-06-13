@@ -103,4 +103,4 @@
     }
 </script>
 
-<style src="../css/actionsheet.css"></style>
+<style lang="sass" src="../css/actionsheet.scss" />

@@ -11,21 +11,21 @@
             <div style="height: 1500px;">
                 <bui-tip value="This is success tip."></bui-tip>
                 <bui-tip type="info" value="This is info tip."></bui-tip>
-                <bui-tip type="warning"  value="This is warning tip."></bui-tip>
-                <bui-tip type="danger"  value="Apache Weex is an effort undergoing incubation at The Apache Software Foundation (ASF)"></bui-tip>
+                <bui-tip type="warning" value="This is warning tip."></bui-tip>
+                <bui-tip type="danger"
+                         value="Apache Weex is an effort undergoing incubation at The Apache Software Foundation (ASF)"></bui-tip>
             </div>
         </bui-content>
     </div>
 
 </template>
 
-<style src="../../css/layout.css"></style>
-<style src="../../css/header.css"></style>
-<style src="../../css/example.css"></style>
+<style lang="sass" src="../../css/layout.scss"></style>
+<style lang="sass" src="../../css/example.scss"></style>
 <script>
-    var buiweex=require("../../js/buiweex.js");
+    var buiweex = require("../../js/buiweex.js");
     export default {
-        data: function(){
+        data: function () {
             return {
                 leftItem: {
                     icons: 'icon-back',
@@ -43,6 +43,3 @@
         }
     }
 </script>
-<style>
-
-</style>

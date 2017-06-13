@@ -4,6 +4,7 @@
         <bui-header
                 :ios=false
                 :title="'BUI-Weex v0.1.0'"></bui-header>
+        <div class="bg"></div>
 
         <!--内容区域-->
         <bui-content class="span1">
@@ -25,13 +26,12 @@
     </div>
 </template>
 
-<style src="../css/layout.css"></style>
-<style src="../css/list.css"></style>
-<style src="../css/example.css"></style>
+<style lang="sass" src="../css/layout.scss"></style>
+<style lang="sass" src="../css/list.scss"></style>
+<style lang="sass" src="../css/example.scss"></style>
 
 <script>
     var buiweex = require("../js/buiweex.js");
-
     module.exports = {
         data: function () {
             return {
