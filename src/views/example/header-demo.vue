@@ -36,7 +36,6 @@
                 <bui-header :ios=false
                             :title="'软件设置'"
                             :backgroundColor="'#ff4e24'"
-                            :height="'80px'"
                             :leftItem="leftItem">
                     <bui-icon slot="right" :name="'icon-search'" size="45px" color="#ffffff" class="pdl10"></bui-icon>
                 </bui-header>
@@ -81,13 +80,6 @@
             "centerclick": function () {
                 buiweex.toast('center')
             }
-        },
-        created: function () {
-            var domModule = weex.requireModule("dom");
-            domModule.addRule('fontFace',{
-                'fontFamily': 'iconfont',
-                'src': "url(\'https://at.alicdn.com/t/font_5kli64cf6n9g4x6r.ttf\')"
-            });
         }
     }
 </script>

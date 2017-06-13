@@ -34,10 +34,6 @@
                 type: String,
                 default: ''
             },
-            height: {
-                type: String,
-                default: '117px'
-            },
             backgroundColor: {
                 type: String,
                 default: '#4ca4fe'
@@ -58,6 +54,11 @@
                 type: Boolean,
                 default: true
             }
+        },
+        data: function () {
+          return {
+              height: '117px'
+          }
         },
         computed: {
             iosItem: function () {
