@@ -37,7 +37,7 @@ var common = {
         modal.toast({
             message: msg,
             duration: 0.4
-        })
+        });
     },
     "alert": function (msg, callback, option) {
         var okTitle = "确定";
