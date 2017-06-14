@@ -3,7 +3,6 @@
 
 
 .bui-searchbar{
-  background-color: $color_default;
   padding-left: $nb20;
   padding-top: $nb15;
   padding-right: $nb20;
@@ -40,6 +39,10 @@
   padding-right: $nb10;
   padding-bottom: $nb15;
 }
+.bui-search-bg{
+  background-color: $color_default;
+}
+
 
 
 

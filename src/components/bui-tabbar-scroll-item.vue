@@ -1,5 +1,5 @@
 <template>
-    <div class="bui-scroller-tabbar-row" @click="onclickitem">
+    <div class="bui-scroller-tabbar-row" @click="onclickitem" :style="{'width': width}">
         <text v-if="type!='icon'" :style="{ 'color': titleColor }" class="text">{{title}}</text>
         <text class="actived" v-if="selected"></text>
     </div>
@@ -17,6 +17,8 @@
             icon: {default: ''},
             backgroundColor: {default: '#ffffff'},
             selected: {default: false},
+            length: {},
+            scroll: {default: true},
             type:{default:'icon-text'} //text,icon-text,icon
         },
         methods: {
@@ -25,6 +27,13 @@
                     index: this.index
                 };
                 this.$emit('tabItemOnClick', params);
+            }
+        },
+        computed:{
+            width: function () {
+                if(this.scroll) return;
+                var i = 750/this.length;
+                return i;
             }
         }
     }

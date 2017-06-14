@@ -49,6 +49,7 @@
             //搜索获得输入焦点
             "onfocus": function (event) {
                 console.log(event);
+                this.$emit("focus", event);
             },
             //搜索失去输入焦点
             "onblur": function (event) {
@@ -57,12 +58,14 @@
                 this.searchstatus = false;
                 this.deletestatus = false;
                 this.autofocus = false;
+                this.$emit('blur', event);
 
             },
             //搜索输入值更改
             "oninput": function (event) {
                 this.value = event.value;
                 this.deletestatus = true;
+                this.$emit('input', event);
             },
             //清除搜索输入值
             "clear": function () {
@@ -71,6 +74,7 @@
                 this.deletestatus = false;
                 console.log('value:' +this.value);
                 this.autofocus = true;
+                this.$emit('clear');
             },
 //            //取消搜索
 //            "cancel": function () {
@@ -82,7 +86,7 @@
             //搜索
             "search": function () {
                 console.log(this.value);
-                this.$emit("onSearch",this.value);
+                this.$emit("search",this.value);
             }
 
         }

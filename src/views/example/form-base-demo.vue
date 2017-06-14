@@ -9,7 +9,7 @@
         <scroller class="bui-container span1 flex-column">
             <div style="padding-bottom:30px;">
                 <bui-panel title="搜索布局——图标在左边" border="1">
-                    <bui-searchbar-left v-on:onSearch="onSearch"></bui-searchbar-left>
+                    <bui-searchbar-left placeholder="请输入数字" v-on:search="onSearch"></bui-searchbar-left>
                 </bui-panel>
                 <bui-panel title="搜索布局——图标在中间" border="1">
                     <bui-searchbar-center></bui-searchbar-center>

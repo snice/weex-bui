@@ -12,6 +12,8 @@
                         :titleColor="item.titleColor"
                         :titleSize="item.titleSize"
                         :selected="item.selected"
+                        :length="tabItems.length"
+                        :scroll="scroll"
                         :backgroundColor="item.backgroundColor"
                         @tabItemOnClick="tabItemOnClick"
                 ></tabItem>
@@ -34,6 +36,7 @@
 <script>
     module.exports = {
         props: {
+            scroll: {},
             tabItems: {default: []},
             selectedColor: {default: '#3399ff'},
             unselectedColor: {default: '#8a8a8a'},

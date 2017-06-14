@@ -1,5 +1,5 @@
 <template>
-    <div :class="['flex-row', 'row-center-left', 'bui-searchbar']" @click="onfocusFn()">
+    <div :class="['flex-row', 'row-center-left', 'bui-searchbar', classname]" @click="onfocusFn()">
         <div :class="['flex-row', 'row-center-left', 'span1', 'bui-input']">
             <!--<text class="iconfont">&#xe623;</text>-->
             <bui-icon :name="'icon-search'"></bui-icon>
@@ -16,6 +16,10 @@
 <script>
     module.exports = {
         props: {
+            "classname": {
+                type: String,
+                default: 'bui-search-bg'
+            },
             "placeholder": {
                 type: String,
                 default: "请输入用户名"
@@ -39,20 +43,23 @@
         },
         methods: {
             //搜索框触发输入焦点
-            "onfocusFn": function () {
+            "onfocusFn": function (event) {
                 this.autofocus = true;
             },
             //搜索获得输入焦点
             "onfocus": function (event) {
                 console.log(event);
+                console.log('event');
                 this.searchstatus = true;
+                this.$emit("focus", event);
             },
             //搜索失去输入焦点
             "onblur": function (event) {
-                this.value = "";
+//                this.value = "";
                 this.searchstatus = false;
                 this.deletestatus = false;
                 this.autofocus = false;
+                this.$emit('blur', event);
             },
             //搜索输入值更改
             "oninput": function (event) {
@@ -60,6 +67,7 @@
                 console.log(event);
                 this.value = event.value;
                 this.deletestatus = true;
+                this.$emit('input', event);
             },
             //清除搜索输入值
             "clear": function () {
@@ -67,6 +75,7 @@
                 this.deletestatus = false;
                 console.log('value:' +this.value);
                 this.autofocus = true;
+                this.$emit('clear');
             },
             //取消搜索
 //            "cancel": function () {
@@ -78,7 +87,7 @@
             //搜索
             "search": function () {
                 console.log(this.value);
-                this.$emit("onSearch",this.value);
+                this.$emit("search",this.value);
             },
 
         }

@@ -28,10 +28,6 @@
                         <bui-icon name="icon-go"></bui-icon>
                     </div>
                 </cell>
-                <!--上拉组件-->
-                <!--<cell class="bui-loading" v-if="showLoading">-->
-                <!--<text class="bui-loading-indicator">{{loadingText}}</text>-->
-                <!--</cell>-->
                 <loading class="bui-loading" @loading="onLoading" :display="showLoading ? 'show' : 'hide'">
                     <text class="bui-loading-indicator">{{loadingText}}</text>
                 </loading>
@@ -109,14 +105,6 @@
                     this.refreshIcon = "icon-toup";
                     this.refreshText = "松开即可刷新...";
                 }
-            },
-            //list滚动到底部触发事件
-            "onLoadmore": function (e) {
-                buiweex.toast("onloadmore");
-                this.showLoading = true;
-                setTimeout(() => {
-                    this.showLoading = false;
-                }, 2000);
             },
             "onLoading": function (e) {
                 buiweex.toast("loading");
