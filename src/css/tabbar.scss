@@ -2,10 +2,7 @@
 
 .bui-tabbar-wrapper {
   width: 750px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  flex: 1;
 }
 
 .bui-tabbar-content {
@@ -87,10 +84,8 @@
   right: $nb40;
   border-bottom-width: 5px;
   border-bottom-style: solid;
-  border-bottom-color: $color_dark_primary;
 }
 .text {
-  font-size: $nb28;
   color: $color_subtitle;
   text-align: center;
 }

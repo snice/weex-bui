@@ -1,7 +1,7 @@
 <template>
     <div class="bui-scroller-tabbar-row" @click="onclickitem" :style="{'width': width}">
-        <text v-if="type!='icon'" :style="{ 'color': titleColor }" class="text">{{title}}</text>
-        <text class="actived" v-if="selected"></text>
+        <text class="text" :style="{ 'color': titleColor, 'font-size': titleSize }">{{title}}</text>
+        <text class="actived" :style="{'border-bottom-color': titleColor}" v-if="selected"></text>
     </div>
 </template>
 
@@ -13,13 +13,10 @@
             index: {default: 0},
             title: {default: ''},
             titleColor: {default: '#000000'},
-            titleSize: {default:'25'},
-            icon: {default: ''},
-            backgroundColor: {default: '#ffffff'},
+            titleSize: {default:'28'},
             selected: {default: false},
             length: {},
-            scroll: {default: true},
-            type:{default:'icon-text'} //text,icon-text,icon
+            scroll: {default: true}
         },
         methods: {
             onclickitem: function (e) {

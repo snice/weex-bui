@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex-column">
         <!--标题栏-->
         <bui-header
                 :title="currentTab"
@@ -8,8 +8,7 @@
         </bui-header>
 
         <!--选项卡内容-->
-        <bui-tabbar :tabItems="tabItems"
-                    :top="top" @tabItemOnClick="tabItemOnClick"></bui-tabbar>
+        <bui-tabbar :tabItems="tabItems" selectedIndex="2" @tabItemOnClick="tabItemOnClick"></bui-tabbar>
     </div>
 </template>
 <style lang="sass" src="../../css/layout.scss"></style>

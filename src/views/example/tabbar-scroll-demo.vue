@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex-column">
         <bui-header
                 :title="'横向滚动下方内容切换卡'"
                 :leftItem="leftItem"
@@ -7,8 +7,9 @@
         </bui-header>
 
         <bui-tabbar-scroll :tabItems="tabItems"
-                             selectedIndex="2"
-                             top="117px" @tabItemOnClick="tabItemOnClick"></bui-tabbar-scroll>
+                           selectedIndex="2"
+                           :scroll=false
+                           @tabItemOnClick="tabItemOnClick"></bui-tabbar-scroll>
     </div>
 
 </template>
@@ -28,7 +29,6 @@
                     {
                         index: 0,
                         title: '首页',
-                        icon: 'icon-home',
                         selected: false,
                         src: '/tabbar-item1-demo.weex.js',
                         visibility: 'visible',
@@ -36,7 +36,6 @@
                     {
                         index: 1,
                         title: '通讯录',
-                        icon: 'icon-book',
                         selected: false,
                         src: '/tabbar-item2-demo.weex.js',
                         visibility: 'hidden',
@@ -44,7 +43,6 @@
                     {
                         index: 2,
                         title: '动态',
-                        icon: 'icon-msg',
                         selected: false,
                         src: '/tabbar-item3-demo.weex.js',
                         visibility: 'hidden',
@@ -52,7 +50,6 @@
                     {
                         index: 3,
                         title: '我的',
-                        icon: 'icon-user',
                         selected: false,
                         src: '/tabbar-item3-demo.weex.js',
                         visibility: 'hidden',
@@ -60,7 +57,6 @@
                     {
                         index: 4,
                         title: '通讯录',
-                        icon: 'icon-book',
                         selected: false,
                         src: '/tabbar-item2-demo.weex.js',
                         visibility: 'hidden',

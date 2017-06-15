@@ -1,5 +1,5 @@
 <template>
-    <div class="bui-tabbar-wrapper" v-bind:style="{'top':top}">
+    <div class="bui-tabbar-wrapper">
         <embed
                 v-for="(item , i) in tabItems"
                 :src="item.src"
@@ -16,8 +16,8 @@
                     :icon="item.icon"
                     :title="item.title"
                     :titleColor="item.titleColor"
-                    :titleSize="item.titleSize"
-                    :backgroundColor="item.backgroundColor"
+                    :titleSize="titleSize"
+                    :backgroundColor="backgroundColor"
                     :type="item.type"
                     @tabItemOnClick="tabItemOnClick"
             ></tabItem>
@@ -33,6 +33,8 @@
             tabItems: {default: []},
             selectedColor: {default: '#4ca4fe'},
             unselectedColor: {default: '#818181'},
+            titleSize: {},
+            backgroundColor: {},
             top: {default: "0px"}, //内容区域离顶部的距离
             selectedIndex: {default: 0} //当前选中的索引
         },

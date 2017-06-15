@@ -1,5 +1,5 @@
 <template>
-    <div class="bui-tabbar-wrapper" v-bind:style="{'top':top}">
+    <div class="bui-tabbar-wrapper">
 
         <div class="bui-scroller-bar-top" append="tree">
             <scroller class="bui-scroller-tabbar" scroll-direction="horizontal" show-scrollbar=false>
@@ -7,14 +7,12 @@
                         v-for="item in tabItems"
                         :key="item.index"
                         :index="item.index"
-                        :icon="item.icon"
                         :title="item.title"
                         :titleColor="item.titleColor"
-                        :titleSize="item.titleSize"
+                        :titleSize="titleSize"
                         :selected="item.selected"
                         :length="tabItems.length"
                         :scroll="scroll"
-                        :backgroundColor="item.backgroundColor"
                         @tabItemOnClick="tabItemOnClick"
                 ></tabItem>
             </scroller>
@@ -40,6 +38,7 @@
             tabItems: {default: []},
             selectedColor: {default: '#3399ff'},
             unselectedColor: {default: '#8a8a8a'},
+            titleSize: {},
             top: {default: "0px"}, //内容区域离顶部的距离
             selectedIndex: {default: 0} //当前选中的索引
         },
