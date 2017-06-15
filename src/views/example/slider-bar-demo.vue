@@ -33,31 +33,31 @@
         </div>
         <!--自定义left-slider-bar-->
         <bui-slider-bar
-                v-on:closeSliderBar="closeSliderBarLeft"
+                @close="closeSliderBarLeft"
                 :type="'left'"
-                :showbar="showBarLeft"
+                :show="showBarLeft"
                 v-if="showBarLeft"
                 ref="leftSliderBar">
             <div class="userBox">
                 <bui-image :src="'/image/pic.jpg'" radius="120px" class="icon-image-middle"></bui-image>
                 <text class="userName">喵喵</text>
             </div>
-            <list class="bui-list" style="height:500px;">
-                <cell class="bui-cell-large" v-for="item in messageList">
+            <div class="bui-list">
+                <div class="bui-cell-large" v-for="item in messageList">
                     <div class="bui-list-left">
                         <bui-icon :name="item['l-icon']"></bui-icon>
                     </div>
                     <div class="bui-list-main">
                         <text class="bui-list-title">{{item.title}}</text>
                     </div>
-                </cell>
-            </list>
+                </div>
+            </div>
         </bui-slider-bar>
 
         <bui-slider-bar
-                v-on:closeSliderBar="closeSliderBarRight"
+                @close="closeSliderBarRight"
                 :type="'right'"
-                :showbar="showBarRight"
+                :show="showBarRight"
                 v-if="showBarRight"
                 ref="rightSliderBar"
         >
@@ -123,7 +123,7 @@
                 var _this = this;
                 this.showBarLeft = true;
                 setTimeout(function () {
-                    _this.$refs['leftSliderBar'].openSliderBar();
+                    _this.$refs['leftSliderBar'].openBar();
                 }, 1);
             },
             //打开右侧滑动栏
@@ -131,7 +131,7 @@
                 var _this = this;
                 this.showBarRight = true;
                 setTimeout(function () {
-                    _this.$refs.rightSliderBar.openSliderBar();
+                    _this.$refs.rightSliderBar.openBar();
                 }, 1);
             },
             "closeSliderBarLeft": function () {

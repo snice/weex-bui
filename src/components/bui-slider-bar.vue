@@ -1,6 +1,6 @@
 <template>
     <div class="bui-slider-bar">
-        <bui-mask v-if="showbar" @click="layoutClick"></bui-mask>
+        <bui-mask v-if="show" @click="layoutClick"></bui-mask>
         <div class="bui-slider-bar-box" :class="['bui-'+type+'-slider-bar-box']" v-on:swipe="onSwipe($event)" ref="navbar">
             <!--<text class="bui-slider-title">{{type=='left' ? '左':'右'}}侧滑动栏题</text>-->
             <div class="bui-slider-content">
@@ -20,7 +20,7 @@
     var animation = weex.requireModule('animation');
     module.exports = {
         props: {
-            showbar: {
+            show: {
                 type: Boolean
             },
             type: {
@@ -47,7 +47,7 @@
                 })
             },
             //打开左侧滑动栏
-            "openSliderBar": function () {
+            "openBar": function () {
                 var navbar = this.$refs['navbar'];
                 if(this.type == 'left'){
                     this.animationFn(navbar, 'translate(600px, 0)',  'ease-in');
@@ -60,16 +60,16 @@
             "layoutClick": function () {
                 var _this = this;
                 var navbar = this.$refs['navbar'];
-                _this.showbar = false;
+                _this.show = false;
                 switch(this.type) {
                     case "left":
                         this.animationFn(navbar, 'translate(-600px, 0px)',  'ease-in', function () {
-                            _this.$emit("closeSliderBar");
+                            _this.$emit("close");
                         });
                         break;
                     case "right":
                         this.animationFn(navbar, 'translate(600px, 0px)',  'ease-in', function () {
-                            _this.$emit("closeSliderBar");
+                            _this.$emit("close");
                         });
                         break;
                     default:

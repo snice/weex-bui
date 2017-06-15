@@ -1,5 +1,5 @@
 <template>
-    <div class="bui-header-box" :style="{'height': height, 'background-color': backgroundColor}">
+    <div class="bui-header-box" :style="{'height': height, 'background-color': backgroundColor,'background-image':backgroundImage}">
         <div :style="{ 'height': '30px' }" v-if="iosItem"></div>
         <div class="bui-header">
             <div class="bui-header-main" @click="_centerClick($event)">
@@ -34,6 +34,10 @@
         },
         props: {
             title: {
+                type: String,
+                default: ''
+            },
+            backgroundImage:{
                 type: String,
                 default: ''
             },
