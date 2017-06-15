@@ -1,7 +1,7 @@
 <template>
   <div
     :class="['panel', 'panel-' + type]"
-    :style="{ borderWidth: border }">
+    :style="{ borderWidth: border}">
     <text
       :class="['panel-header', 'panel-header-' + type]"
       :style="{

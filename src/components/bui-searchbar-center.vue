@@ -1,5 +1,5 @@
 <template>
-    <div :class="['flex-row', 'row-center-left', 'bui-searchbar']" @click="onfocusFn()">
+    <div :class="['flex-row', 'row-center-left', 'bui-searchbar', 'bui-search-bg-'+type]" @click="onfocusFn()">
         <div :class="['flex-row', 'row-center-left', 'span1', 'bui-input']">
             <div class="flex-row center" :class="[!searchstatus ? 'span1':'']">
                 <bui-icon v-if="!deletestatus" :name="'icon-search'" @click="onfocusFn()"></bui-icon>
@@ -8,7 +8,7 @@
             <input class="span1 bui-search-input-text" v-if="searchstatus" @focus="onfocus($event)" @blur="onblur($event)" @input="oninput($event)" :value="value" :autofocus="autofocus" type="text" :placeholder="placeholder"/>
             <bui-icon class="bui-search-icon-delete" @click="clear()" v-if="deletestatus" :name="'icon-delete-little'"></bui-icon>
         </div>
-        <text class="bui-search-search" @click="search()" v-if="searchstatus">搜索</text>
+        <text :class="['bui-search-search', 'bui-search-text-color-'+type]" @click="search()" v-if="searchstatus">搜索</text>
     </div>
 </template>
 
@@ -18,7 +18,10 @@
 <script>
     module.exports = {
         props: {
-
+            "type": {
+                type: String,
+                default: 'default'
+            },
             "placeholder": {
                 type: String,
                 default: "请输入用户名"
