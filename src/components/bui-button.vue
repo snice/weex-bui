@@ -8,13 +8,12 @@
 <style lang="sass" src="../css/button.scss"></style>
 
 <script>
-    var radius = "0px";
     module.exports = {
         props: {
             "type": {default: 'default'},
             "value": {default: 'Button'},
             "disabled": {default: false},
-            "radius": {default: radius}
+            "radius": {default: "0px"}
         },
         methods: {
             "_click": function (e) {

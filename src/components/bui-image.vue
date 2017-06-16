@@ -14,7 +14,7 @@
                 if (this.src.indexOf("http") >= 0) {
                     return this.src;
                 }
-                //todo 兼容 src/image, /src/image , image/xxx, /image/xxx
+
                 var bundleUrl = weex.config.bundleUrl;
                 var url = bundleUrl.split('/').slice(0, -1).join('/');
                 if (bundleUrl.indexOf("weex.html") > 0) {
