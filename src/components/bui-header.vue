@@ -1,9 +1,9 @@
 <template>
-    <div class="bui-header-box" :style="{'height': height, 'background-color': backgroundColor,'background-image':backgroundImage}">
+    <div class="bui-header-box" :style="style">
         <div :style="{ 'height': '30px' }" v-if="iosItem"></div>
         <div class="bui-header">
-            <div class="bui-header-main" @click="_centerClick($event)">
-                <text class="bui-header-title">{{title}}</text>
+            <div class="bui-header-main">
+                <text class="bui-header-title" @click="_centerClick($event)">{{title}}</text>
             </div>
             <div class="bui-header-left">
                 <bui-icon @click="_leftClick($event)" v-if="leftItem.icons" :name="leftItem.icons" size="45px"
@@ -30,9 +30,10 @@
     };
     module.exports = {
         data:function () {
-          return {}
+            return {}
         },
         props: {
+            styleEx: {},
             title: {
                 type: String,
                 default: ''
@@ -63,9 +64,10 @@
             }
         },
         data: function () {
-          return {
-              height: '117px'
-          }
+            return {
+                height: '117px',
+                style: {'background-color': '#4ca4fe','background-image': ''}
+            }
         },
         computed: {
             iosItem: function () {
@@ -104,6 +106,9 @@
             _centerClick: function ($event) {
                 this.$emit('centerClick', $event);
             }
+        },
+        mounted: function () {
+            this.style = Object.assign({}, this.style, this.styleEx, {'height': this.height});
         }
     }
 </script>

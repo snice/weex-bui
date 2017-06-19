@@ -9,8 +9,6 @@
   background-color: #3c763d;
 }
 .bui-header{
-  //height: $nb100;
-  //background-color: $color_primary;
   flex: 1;
   padding-left:$nb20;
   padding-right: $nb20;
@@ -21,7 +19,6 @@
 }
 
 .bui-header-left{
-  //height:$nb100;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -32,7 +29,6 @@
 }
 
 .bui-header-right{
-  //height:$nb100;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -43,19 +39,21 @@
 }
 
 .bui-header-main{
-  //height: $nb100;
-  //align-items: center;
   justify-content: center;
   flex: 1;
   padding-left: $nb10;
   padding-right: $nb10;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .bui-header-title{
   font-size: $nb34;
   color: $color_white;
   text-align: center;
+  padding-left: $nb15;
+  padding-right: $nb15;
+  padding-top: $nb15;
+  padding-bottom: $nb15;
   lines:1;
   text-overflow: ellipsis;
 }
