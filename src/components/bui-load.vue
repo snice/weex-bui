@@ -1,6 +1,6 @@
 <template>
     <div class="load-layout">
-        <bui-mask v-if="showmask" @click="layoutClick"></bui-mask>
+        <bui-mask v-if="show" @click="layoutClick"></bui-mask>
         <div class="load-block">
             <bui-icon class="load-icon" name="icon-loadding"></bui-icon>
             <text class="load-text">{{message}}</text>
@@ -12,7 +12,7 @@
     var animation = weex.requireModule('animation');
     module.exports = {
         props: {
-            showmask: {
+            show: {
                 type: Boolean,
                 default: true
             },
@@ -33,9 +33,7 @@
                 var _this = this;
                 _this.$emit("close");
             },
-            "open": function () {
 
-            }
         },
         created: function () {
 

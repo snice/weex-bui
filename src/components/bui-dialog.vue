@@ -1,7 +1,7 @@
 <template>
     <div class="bui-dialog-layout">
-        <div class="bui-dialog-mask" @click="_layoutClick">
-        </div>
+        <bui-mask v-if="show" class="bui-dialog-mask" @click="_layoutClick">
+        </bui-mask>
         <div class="bui-dialog">
             <div class="bui-dialog-title">
                 <text class="dialog-title-text">{{title}}</text>
@@ -23,6 +23,10 @@
 <script>
     module.exports = {
         props: {
+            show: {
+                type: Boolean,
+                default: true
+            },
             title: {default: "标题"},
             buttons: {
                 default: "取消,确定"
@@ -36,10 +40,10 @@
         components: {},
         methods: {
             "_click": function (text) {
-                this.$emit("onDialogCallback", text);
+                this.$emit("btnClick", text);
             },
             "_layoutClick": function () {
-                this.$emit("onDialogCancel");
+                this.$emit("close");
             }
         }
     }

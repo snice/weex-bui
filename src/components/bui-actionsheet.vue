@@ -1,11 +1,11 @@
 <template>
     <div class="bui-actionsheet">
-        <bui-mask v-if="showmask" @click="layoutClick"></bui-mask>
+        <bui-mask v-if="show" @click="layoutClick"></bui-mask>
         <div class="bui-actionsheet-box" :style="{'bottom': '-'+bottom+'px'}" ref="actionsheetBox">
             <div class="bui-actionsheet-top">
                 <text class="bui-actionsheet-title">{{title}}</text>
                 <div class="bui-actionsheet-content">
-                    <text class="bui-actionsheet-list" v-for="item in actionsheetItems" @click="actionsheetItemClick(item)">{{item}}</text>
+                    <text class="bui-actionsheet-list" v-for="item in items" @click="actionsheetItemClick(item)">{{item}}</text>
                 </div>
             </div>
             <div class="bui-actionsheet-bottom">
@@ -23,10 +23,10 @@
             title: {
                 default: "请选择操作"
             },
-            actionsheetItems: {
+            items: {
                 type: Array
             },
-            showmask: {
+            show: {
                 type: Boolean,
                 default: true
             },
@@ -37,7 +37,7 @@
         computed:{
             "bottom":function () {
                 //根据下拉菜单内容计算bottom距离
-                var length = this.actionsheetItems.length;
+                var length = this.items.length;
                 var len = (length+1)*100+80;
                 console.log(len);
                 return len;
@@ -73,7 +73,7 @@
             "layoutClick": function () {
                 var _this = this;
                 var el = this.$refs.actionsheetBox;
-                _this.showmask = false;
+                _this.show = false;
                 var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
                 _this.animationFn(el, translate,  'ease-in', function () {
                     _this.$emit("close");
@@ -83,7 +83,7 @@
             "actionsheetItemClick": function (item) {
                 var _this = this;
                 var el = this.$refs.actionsheetBox;
-                _this.showmask = false;
+                _this.show = false;
                 var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
                 _this.animationFn(el, translate,  'ease-in', function () {
                     _this.$emit('itemClick', item);
@@ -93,7 +93,7 @@
             "actionsheetBtnClick": function () {
                 var _this = this;
                 var el = this.$refs.actionsheetBox;
-                _this.showmask = false;
+                _this.show = false;
                 var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
                 _this.animationFn(el, translate,  'ease-in', function () {
                     _this.$emit('btnClick');

@@ -8,8 +8,8 @@
         </bui-header>
 
         <bui-content class="span1" padded="true">
-            <list class="bui-list" style="height:900px;">
-                <cell class="bui-cell-large" @click="openActionsheet()">
+            <list class="bui-list">
+                <cell class="bui-cell" @click="openActionsheet()">
                     <div class="bui-list-main">
                         <text class="bui-list-title">上拉菜单</text>
                     </div>
@@ -17,7 +17,7 @@
                         <bui-icon name="icon-go"></bui-icon>
                     </div>
                 </cell>
-                <cell class="bui-cell-large" @click="openDropdown($event)">
+                <cell class="bui-cell" @click="openDropdown($event)">
                     <div class="bui-list-main">
                         <text class="bui-list-title">自适应点击元素宽度下拉菜单</text>
                     </div>
@@ -25,7 +25,7 @@
                         <bui-icon name="icon-go"></bui-icon>
                     </div>
                 </cell>
-                <cell class="bui-cell-large" @click="openDropdown2($event)">
+                <cell class="bui-cell" @click="openDropdown2($event)">
                     <div class="bui-list-main">
                         <text class="bui-list-title">默认下拉菜单</text>
                     </div>
@@ -54,8 +54,8 @@
 
         <!--自定义上拉菜单-->
         <bui-actionsheet
-                :actionsheetItems="actionsheetItems"
-                :showmask="showBar"
+                :items="actionsheetItems"
+                :show="showBar"
                 @close="closeActionsheet"
                 @itemClick="actionsheetItemClick"
                 @btnClick="actionsheetBtnClick"
@@ -64,7 +64,7 @@
         ></bui-actionsheet>
 
         <bui-dropdown
-                :showmask="showDropdown"
+                :show="showDropdown"
                 @close="closeDropdown"
                 v-if="showDropdown"
                 ref="dropdown">
@@ -82,7 +82,7 @@
 
         <bui-dropdown
                 :showArrow=true
-                :showmask="showDropdown2"
+                :show="showDropdown2"
                 @close="closeDropdown2"
                 v-if="showDropdown2"
                 ref="dropdown2">
@@ -100,7 +100,7 @@
 
         <bui-dropdown
                 :showArrow=true
-                :showmask="showDropdown3"
+                :show="showDropdown3"
                 @close="closeDropdown3"
                 v-if="showDropdown3"
                 ref="dropdown3">
@@ -119,7 +119,7 @@
         <bui-dropdown
                 :showArrow=true
                 :center=true
-                :showmask="showDropdown4"
+                :show="showDropdown4"
                 @close="closeDropdown4"
                 v-if="showDropdown4"
                 ref="dropdown4">
@@ -135,7 +135,7 @@
             </div>
         </bui-dropdown>
 
-        <bui-load ref="loadDom" message="加载中..." :showmask="showLoading" v-if="showLoading" @close="closeLoading"></bui-load>
+        <bui-load message="加载中..." :show="showLoading" v-if="showLoading" @close="closeLoading"></bui-load>
 
     </div>
 
@@ -244,9 +244,6 @@
             "loadFn": function () {
                 var _this = this;
                 this.showLoading = true;
-                setTimeout(function () {
-                    _this.$refs.loadDom.open();
-                }, 1);
             },
             "closeLoading": function () {
                 this.showLoading = false;

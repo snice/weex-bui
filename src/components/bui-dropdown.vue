@@ -1,6 +1,6 @@
 <template>
     <div class="bui-dropdown">
-        <bui-mask v-if="showmask" @click="layoutClick"></bui-mask>
+        <bui-mask v-if="show" @click="layoutClick"></bui-mask>
 
         <div class="bui-dropdown-box" ref="dropdownBox" :style="{'left': left, 'top': top, 'width': widthDrop}">
             <div class="bui-dropdown-content">
@@ -31,7 +31,7 @@
             }
         },
         props: {
-            showmask: {
+            show: {
                 type: Boolean,
                 default: true
             },
@@ -71,7 +71,7 @@
                 var el = _this.$refs.dropdownBox;
 
                 _this.position = data.position;
-                //showArrow为false,宽度按触发元素宽度自适应,如果控制宽度可设置为true,默认宽度为400px,也可自传宽度
+                //showArrow为false,宽度按触发元素宽度自适应,如果控制宽度可设置为true,默认宽度为260px,也可自传宽度
                 if(!_this.showArrow){
                     if(_this.position.width >= 260) {
                         _this.widthDrop = _this.position.width;
@@ -129,7 +129,7 @@
             "layoutClick": function () {
                 var _this = this;
                 var el = this.$refs.dropdownBox;
-                _this.showmask = false;
+                _this.show = false;
 
 //                var translate = 'translate(0px, -'+parseInt(_this.position.height)+'px)';
                 var translate = 'scale(0.9, 0.9)';
