@@ -20,8 +20,6 @@
 
 
 <script>
-
-    var buiweex = require("../js/buiweex.js");
     module.exports = {
         props: {
             tabItems: {default: []},
