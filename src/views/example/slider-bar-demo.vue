@@ -120,7 +120,7 @@
                 var _this = this;
                 this.showBarLeft = true;
                 setTimeout(function () {
-                    _this.$refs['leftSliderBar'].openBar();
+                    _this.$refs.leftSliderBar.openBar();
                 }, 1);
             },
             //打开右侧滑动栏

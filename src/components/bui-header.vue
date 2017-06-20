@@ -1,9 +1,9 @@
 <template>
-    <div class="bui-header-box" :style="style">
+    <div class="bui-header-box" :style="styleNew">
         <div :style="{ 'height': '30px' }" v-if="iosItem"></div>
         <div class="bui-header">
-            <div class="bui-header-main">
-                <text class="bui-header-title" @click="_centerClick($event)">{{title}}</text>
+            <div class="bui-header-main" @click="_centerClick($event)">
+                <text class="bui-header-title">{{title}}</text>
             </div>
             <div class="bui-header-left">
                 <bui-icon @click="_leftClick($event)" v-if="leftItem.icons" :name="leftItem.icons" size="45px"
@@ -38,14 +38,6 @@
                 type: String,
                 default: ''
             },
-            backgroundImage:{
-                type: String,
-                default: ''
-            },
-            backgroundColor: {
-                type: String,
-                default: '#4ca4fe'
-            },
             leftItem: {
                 type: Object,
                 default: function () {
@@ -66,32 +58,31 @@
         data: function () {
             return {
                 height: '117px',
-                style: {'background-color': '#4ca4fe','background-image': ''}
+                styleNew: {},
+                style: {'background-color': '#4ca4fe'}
             }
         },
         computed: {
             iosItem: function () {
-                var _this = this;
-                if (!this.ios) {
-                    _this.height = '100px';
-                    return;
-                }
-                //头部位置适配
                 var ios = false;
-                var env = weex.config.env.platform.toLowerCase();
-                switch (env) {
-                    case "ios":
-                        ios = true;
-                        break;
-                    case "android":
-                        _this.height = '100px';
-                        ios = false;
-                        break;
-                    case "web":
-                        ios = false;
-                        break;
-                    default:
-                        ios = false;
+                if (!this.ios) {
+                    ios = false;
+                }else{
+                    //头部位置适配
+                    var env = weex.config.env.platform.toLowerCase();
+                    switch (env) {
+                        case "ios":
+                            ios = true;
+                            break;
+                        case "android":
+                            ios = false;
+                            break;
+                        case "web":
+                            ios = false;
+                            break;
+                        default:
+                            ios = false;
+                    }
                 }
                 return ios;
             }
@@ -107,8 +98,12 @@
                 this.$emit('centerClick', $event);
             }
         },
-        mounted: function () {
-            this.style = Object.assign({}, this.style, this.styleEx, {'height': this.height});
+        created: function () {
+            var env = weex.config.env.platform.toLowerCase();
+            if (!this.ios || env == "android") {
+                this.height = '100px';
+            }
+            this.styleNew = Object.assign({}, this.style, this.styleEx, {'height': this.height});
         }
     }
 </script>

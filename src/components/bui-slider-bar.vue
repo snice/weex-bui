@@ -21,7 +21,8 @@
     module.exports = {
         props: {
             show: {
-                type: Boolean
+                type: Boolean,
+                default: false
             },
             type: {
                 type: String,
