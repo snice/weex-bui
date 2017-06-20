@@ -9,9 +9,6 @@
         props: {
             tabId:{},
             currentTab:{}
-        },
-        created:function(){
-
         }
     }
 </script>

@@ -3,10 +3,8 @@
         <!--标题栏-->
         <bui-header
                 :ios=false
-                :title="'BUI-Weex v0.1.0'"></bui-header>
-        <div class="bg"></div>
+                title="BUI-Weex"></bui-header>
 
-        <!--内容区域-->
         <bui-content class="span1">
             <list class="bui-list">
                 <cell class="bui-cell" v-for="item in data" @click="jumpTo(item.url)">
@@ -23,6 +21,7 @@
                 </cell>
             </list>
         </bui-content>
+
     </div>
 </template>
 

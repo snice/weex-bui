@@ -2,16 +2,50 @@
     <div class="flex-column">
         <!--标题栏-->
         <bui-header
-                :title="currentTab"
+                title="选项卡示例"
                 :leftItem="leftItem"
                 @leftClick="back">
         </bui-header>
 
-        <!--选项卡内容-->
-        <bui-tabbar :tabItems="tabItems" selectedIndex="2" @tabItemOnClick="tabItemOnClick"></bui-tabbar>
+
+        <bui-tabbar-new
+                :tabItems="tabItems"
+                :currentTab="currentTab"
+                showSelectedLine="true"
+                @load="onTabLoad"
+                @itemClick="onTabItemClick">
+        </bui-tabbar-new>
+        <bui-tabbar-item-new tabId="tab1" :currentTab="currentTab">
+            <scroller>
+                <div class="tab1">
+                    <text>选项卡1</text>
+                    <text>我是滚动的内容</text>
+                </div>
+            </scroller>
+        </bui-tabbar-item-new>
+
+        <bui-tabbar-item-new tabId="tab2" :currentTab="currentTab">
+            <text>选项卡2</text>
+        </bui-tabbar-item-new>
+
+        <bui-tabbar-item-new tabId="tab3" :currentTab="currentTab">
+            <text>选项卡3</text>
+        </bui-tabbar-item-new>
+
+        <bui-tabbar-item-new tabId="tab4" :currentTab="currentTab">
+            <text>选项卡4</text>
+        </bui-tabbar-item-new>
+
     </div>
 </template>
+
 <style lang="sass" src="../../css/layout.scss"></style>
+
+<style>
+    .tab1{
+        height: 1800px;
+    }
+</style>
 <script>
     var buiweex = require("../../js/buiweex.js");
     module.exports = {
@@ -20,79 +54,46 @@
                 leftItem: {
                     icons: 'icon-back',
                 },
-                top: '0px',
-                dir: 'examples',
-                currentTab: "首页",
+                currentTab: "",
                 tabItems: [
                     {
-                        index: 0,
-                        title: '首页',
-                        icon: 'icon-home',
-                        selected: false,
-                        src: '/tabbar-item1-demo.weex.js',
-                        visibility: 'visible',
+                        tabId: "tab1",
+                        title: "首页",
+                        icon: "icon-home"
                     },
                     {
-                        index: 1,
-                        title: '通讯录',
-                        icon: 'icon-book',
-                        selected: false,
-                        src: '/tabbar-item2-demo.weex.js',
-                        visibility: 'hidden',
+                        tabId: "tab2",
+                        icon: "icon-liwu",
+                        title: "动态"
                     },
                     {
-                        index: 2,
-                        title: '动态',
-                        icon: 'icon-msg',
-                        selected: false,
-                        src: '/tabbar-item3-demo.weex.js',
-                        visibility: 'hidden',
+                        tabId: "tab3",
+                        icon: "icon-user",
+                        title: "我的"
                     },
                     {
-                        index: 3,
-                        title: '我的',
-                        icon: 'icon-user',
-                        selected: false,
-                        src: '/tabbar-item4-demo.weex.js',
-                        visibility: 'hidden',
+                        tabId: "tab4",
+                        icon: "icon-video",
+                        title: "直播"
                     }
-                ]
+                ],
+                itemStyleEx: {},
+                containerStyleEx: {},
             }
         },
         components: {
-            'bui-tabbar': require('../../components/bui-tabbar.vue')
-        },
-        created: function () {
-            for (var i = 0; i < this.tabItems.length; i++) {
-                var path = this.tabItems[i].src;
-                this.tabItems[i].src = buiweex.getContextPath() + path;
-            };
-
-            //tabbar的top值根据头部位置适配
-            var _this = this;
-            var env = weex.config.env.platform.toLowerCase();
-            switch (env) {
-                case "ios":
-                    _this.top = '117px';
-                    break;
-                case "android":
-                    _this.top = '100px';
-                    break;
-                case "web":
-                    _this.top = '100px';
-                    break;
-                default:
-                    _this.top = '100px';
-            }
+            "bui-tabbar-new": require("../../components/bui-tabbar-new.vue"),
+            "bui-tabbar-item-new": require('../../components/bui-tabbar-item-new.vue')
         },
         methods: {
             "back": function () {
                 buiweex.pop();
             },
-            tabItemOnClick: function (e) {
-                buiweex.toast("tab" + e.index);
-                //设置标题栏
-                this.currentTab = this.tabItems[e.index].title;
+            onTabLoad: function (tabId) {
+                this.currentTab = tabId;
+            },
+            onTabItemClick: function (tabId) {
+                this.currentTab = tabId;
             }
         }
     }
