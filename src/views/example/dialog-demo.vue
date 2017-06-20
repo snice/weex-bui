@@ -18,7 +18,7 @@
             </div>
         </div>
         <!--自定义Dialog-->
-        <bui-dialog id="dailog" @btnClick="onDialogCallback" :show="showDialog" v-if="showDialog">
+        <bui-dialog @btnClick="onDialogCallback" :show="showDialog">
             <text>欢迎使用Bui-Weex!</text>
             <text>基于阿里weex构建的一套UI框架</text>
         </bui-dialog>

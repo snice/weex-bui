@@ -10,6 +10,11 @@
         props: {
             type: {default: 'success'},
             value: {default: ''}
+        },
+        data: function () {
+          return {
+              style: {}
+          }
         }
     }
 </script>

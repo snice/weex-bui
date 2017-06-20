@@ -36,10 +36,9 @@
                 @close="closeSliderBarLeft"
                 :type="'left'"
                 :show="showBarLeft"
-                v-if="showBarLeft"
                 ref="leftSliderBar">
             <div class="userBox">
-                <bui-image :src="'/image/pic.jpg'" radius="120px" class="icon-image-middle"></bui-image>
+                <bui-image :src="'/image/pic.jpg'" radius="120px" width="120px" height="120px"></bui-image>
                 <text class="userName">喵喵</text>
             </div>
             <div class="bui-list">
@@ -58,11 +57,9 @@
                 @close="closeSliderBarRight"
                 :type="'right'"
                 :show="showBarRight"
-                v-if="showBarRight"
-                ref="rightSliderBar"
-        >
+                ref="rightSliderBar">
             <div class="userBox">
-                <bui-image :src="'/image/pic.jpg'" radius="120px" class="icon-image-middle"></bui-image>
+                <bui-image :src="'/image/pic.jpg'" radius="120px" width="120px" height="120px"></bui-image>
                 <text class="userName">喵喵</text>
             </div>
             <list class="bui-list" style="height:500px;">
@@ -123,7 +120,7 @@
                 var _this = this;
                 this.showBarLeft = true;
                 setTimeout(function () {
-                    _this.$refs['leftSliderBar'].openBar();
+                    _this.$refs.leftSliderBar.openBar();
                 }, 1);
             },
             //打开右侧滑动栏

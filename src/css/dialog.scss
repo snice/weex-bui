@@ -5,12 +5,12 @@ $dialog_height: 400px;
 $dialog_content-height: 220px;
 
 .bui-dialog-layout {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  flex: 1;
+  //position: fixed;
+  //top: 0;
+  //bottom: 0;
+  //left: 0;
+  //right: 0;
+  //flex: 1;
 }
 
 .bui-dialog-mask {
@@ -25,7 +25,7 @@ $dialog_content-height: 220px;
 }
 
 .bui-dialog {
-  position: absolute;
+  position: fixed;
   background-color: $color_white;
   border-radius: $nb10;
   height: $dialog_height;

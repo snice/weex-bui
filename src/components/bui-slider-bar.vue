@@ -1,7 +1,7 @@
 <template>
     <div class="bui-slider-bar">
         <bui-mask v-if="show" @click="layoutClick"></bui-mask>
-        <div class="bui-slider-bar-box" :class="['bui-'+type+'-slider-bar-box']" v-on:swipe="onSwipe($event)" ref="navbar">
+        <div v-if="show" class="bui-slider-bar-box" :class="['bui-'+type+'-slider-bar-box']" v-on:swipe="onSwipe($event)" ref="navbar">
             <!--<text class="bui-slider-title">{{type=='left' ? '左':'右'}}侧滑动栏题</text>-->
             <div class="bui-slider-content">
                 <scroller>
@@ -21,7 +21,8 @@
     module.exports = {
         props: {
             show: {
-                type: Boolean
+                type: Boolean,
+                default: false
             },
             type: {
                 type: String,
@@ -60,15 +61,17 @@
             "layoutClick": function () {
                 var _this = this;
                 var navbar = this.$refs['navbar'];
-                _this.show = false;
+
                 switch(this.type) {
                     case "left":
                         this.animationFn(navbar, 'translate(-600px, 0px)',  'ease-in', function () {
+                            _this.show = false;
                             _this.$emit("close");
                         });
                         break;
                     case "right":
                         this.animationFn(navbar, 'translate(600px, 0px)',  'ease-in', function () {
+                            _this.show = false;
                             _this.$emit("close");
                         });
                         break;

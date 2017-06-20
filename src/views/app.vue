@@ -9,7 +9,7 @@
             <list class="bui-list">
                 <cell class="bui-cell" v-for="item in data" @click="jumpTo(item.url)">
                     <div class="bui-list-left">
-                        <bui-image class="bui-list-thumb" radius="40px" src="/image/applogo.png"></bui-image>
+                        <bui-image width="80px" height="80px" radius="40px" src="/image/applogo.png"></bui-image>
                     </div>
                     <div class="bui-list-main">
                         <text class="bui-list-title">{{item.name}}</text>

@@ -1,7 +1,7 @@
 <template>
     <image v-bind:src="imagePath"
            v-bind:placeholder="placeholder"
-           v-bind:style="{'border-radius':radius}"
+           v-bind:style="{'border-radius':radius, 'width': width, 'height': height}"
            v-bind:resize="resize"
            @click="_click()"
            @load="_load()"></image>
@@ -24,6 +24,8 @@
             }
         },
         props: {
+            width: {default: '50px'},
+            height: {default: '50px'},
             src: {
                 type: String
             },
@@ -36,6 +38,11 @@
             },
             radius: {
                 default: "0px"
+            }
+        },
+        data: function(){
+            return {
+                srcNew: ""
             }
         },
         methods: {

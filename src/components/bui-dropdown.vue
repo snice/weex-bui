@@ -1,8 +1,7 @@
 <template>
     <div class="bui-dropdown">
         <bui-mask v-if="show" @click="layoutClick"></bui-mask>
-
-        <div class="bui-dropdown-box" ref="dropdownBox" :style="{'left': left, 'top': top, 'width': widthDrop}">
+        <div v-if="show" class="bui-dropdown-box" ref="dropdownBox" :style="{'left': left, 'top': top, 'width': widthDrop}">
             <div class="bui-dropdown-content">
                 <slot>
                 </slot>
@@ -33,7 +32,7 @@
         props: {
             show: {
                 type: Boolean,
-                default: true
+                default: false
             },
             center: {
                 type: Boolean,
@@ -77,7 +76,8 @@
                         _this.widthDrop = _this.position.width;
                     }
                     if(_this.center){
-                        _this.sanjiaoLeft = _this.position.x + _this.position.width/2-40;
+                        console.log(11);
+                        _this.sanjiaoLeft = _this.position.x + _this.position.width/2-20;
                         _this.left = _this.position.x;
                     }else{
                         if((750 - _this.position.x) < 260){
@@ -89,10 +89,12 @@
                     }
                 }else{
                     if(_this.center){
+                        console.log(22);
                         console.log(_this.position.x);
                         console.log(_this.widthDrop);
 
-                        _this.sanjiaoLeft = _this.position.x + 260/2 -40;
+//                        _this.sanjiaoLeft = _this.position.x + 260/2 -40;
+                        _this.sanjiaoLeft = 260/2 - 20;
                         _this.left = _this.position.x + _this.position.width/2 - 130;
                     }else{
                         if(_this.position.x == 0) {
@@ -129,11 +131,11 @@
             "layoutClick": function () {
                 var _this = this;
                 var el = this.$refs.dropdownBox;
-                _this.show = false;
 
 //                var translate = 'translate(0px, -'+parseInt(_this.position.height)+'px)';
                 var translate = 'scale(0.9, 0.9)';
                 _this.animationFn(el, "0", translate,  'ease-out', function () {
+                    _this.show = false;
                     _this.$emit("close");
                 });
             },

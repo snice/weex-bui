@@ -1,5 +1,5 @@
 <template>
-    <div class="bui-header-box" :style="{'height': height, 'background-color': backgroundColor,'background-image':backgroundImage}">
+    <div class="bui-header-box" :style="styleNew">
         <div :style="{ 'height': '30px' }" v-if="iosItem"></div>
         <div class="bui-header">
             <div class="bui-header-main" @click="_centerClick($event)">
@@ -30,20 +30,13 @@
     };
     module.exports = {
         data:function () {
-          return {}
+            return {}
         },
         props: {
+            styleEx: {},
             title: {
                 type: String,
                 default: ''
-            },
-            backgroundImage:{
-                type: String,
-                default: ''
-            },
-            backgroundColor: {
-                type: String,
-                default: '#4ca4fe'
             },
             leftItem: {
                 type: Object,
@@ -63,33 +56,33 @@
             }
         },
         data: function () {
-          return {
-              height: '117px'
-          }
+            return {
+                height: '117px',
+                styleNew: {},
+                style: {'background-color': '#4ca4fe'}
+            }
         },
         computed: {
             iosItem: function () {
-                var _this = this;
-                if (!this.ios) {
-                    _this.height = '100px';
-                    return;
-                }
-                //头部位置适配
                 var ios = false;
-                var env = weex.config.env.platform.toLowerCase();
-                switch (env) {
-                    case "ios":
-                        ios = true;
-                        break;
-                    case "android":
-                        _this.height = '100px';
-                        ios = false;
-                        break;
-                    case "web":
-                        ios = false;
-                        break;
-                    default:
-                        ios = false;
+                if (!this.ios) {
+                    ios = false;
+                }else{
+                    //头部位置适配
+                    var env = weex.config.env.platform.toLowerCase();
+                    switch (env) {
+                        case "ios":
+                            ios = true;
+                            break;
+                        case "android":
+                            ios = false;
+                            break;
+                        case "web":
+                            ios = false;
+                            break;
+                        default:
+                            ios = false;
+                    }
                 }
                 return ios;
             }
@@ -104,6 +97,13 @@
             _centerClick: function ($event) {
                 this.$emit('centerClick', $event);
             }
+        },
+        created: function () {
+            var env = weex.config.env.platform.toLowerCase();
+            if (!this.ios || env == "android") {
+                this.height = '100px';
+            }
+            this.styleNew = Object.assign({}, this.style, this.styleEx, {'height': this.height});
         }
     }
 </script>

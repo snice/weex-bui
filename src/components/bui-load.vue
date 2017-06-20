@@ -1,7 +1,7 @@
 <template>
     <div class="load-layout">
         <bui-mask v-if="show" @click="layoutClick"></bui-mask>
-        <div class="load-block">
+        <div v-if="show" class="load-block">
             <bui-icon class="load-icon" name="icon-loadding"></bui-icon>
             <text class="load-text">{{message}}</text>
         </div>
@@ -14,7 +14,7 @@
         props: {
             show: {
                 type: Boolean,
-                default: true
+                default: false
             },
             message: {
                 type: String,
