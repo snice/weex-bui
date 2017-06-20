@@ -36,7 +36,6 @@
                 @close="closeSliderBarLeft"
                 :type="'left'"
                 :show="showBarLeft"
-                v-if="showBarLeft"
                 ref="leftSliderBar">
             <div class="userBox">
                 <bui-image :src="'/image/pic.jpg'" radius="120px" width="120px" height="120px"></bui-image>
@@ -58,9 +57,7 @@
                 @close="closeSliderBarRight"
                 :type="'right'"
                 :show="showBarRight"
-                v-if="showBarRight"
-                ref="rightSliderBar"
-        >
+                ref="rightSliderBar">
             <div class="userBox">
                 <bui-image :src="'/image/pic.jpg'" radius="120px" width="120px" height="120px"></bui-image>
                 <text class="userName">喵喵</text>

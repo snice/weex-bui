@@ -1,8 +1,7 @@
 <template>
     <div class="bui-dialog-layout">
-        <bui-mask v-if="show" class="bui-dialog-mask" @click="_layoutClick">
-        </bui-mask>
-        <div class="bui-dialog">
+        <bui-mask v-if="show" @click="_layoutClick"></bui-mask>
+        <div class="bui-dialog" v-if="show">
             <div class="bui-dialog-title">
                 <text class="dialog-title-text">{{title}}</text>
             </div>
@@ -25,7 +24,7 @@
         props: {
             show: {
                 type: Boolean,
-                default: true
+                default: false
             },
             title: {default: "标题"},
             buttons: {
@@ -37,7 +36,9 @@
                 return this.buttons.split(',');
             }
         },
-        components: {},
+        components: {
+            'bui-mask': require('./bui-mask.vue')
+        },
         methods: {
             "_click": function (text) {
                 this.$emit("btnClick", text);
@@ -46,5 +47,6 @@
                 this.$emit("close");
             }
         }
+
     }
 </script>

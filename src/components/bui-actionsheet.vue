@@ -1,7 +1,7 @@
 <template>
     <div class="bui-actionsheet">
         <bui-mask v-if="show" @click="layoutClick"></bui-mask>
-        <div class="bui-actionsheet-box" :style="{'bottom': '-'+bottom+'px'}" ref="actionsheetBox">
+        <div v-if="show" class="bui-actionsheet-box" :style="{'bottom': '-'+bottom+'px'}" ref="actionsheetBox">
             <div class="bui-actionsheet-top">
                 <text class="bui-actionsheet-title">{{title}}</text>
                 <div class="bui-actionsheet-content">
@@ -28,7 +28,7 @@
             },
             show: {
                 type: Boolean,
-                default: true
+                default: false
             },
             button: {
                 default: "取消"
@@ -73,9 +73,9 @@
             "layoutClick": function () {
                 var _this = this;
                 var el = this.$refs.actionsheetBox;
-                _this.show = false;
                 var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
                 _this.animationFn(el, translate,  'ease-in', function () {
+                    _this.show = false;
                     _this.$emit("close");
                 });
             },
@@ -83,9 +83,9 @@
             "actionsheetItemClick": function (item) {
                 var _this = this;
                 var el = this.$refs.actionsheetBox;
-                _this.show = false;
                 var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
                 _this.animationFn(el, translate,  'ease-in', function () {
+                    _this.show = false;
                     _this.$emit('itemClick', item);
                 });
             },
@@ -93,9 +93,9 @@
             "actionsheetBtnClick": function () {
                 var _this = this;
                 var el = this.$refs.actionsheetBox;
-                _this.show = false;
                 var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
                 _this.animationFn(el, translate,  'ease-in', function () {
+                    _this.show = false;
                     _this.$emit('btnClick');
                 });
             }

@@ -43,14 +43,13 @@
         data: function(){
             return {
                 leftItem: {
-                    icons: 'icon-back',
+                    icons: 'icon-back'
                 },
             }
         },
         components: {
             'bui-panel': require('../../components/bui-panel.vue')
         },
-
         methods: {
             "back": function () {
                 buiweex.pop();

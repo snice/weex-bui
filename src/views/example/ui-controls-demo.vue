@@ -59,14 +59,12 @@
                 @close="closeActionsheet"
                 @itemClick="actionsheetItemClick"
                 @btnClick="actionsheetBtnClick"
-                v-if="showBar"
                 ref="actionsheet"
         ></bui-actionsheet>
 
         <bui-dropdown
                 :show="showDropdown"
                 @close="closeDropdown"
-                v-if="showDropdown"
                 ref="dropdown">
             <div class="bui-list">
                 <div class="bui-cell" v-for="item in messageList">
@@ -84,7 +82,6 @@
                 :showArrow=true
                 :show="showDropdown2"
                 @close="closeDropdown2"
-                v-if="showDropdown2"
                 ref="dropdown2">
             <div class="bui-list">
                 <div class="bui-cell" v-for="item in messageList">
@@ -102,7 +99,6 @@
                 :showArrow=true
                 :show="showDropdown3"
                 @close="closeDropdown3"
-                v-if="showDropdown3"
                 ref="dropdown3">
             <div class="bui-list">
                 <div class="bui-cell" v-for="item in messageList">
@@ -121,7 +117,6 @@
                 :center=true
                 :show="showDropdown4"
                 @close="closeDropdown4"
-                v-if="showDropdown4"
                 ref="dropdown4">
             <div class="bui-list">
                 <div class="bui-cell" v-for="item in messageList">
@@ -135,7 +130,7 @@
             </div>
         </bui-dropdown>
 
-        <bui-load message="加载中..." :show="showLoading" v-if="showLoading" @close="closeLoading"></bui-load>
+        <bui-load message="加载中..." :show="showLoading" @close="closeLoading"></bui-load>
 
     </div>
 

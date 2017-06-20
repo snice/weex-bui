@@ -1,8 +1,7 @@
 <template>
     <div class="bui-dropdown">
         <bui-mask v-if="show" @click="layoutClick"></bui-mask>
-
-        <div class="bui-dropdown-box" ref="dropdownBox" :style="{'left': left, 'top': top, 'width': widthDrop}">
+        <div v-if="show" class="bui-dropdown-box" ref="dropdownBox" :style="{'left': left, 'top': top, 'width': widthDrop}">
             <div class="bui-dropdown-content">
                 <slot>
                 </slot>
@@ -33,7 +32,7 @@
         props: {
             show: {
                 type: Boolean,
-                default: true
+                default: false
             },
             center: {
                 type: Boolean,
@@ -132,11 +131,11 @@
             "layoutClick": function () {
                 var _this = this;
                 var el = this.$refs.dropdownBox;
-                _this.show = false;
 
 //                var translate = 'translate(0px, -'+parseInt(_this.position.height)+'px)';
                 var translate = 'scale(0.9, 0.9)';
                 _this.animationFn(el, "0", translate,  'ease-out', function () {
+                    _this.show = false;
                     _this.$emit("close");
                 });
             },

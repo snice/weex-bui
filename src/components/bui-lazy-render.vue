@@ -1,5 +1,5 @@
 <template>
-    <div  class="lazy-load">
+    <div class="lazy-load">
         <slot v-if="show"></slot>
         <div ref="mask" v-if="!show" :class="[maskClass ? maskClass : 'lazy-load-mask']">
             <text class="lazy-tip">{{tip}}</text>
