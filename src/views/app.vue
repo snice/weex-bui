@@ -6,7 +6,7 @@
                 title="BUI-Weex"></bui-header>
 
         <bui-content class="span1">
-            <list class="bui-list">
+            <list class="bui-list" >
                 <cell class="bui-cell" v-for="item in data" @click="jumpTo(item.url)">
                     <div class="bui-list-left">
                         <bui-image width="80px" height="80px" radius="40px" src="/image/applogo.png"></bui-image>

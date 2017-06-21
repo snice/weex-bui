@@ -57,6 +57,24 @@
             }
             this.$emit('load',this.currentTab);
         },
+        watch:{
+            currentTab:function () {
+                for (var i = 0; i < this.tabItems.length; i++) {
+                    var item=this.tabItems[i];
+                    if(item.tabId==this.currentTab){
+                        this.$set(this.tabItems[i], "titleColor",this.selectedColor);
+                        this.$set(this.tabItems[i], "iconColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "borderBottomColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "background", this.selectedBackground);
+                    }else{
+                        this.$set(this.tabItems[i], "titleColor",this.normalColor);
+                        this.$set(this.tabItems[i], "iconColor", this.normalColor);
+                        this.$set(this.tabItems[i], "borderBottomColor", this.background);
+                        this.$set(this.tabItems[i], "background", this.background);
+                    }
+                }
+            }
+        },
         methods: {
             //tabbar扩展样式
             "getContainerStyle":function () {

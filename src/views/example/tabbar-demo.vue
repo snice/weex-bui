@@ -17,7 +17,7 @@
         </bui-tabbar>
 
         <!--选项卡内容-->
-        <bui-tabbar-item tabId="tab1" :currentTab="currentTab">
+        <bui-tabbar-item tabId="tab1" :currentTab="currentTab" @swipe="onSwipe">
             <scroller>
                 <div class="tab1">
                     <text>选项卡1</text>
@@ -26,15 +26,15 @@
             </scroller>
         </bui-tabbar-item>
 
-        <bui-tabbar-item tabId="tab2" :currentTab="currentTab">
+        <bui-tabbar-item tabId="tab2" :currentTab="currentTab" @swipe="onSwipe">
             <text>选项卡2</text>
         </bui-tabbar-item>
 
-        <bui-tabbar-item tabId="tab3" :currentTab="currentTab">
+        <bui-tabbar-item tabId="tab3" :currentTab="currentTab" @swipe="onSwipe">
             <text>选项卡3</text>
         </bui-tabbar-item>
 
-        <bui-tabbar-item tabId="tab4" :currentTab="currentTab">
+        <bui-tabbar-item tabId="tab4" :currentTab="currentTab" @swipe="onSwipe">
             <text>选项卡4</text>
         </bui-tabbar-item>
 
@@ -57,7 +57,7 @@
                     icons: 'icon-back',
                 },
                 //当前选择的tab
-                currentTab: "",
+                currentTab: "tab4",
                 tabItems: [
                     {
                         tabId: "tab1",
@@ -99,6 +99,23 @@
             //选项卡点击事件,必须实现
             onTabItemClick: function (tabId) {
                 this.currentTab = tabId;
+            },
+            //选项卡内容左右滑动
+            onSwipe:function (tabId,direction) {
+                buiweex.toast(direction+" from "+tabId);
+                var index=0;
+                for(var i=0;i<this.tabItems.length;i++){
+                    var item=this.tabItems[i];
+                    if(item.tabId==tabId){
+                        index=i;
+                        break;
+                    }
+                }
+                if(direction=="right"){
+                    this.currentTab=this.tabItems[index-1].tabId;
+                }else if(direction=="left"){
+                    this.currentTab=this.tabItems[index+1].tabId;
+                }
             }
         }
     }
