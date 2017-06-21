@@ -91,7 +91,7 @@
                 if(this.showSelectedLine){
                     borderBottomColor= (!item.borderBottomColor? this.background:item.borderBottomColor);
                 }else{
-                    borderBottomColor = this.background;
+                    borderBottomColor = (!item.background? this.background:item.background);
                 }
 
                 //合并样式
