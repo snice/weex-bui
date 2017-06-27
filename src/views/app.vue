@@ -5,7 +5,6 @@
                 :ios=false
                 title="BUI-Weex"></bui-header>
 
-
         <bui-content class="span1">
             <list class="bui-list">
                 <cell class="bui-cell" v-for="item in data" @click="jumpTo(item.url)">
@@ -36,8 +35,6 @@
         data: function () {
             return {
                 name: "前端大讲堂",
-                status: "pause",
-                seek: 0,
                 data: [
                     {name: "布局(Flexbox)", text: "", url: "flex-box-demo.weex.js"},
                     {name: "文本(h1 ~ h5)", text: "", url: "text-demo.weex.js"},
@@ -63,6 +60,9 @@
                     {name: "延迟加载(lazy-render)", text: "内容延迟加载", url: "lazy-render-demo.weex.js"},
                 ]
             }
+        },
+        components:{
+          "bui-video":require('../components/bui-video.vue')
         },
         methods: {
             jumpTo: function (file) {
