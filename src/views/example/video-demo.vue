@@ -10,8 +10,8 @@
             <div style="height: 1800px;">
                 <bui-video
                         :src="opts.src"
-                        :playstatus="opts.status"
                         autoplay="false"
+                        :playstatus="opts.status"
                         :seek="opts.seek"
                         @pause="statusChange('pause')"
                         @start="statusChange('start')"
@@ -77,12 +77,17 @@
             },
             change: function () {
                 this.opts.src = "http://114.67.23.110:8088/data/userdata/vod/transcode/201705/8ejXIdYu_pu.mp4";
+
+                setTimeout(() => {
+                    this.opts.status = "play";
+                }, 2000);
+
             },
             pause: function () {
                 this.opts.status = "pause"
             },
             resume: function () {
-                this.opts.status = "start"
+                this.opts.status = "play"
             },
             stop: function () {
                 this.opts.status = "stop"
