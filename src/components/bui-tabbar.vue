@@ -128,6 +128,7 @@
                         this.$set(this.tabItems[i], "background", this.background);
                     }
                 }
+
                 this.$emit('itemClick', item.tabId);
             }
         }

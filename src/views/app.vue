@@ -2,8 +2,12 @@
     <div class="flex-column">
         <!--标题栏-->
         <bui-header
-                :ios=false
-                title="BUI-Weex"></bui-header>
+                :ios=true
+                :title="'BUI-Weex'"
+                :leftItem="leftItem"
+                @leftClick="back">
+        </bui-header>
+
 
         <bui-content class="span1">
             <list class="bui-list">
@@ -34,7 +38,9 @@
     module.exports = {
         data: function () {
             return {
-                name: "前端大讲堂",
+                leftItem: {
+                    icons: 'icon-back',
+                },
                 data: [
                     {name: "布局(Flexbox)", text: "", url: "flex-box-demo.weex.js"},
                     {name: "文本(h1 ~ h5)", text: "", url: "text-demo.weex.js"},
@@ -62,13 +68,15 @@
             }
         },
         components:{
-          "bui-video":require('../components/bui-video.vue')
         },
         methods: {
             jumpTo: function (file) {
                 if (file) {
-                    buiweex.push(buiweex.getContextPath() + "/" + file);
+                    buiweex.push(buiweex.getContextPath() + "/" + file,{"name":"yulsh"});
                 }
+            },
+            back:function () {
+                buiweex.pop();
             }
         }
     }
