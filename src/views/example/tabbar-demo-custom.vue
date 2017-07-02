@@ -47,29 +47,38 @@
                 @itemClick="onTabItemClick">
         </bui-tabbar>
 
-        <div class="tabcontent">
+        <slider class="slider" :index="index" auto-play="false" @change="change($event)">
             <!--选项卡内容-->
-            <bui-tabbar-item tabId="tab1" :currentTab="currentTab" @swipe="onSwipe">
-                <text>选项卡1</text>
+            <bui-tabbar-item tabId="tab1" :currentTab="currentTab">
+                <scroller style="height: 1000px;">
+                    <div class="tab1">
+                        <text>选项卡1</text>
+                        <text>我是滚动的内容</text>
+                    </div>
+                </scroller>
             </bui-tabbar-item>
 
-            <bui-tabbar-item tabId="tab2" :currentTab="currentTab" @swipe="onSwipe">
+            <bui-tabbar-item tabId="tab2" :currentTab="currentTab">
                 <text>选项卡2</text>
             </bui-tabbar-item>
 
-            <bui-tabbar-item tabId="tab3" :currentTab="currentTab" @swipe="onSwipe">
+            <bui-tabbar-item tabId="tab3" :currentTab="currentTab">
                 <text>选项卡3</text>
             </bui-tabbar-item>
 
-            <bui-tabbar-item tabId="tab4" :currentTab="currentTab" @swipe="onSwipe">
+            <bui-tabbar-item tabId="tab4" :currentTab="currentTab">
                 <text>选项卡4</text>
             </bui-tabbar-item>
-        </div>
+        </slider>
     </div>
 </template>
 
 <style>
-    .tabcontent {
+    .tab1 {
+        height: 1800px;
+    }
+
+    .slider {
         flex: 1;
         background-color: #00c277;
     }
@@ -85,7 +94,7 @@
                     icons: 'icon-back',
                 },
                 //当前选择的tab
-                currentTab: "tab4",
+                currentTab: "tab1",
                 tabItems: [
                     {
                         tabId: "tab1",
@@ -179,29 +188,18 @@
                 buiweex.pop();
             },
             //选项卡加载完成事件,必须实现
-            onTabLoad: function (tabId) {
+            "onTabLoad": function (tabId,index) {
                 this.currentTab = tabId;
+//                this.index=index;
             },
             //选项卡点击事件,必须实现
-            onTabItemClick: function (tabId) {
+            "onTabItemClick": function (e, tabId, index) {
                 this.currentTab = tabId;
+                this.index = index;
             },
-            //选项卡内容左右滑动
-            onSwipe: function (tabId, direction) {
-                buiweex.toast(direction + " from " + tabId);
-                var index = 0;
-                for (var i = 0; i < this.tabItems.length; i++) {
-                    var item = this.tabItems[i];
-                    if (item.tabId == tabId) {
-                        index = i;
-                        break;
-                    }
-                }
-                if (direction == "right") {
-                    this.currentTab = this.tabItems[index - 1].tabId;
-                } else if (direction == "left") {
-                    this.currentTab = this.tabItems[index + 1].tabId;
-                }
+            "change": function (e) {
+                var index = e.index;
+                this.currentTab = this.tabItems[index].tabId;
             }
         }
     }

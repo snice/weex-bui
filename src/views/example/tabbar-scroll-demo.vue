@@ -8,27 +8,29 @@
         </bui-header>
 
 
-        <!--选项卡内容-->
-        <bui-tabbar-item tabId="tab1" :currentTab="currentTab">
-            <scroller>
-                <div class="tab1">
-                    <text>选项卡1</text>
-                    <text>我是滚动的内容</text>
-                </div>
-            </scroller>
-        </bui-tabbar-item>
+        <slider class="slider" :index="index" auto-play="false" @change="change($event)">
+            <!--选项卡内容-->
+            <bui-tabbar-item tabId="tab1" :currentTab="currentTab">
+                <scroller style="height: 1000px;">
+                    <div class="tab1">
+                        <text>选项卡1</text>
+                        <text>我是滚动的内容</text>
+                    </div>
+                </scroller>
+            </bui-tabbar-item>
 
-        <bui-tabbar-item tabId="tab2" :currentTab="currentTab">
-            <text>选项卡2</text>
-        </bui-tabbar-item>
+            <bui-tabbar-item tabId="tab2" :currentTab="currentTab">
+                <text>选项卡2</text>
+            </bui-tabbar-item>
 
-        <bui-tabbar-item tabId="tab3" :currentTab="currentTab">
-            <text>选项卡3</text>
-        </bui-tabbar-item>
+            <bui-tabbar-item tabId="tab3" :currentTab="currentTab">
+                <text>选项卡3</text>
+            </bui-tabbar-item>
 
-        <bui-tabbar-item tabId="tab4" :currentTab="currentTab">
-            <text>选项卡4</text>
-        </bui-tabbar-item>
+            <bui-tabbar-item tabId="tab4" :currentTab="currentTab">
+                <text>选项卡4</text>
+            </bui-tabbar-item>
+        </slider>
 
         <!--选项卡-->
         <bui-tabbar
@@ -39,15 +41,18 @@
         </bui-tabbar>
 
 
-
     </div>
 </template>
 
 <style lang="sass" src="../../css/layout.scss"></style>
 
 <style>
-    .tab1{
+    .tab1 {
         height: 1800px;
+    }
+
+    .slider {
+        flex: 1;
     }
 </style>
 <script>
@@ -55,11 +60,12 @@
     module.exports = {
         data: function () {
             return {
+                index: 0,
                 leftItem: {
                     icons: 'icon-back',
                 },
                 //当前选择的tab
-                currentTab: "tab2",
+                currentTab: "tab1",
                 tabItems: [
                     {
                         tabId: "tab1",
@@ -95,12 +101,18 @@
                 buiweex.pop();
             },
             //选项卡加载完成事件,必须实现
-            onTabLoad: function (tabId) {
+            "onTabLoad": function (tabId,index) {
                 this.currentTab = tabId;
+                this.index=index;
             },
             //选项卡点击事件,必须实现
-            onTabItemClick: function (tabId) {
+            "onTabItemClick": function (e, tabId, index) {
                 this.currentTab = tabId;
+                this.index = index;
+            },
+            "change": function (e) {
+                var index = e.index;
+                this.currentTab = this.tabItems[index].tabId;
             }
         }
     }
