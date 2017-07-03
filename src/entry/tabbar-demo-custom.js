@@ -1,4 +1,4 @@
-import TabbarDemo from '../views/example/tabbar-item3-demo.vue'
+import TabbarDemo from '../views/example/tabbar-demo-custom.vue'
 import mixins from '../js/mixins.js'
 
 Vue.mixin(mixins);

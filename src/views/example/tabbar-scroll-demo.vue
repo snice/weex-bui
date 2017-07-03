@@ -1,94 +1,118 @@
 <template>
     <div class="flex-column">
+        <!--标题栏-->
         <bui-header
-                :title="'横向滚动下方内容切换卡'"
+                title="选项卡示例"
                 :leftItem="leftItem"
                 @leftClick="back">
         </bui-header>
 
-        <bui-tabbar-scroll :tabItems="tabItems"
-                           selectedIndex="2"
-                           :scroll=false
-                           @tabItemOnClick="tabItemOnClick"></bui-tabbar-scroll>
-    </div>
 
+        <slider class="slider" :index="index" auto-play="false" @change="change($event)">
+            <!--选项卡内容-->
+            <bui-tabbar-item tabId="tab1" :currentTab="currentTab">
+                <scroller style="height: 1000px;">
+                    <div class="tab1">
+                        <text>选项卡1</text>
+                        <text>我是滚动的内容</text>
+                    </div>
+                </scroller>
+            </bui-tabbar-item>
+
+            <bui-tabbar-item tabId="tab2" :currentTab="currentTab">
+                <text>选项卡2</text>
+            </bui-tabbar-item>
+
+            <bui-tabbar-item tabId="tab3" :currentTab="currentTab">
+                <text>选项卡3</text>
+            </bui-tabbar-item>
+
+            <bui-tabbar-item tabId="tab4" :currentTab="currentTab">
+                <text>选项卡4</text>
+            </bui-tabbar-item>
+        </slider>
+
+        <!--选项卡-->
+        <bui-tabbar
+                :tabItems="tabItems"
+                :currentTab="currentTab"
+                @load="onTabLoad"
+                @itemClick="onTabItemClick">
+        </bui-tabbar>
+
+
+    </div>
 </template>
 
 <style lang="sass" src="../../css/layout.scss"></style>
+
+<style>
+    .tab1 {
+        height: 1800px;
+    }
+
+    .slider {
+        flex: 1;
+    }
+</style>
 <script>
     var buiweex = require("../../js/buiweex.js");
-    export default {
+    module.exports = {
         data: function () {
             return {
+                index: 0,
                 leftItem: {
                     icons: 'icon-back',
                 },
-                lists: [],
-                currentTab: "首页",
+                //当前选择的tab
+                currentTab: "tab1",
                 tabItems: [
                     {
-                        index: 0,
-                        title: '首页',
-                        selected: false,
-                        src: '/tabbar-item1-demo.weex.js',
-                        visibility: 'visible',
+                        tabId: "tab1",
+                        title: "首页",
+                        icon: "icon-home"
                     },
                     {
-                        index: 1,
-                        title: '通讯录',
-                        selected: false,
-                        src: '/tabbar-item2-demo.weex.js',
-                        visibility: 'hidden',
+                        tabId: "tab2",
+                        icon: "icon-liwu",
+                        title: "动态"
                     },
                     {
-                        index: 2,
-                        title: '动态',
-                        selected: false,
-                        src: '/tabbar-item3-demo.weex.js',
-                        visibility: 'hidden',
+                        tabId: "tab3",
+                        icon: "icon-user",
+                        title: "我的"
                     },
                     {
-                        index: 3,
-                        title: '我的',
-                        selected: false,
-                        src: '/tabbar-item3-demo.weex.js',
-                        visibility: 'hidden',
-                    },
-                    {
-                        index: 4,
-                        title: '通讯录',
-                        selected: false,
-                        src: '/tabbar-item2-demo.weex.js',
-                        visibility: 'hidden',
-                    },
-                    {
-                        index: 5,
-                        title: '动态',
-                        icon: 'icon-msg',
-                        selected: false,
-                        src: '/tabbar-item1-demo.weex.js',
-                        visibility: 'hidden',
-                    },
-                ]
+                        tabId: "tab4",
+                        icon: "icon-video",
+                        title: "直播"
+                    }
+                ],
+                itemStyleEx: {},
+                containerStyleEx: {},
             }
         },
         components: {
-            'bui-tabbar-scroll': require('../../components/bui-tabbar-scroll.vue')
+            "bui-tabbar": require("../../components/bui-tabbar.vue"),
+            "bui-tabbar-item": require('../../components/bui-tabbar-item.vue')
         },
         methods: {
             "back": function () {
                 buiweex.pop();
             },
-            tabItemOnClick: function (e) {
-                buiweex.toast("tab" + e.index);
-                //设置标题栏
-                this.currentTab = this.tabItems[e.index].title;
-            }
-        },
-        created: function () {
-            for (var i = 0; i < this.tabItems.length; i++) {
-                var path = this.tabItems[i].src;
-                this.tabItems[i].src = buiweex.getContextPath() + path;
+            //选项卡加载完成事件,必须实现
+            "onTabLoad": function (tabId,index) {
+                this.currentTab = tabId;
+                this.index=index;
+            },
+            //选项卡点击事件,必须实现
+            "onTabItemClick": function (e, tabId, index) {
+                this.currentTab = tabId;
+                this.index = index;
+            },
+            "change": function (e) {
+                var index = e.index;
+                this.currentTab = this.tabItems[index].tabId;
             }
         }
     }

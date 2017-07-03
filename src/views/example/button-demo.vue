@@ -55,12 +55,18 @@
             }
         },
         methods: {
+            "event":function () {
+               buiweex.toast("event");
+            },
             "back": function () {
                 buiweex.pop();
             },
             "btnEvent": function (msg) {
                 buiweex.toast(msg);
             }
+        },
+        mounted:function () {
+
         }
     }
 </script>

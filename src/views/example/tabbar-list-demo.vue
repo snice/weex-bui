@@ -34,8 +34,9 @@
                     icons: 'icon-back',
                 },
                 listData: [
-                    {'text': '整屏上方内容切换卡', 'url': 'tabbar-demo.weex.js'},
-                    {'text': '横向滚动下方内容切换卡', 'url': 'tabbar-scroll-demo.weex.js'}
+                    {'text': '顶部内容选项卡', 'url': 'tabbar-demo.weex.js'},
+                    {'text': '底部内容选项卡', 'url': 'tabbar-demo-bottom.weex.js'},
+                    {'text': '自定义选项卡', 'url': 'tabbar-demo-custom.weex.js'},
                 ]
             }
         },

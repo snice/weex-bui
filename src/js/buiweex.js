@@ -5,6 +5,7 @@
 var modal = weex.requireModule('modal');
 var animation = weex.requireModule('animation');
 var navigator = weex.requireModule('navigator');
+var navigatorEx = weex.requireModule("NavigatorExModule");
 
 var common = {
     //components下的组件
@@ -133,11 +134,16 @@ var common = {
             url += "?";
         }
         url += paramsStr;
-        navigator.push({
-            url: url,
-            animated: 'true'
-        }, function (e) {
-        })
+        //link平台中使用navigatorEx,debugtool中使用navigator
+        try {
+            navigatorEx.push(url);
+        } catch (ex) {
+            navigator.push({
+                url: url,
+                animated: 'true'
+            }, function (e) {
+            });
+        }
     },
     "pop": function () {
         navigator.pop({

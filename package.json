@@ -20,7 +20,7 @@
   "scripts": {
     "sass": "sass --watch src/css:src/css",
     "dev": "webpack --watch",
-    "serve": "node build/init.js && serve -p 8686",
+    "serve": "node build/init.js && serve -p 8181",
     "debug": "weex-devtool",
     "build": "webpack",
     "publish":"node build/publish.js"

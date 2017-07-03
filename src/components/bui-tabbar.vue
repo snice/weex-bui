@@ -1,72 +1,137 @@
 <template>
-    <div class="bui-tabbar-wrapper">
-        <embed
-                v-for="(item , i) in tabItems"
-                :src="item.src"
-                :key="i"
-                type="weex"
-                :style="{ visibility: item.visibility }"
-                class="bui-tabbar-content"
-        ></embed>
-        <div class="bui-tabbar" append="tree">
-            <tabitem
-                    v-for="item in tabItems"
-                    :key="item.index"
-                    :index="item.index"
-                    :icon="item.icon"
-                    :title="item.title"
-                    :titleColor="item.titleColor"
-                    :titleSize="titleSize"
-                    :backgroundColor="backgroundColor"
-                    :type="item.type"
-                    @tabItemOnClick="tabItemOnClick"
-            ></tabItem>
+    <div :style="getContainerStyle()">
+
+        <div v-for="(item,index) in tabItems"
+             :style="getItemStyle(item)"
+             @click="itemClick($event,item,index)">
+
+            <bui-icon v-if="item.icon" :name="item.icon"
+                      :color="(!item.iconColor? normalColor:item.iconColor)"
+                      @click="itemClick($event,item,index)" :size="(!item.iconSize?iconSize:item.iconSize)">
+            </bui-icon>
+
+            <text v-if="item.title" :style="getTitleStyle(item)"
+                  @click="itemClick($event,item,index)">{{ item.title }}</text>
         </div>
+
     </div>
+
 </template>
 
-<style lang="sass" src="../css/tabbar.scss"></style>
 
 <script>
     module.exports = {
         props: {
             tabItems: {default: []},
+            currentTab: {default: ""},
+            height: {default: "100px"},
+            iconSize: {default: "45px"},
+            titleSize: {default: '22px'},
+            background: {default: '#f7f7f7'},
+            selectedBackground: {default: '#f7f7f7'},
+            normalColor: {default: '#818181'},
             selectedColor: {default: '#4ca4fe'},
-            unselectedColor: {default: '#818181'},
-            titleSize: {},
-            backgroundColor: {},
-            top: {default: "0px"}, //内容区域离顶部的距离
-            selectedIndex: {default: 0} //当前选中的索引
-        },
-        data: function () {
-            return {}
-        },
-        components: {
-            tabitem: require('./bui-tabbar-item.vue')
+            containerStyle: {type: Object, default: {}},
+            itemStyle: {type: Object, default: {}},
+            showSelectedLine: {type: Boolean, default: false}
         },
         created: function () {
-            this.select(this.selectedIndex);
-        },
-        methods: {
-            tabItemOnClick: function (e) {
-                this.selectedIndex = e.index;
-                this.select(e.index);
-                this.$emit('tabItemOnClick', e);
-            },
-            select: function (index) {
+            var index=0;
+            //指定默认加载第一个tab内容
+            if (!this.currentTab) {
+                this.currentTab = this.tabItems[0].tabId;
+                this.$set(this.tabItems[0], "titleColor", this.selectedColor);
+                this.$set(this.tabItems[0], "iconColor", this.selectedColor);
+                this.$set(this.tabItems[0], "borderBottomColor", this.selectedColor);
+                this.$set(this.tabItems[0], "background", this.selectedBackground);
+            } else {
+                //指定激活哪个tab内容
                 for (var i = 0; i < this.tabItems.length; i++) {
-                    var tabItem = this.tabItems[i];
-                    if (i == index) {
-//                        tabItem.icon = tabItem.selectedImage;
-                        tabItem.titleColor = this.selectedColor;
-                        tabItem.visibility = 'visible';
-                    }
-                    else {
-//                        tabItem.icon = tabItem.image;
-                        tabItem.titleColor = this.unselectedColor;
-                        tabItem.visibility = 'hidden';
+                    var item = this.tabItems[i];
+                    if (item.tabId == this.currentTab) {
+                        this.$set(this.tabItems[i], "titleColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "iconColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "borderBottomColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "background", this.selectedBackground);
+                        index=i;
                     }
                 }
+            }
+            this.$emit('load', this.currentTab,index);
+        },
+        watch: {
+            currentTab: function () {
+                for (var i = 0; i < this.tabItems.length; i++) {
+                    var item = this.tabItems[i];
+                    if (item.tabId == this.currentTab) {
+                        this.$set(this.tabItems[i], "titleColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "iconColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "borderBottomColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "background", this.selectedBackground);
+                    } else {
+                        this.$set(this.tabItems[i], "titleColor", this.normalColor);
+                        this.$set(this.tabItems[i], "iconColor", this.normalColor);
+                        this.$set(this.tabItems[i], "borderBottomColor", this.background);
+                        this.$set(this.tabItems[i], "background", this.background);
+                    }
+                }
+            }
+        },
+        methods: {
+            //tabbar扩展样式
+            "getContainerStyle": function () {
+                //合并样式
+                var style = {'flex-direction': 'row', 'height': this.height};
+                style = Object.assign(style, this.containerStyle);
+                return style;
+            },
+            //item扩展样式
+            "getItemStyle": function (item) {
+                //底部border
+                var borderBottomColor;
+                //如果显示底部border
+                if (this.showSelectedLine) {
+                    borderBottomColor = (!item.borderBottomColor ? this.background : item.borderBottomColor);
+                } else {
+                    borderBottomColor = (!item.background ? this.background : item.background);
+                }
+
+                //合并样式
+                var style = {
+                    'flex': 1,
+                    'align-items': 'center',
+                    'justify-content': 'center',
+                    'border-bottom-width': '5px',
+                    'border-bottom-style': 'solid',
+                    'border-bottom-color': borderBottomColor,
+                    'backgroundColor': (!item.background ? this.background : item.background)
+                };
+                style = Object.assign(style, this.itemStyle);
+                return style;
+            },
+            //文本样式
+            "getTitleStyle": function (item) {
+                var style = {
+                    'color': (!item.titleColor ? this.normalColor : item.titleColor),
+                    'font-size': (!item.titleSize ? this.titleSize : item.titleSize)
+                };
+                return style;
+            },
+            "itemClick": function (e,item, index) {
+                for (var i = 0; i < this.tabItems.length; i++) {
+                    if (index == i) {
+                        this.$set(this.tabItems[i], "titleColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "iconColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "borderBottomColor", this.selectedColor);
+                        this.$set(this.tabItems[i], "background", this.selectedBackground);
+                    } else {
+                        this.$set(this.tabItems[i], "titleColor", this.normalColor);
+                        this.$set(this.tabItems[i], "iconColor", this.normalColor);
+                        this.$set(this.tabItems[i], "borderBottomColor", this.background);
+                        this.$set(this.tabItems[i], "background", this.background);
+                    }
+                }
+                this.$emit('itemClick',e, item.tabId, index);
             }
         }
     }

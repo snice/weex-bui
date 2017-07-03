@@ -2,11 +2,13 @@
     <div class="flex-column">
         <!--标题栏-->
         <bui-header
-                :ios=false
-                :title="'BUI-Weex v0.1.0'"></bui-header>
-        <div class="bg"></div>
+                :ios=true
+                :title="'BUI-Weex'"
+                :leftItem="leftItem"
+                @leftClick="back">
+        </bui-header>
 
-        <!--内容区域-->
+
         <bui-content class="span1">
             <list class="bui-list">
                 <cell class="bui-cell" v-for="item in data" @click="jumpTo(item.url)">
@@ -23,6 +25,7 @@
                 </cell>
             </list>
         </bui-content>
+
     </div>
 </template>
 
@@ -35,6 +38,9 @@
     module.exports = {
         data: function () {
             return {
+                leftItem: {
+                    icons: 'icon-back',
+                },
                 data: [
                     {name: "布局(Flexbox)", text: "", url: "flex-box-demo.weex.js"},
                     {name: "文本(h1 ~ h5)", text: "", url: "text-demo.weex.js"},
@@ -61,11 +67,16 @@
                 ]
             }
         },
+        components:{
+        },
         methods: {
             jumpTo: function (file) {
                 if (file) {
-                    buiweex.push(buiweex.getContextPath() + "/" + file);
+                    buiweex.push(buiweex.getContextPath() + "/" + file,{"name":"yulsh"});
                 }
+            },
+            back:function () {
+                buiweex.pop();
             }
         }
     }

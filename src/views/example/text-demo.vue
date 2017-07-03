@@ -7,17 +7,18 @@
         </bui-header>
 
         <bui-content class="span1" padded="true">
+            <text>默认文字大小</text>
             <text class="h1">h1...</text>
             <text class="h2">h2...</text>
             <text class="h3">h3...</text>
             <text class="h4">h4...</text>
             <text class="h5">h5...</text>
+
         </bui-content>
     </div>
 </template>
-<style lang="sass" src="../../css/layout.scss"></style>
-<style lang="sass" src="../../css/text.scss"></style>
-<style lang="sass" src="../../css/example.scss"></style>
+
+<style lang="sass" src="../../css/buiweex.scss"></style>
 
 <script>
 

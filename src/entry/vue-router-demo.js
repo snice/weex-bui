@@ -10,9 +10,9 @@ Vue.use(vueRouter);
 //创建 router 实例, 然后传 `routes` 配置
 var router = new vueRouter({
     routes: [
-        { path: '/index', name: 'index',  component: require("../views/example/tabbar-item1-demo.vue")  },
-        { path: '/product', name: 'product',  component: require("../views/example/tabbar-item2-demo.vue")  },
-        { path: '/news', name: 'news',  component: require("../views/example/tabbar-item3-demo.vue")  }
+        // { path: '/index', name: 'index',  component: require("../views/example/tabbar-item1-demo.vue")  },
+        // { path: '/product', name: 'product',  component: require("../views/example/tabbar-item2-demo.vue")  },
+        // { path: '/news', name: 'news',  component: require("../views/example/tabbar-item3-demo.vue")  }
 
     ]
 });
