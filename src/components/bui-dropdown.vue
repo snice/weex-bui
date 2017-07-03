@@ -2,11 +2,11 @@
     <div class="bui-dropdown">
         <bui-mask v-if="show" @click="layoutClick"></bui-mask>
         <div v-if="show" class="bui-dropdown-box" ref="dropdownBox" :style="{'left': left, 'top': top, 'width': widthDrop}">
-            <div class="bui-dropdown-content">
+            <div class="bui-dropdown-content" :style="{ 'background-color': bgColor }">
                 <slot>
                 </slot>
             </div>
-            <bui-icon name="icon-jiantou" color="#ffffff" class="bui-dropdown-jiantou" :style="{'left': sanjiaoLeft}"></bui-icon>
+            <bui-icon name="icon-jiantou" :color="iconColor" class="bui-dropdown-jiantou" :style="{'left': sanjiaoLeft}"></bui-icon>
         </div>
     </div>
 
@@ -30,6 +30,14 @@
             }
         },
         props: {
+            bgColor: {
+                type: String,
+                default: "#ffffff"
+            },
+            iconColor: {
+                type: String,
+                default: "#ffffff"
+            },
             show: {
                 type: Boolean,
                 default: false

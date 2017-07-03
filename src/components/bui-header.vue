@@ -1,6 +1,6 @@
 <template>
     <div class="bui-header-box" :style="styleNew">
-        <div :style="{ 'height': '30px' }" v-if="iosItem"></div>
+        <div :style="{ 'height': '30px' }" v-if="iosfixed"></div>
         <div class="bui-header">
             <div class="bui-header-main" @click="_centerClick($event)">
                 <text class="bui-header-title">{{title}}</text>
@@ -63,7 +63,7 @@
             }
         },
         computed: {
-            iosItem: function () {
+            iosfixed: function () {
                 var ios = false;
                 if (!this.ios) {
                     ios = false;

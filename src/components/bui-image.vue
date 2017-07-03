@@ -14,7 +14,6 @@
                 if (this.src.indexOf("http") >= 0) {
                     return this.src;
                 }
-
                 var bundleUrl = weex.config.bundleUrl;
                 var url = bundleUrl.split('/').slice(0, -1).join('/');
                 if (bundleUrl.indexOf("weex.html") > 0) {
