@@ -127,7 +127,7 @@ var common = {
         var paramsStr = "";
         if (params) {
             for (var key in params) {
-                paramsStr += key + "=" + params[key] + "&";
+                paramsStr += key + "=" + encodeURIComponent(params[key]) + "&";
             }
         }
         if (url.indexOf('?') < 0) {
@@ -163,7 +163,7 @@ var common = {
                 if (temp[p]) {
                     key = temp[p].split('=')[0];
                     value = temp[p].split('=')[1];
-                    params[key] = value;
+                    params[key] = decodeURIComponent(value);
                 }
             }
         }
