@@ -67,15 +67,14 @@
                 ]
             }
         },
-        components:{
-        },
+        components: {},
         methods: {
             jumpTo: function (file) {
                 if (file) {
-                    buiweex.push(buiweex.getContextPath() + "/" + file,{"name":"yulsh"});
+                    buiweex.push(buiweex.getContextPath() + "/" + file, {"name": "yulsh"});
                 }
             },
-            back:function () {
+            back: function () {
                 buiweex.pop();
             }
         }
