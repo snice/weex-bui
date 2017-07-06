@@ -16,11 +16,18 @@
                 @itemClick="onTabItemClick">
         </bui-tabbar>
 
-        <div style="width: 750px; height: 700px; background-color: #ff4e24">
-            <bui-tabbar-item-a index="0" height="700" :currentTabIndex="currentTabIndex">
-                <scroller style="height: 700px;">
-                    <div>
+        <div style="flex: 1; background-color:grey">
+            <bui-tabbar-item-a index="0" :currentTabIndex="currentTabIndex">
+                <scroller>
+                    <div style="height: 1000px;width: 750px">
                         <text>选项卡1</text>
+                        <text>我是滚动的内容</text>
+                        <text>我是滚动的内容</text>
+                        <text>我是滚动的内容</text>
+                        <text>我是滚动的内容</text>
+                        <text>我是滚动的内容</text>
+                        <text>我是滚动的内容</text>
+                        <text>我是滚动的内容</text>
                         <text>我是滚动的内容</text>
                         <text>我是滚动的内容</text>
                         <text>我是滚动的内容</text>

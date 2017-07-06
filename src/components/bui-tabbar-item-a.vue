@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:style="{ 'position': 'absolute', 'top':'0px', 'left':left, 'width': width,'height':height}">
+    <div v-bind:style="{ 'position': 'absolute', 'top':'0px', 'left':left, 'bottom':'0px','right':'0px'}">
         <slot></slot>
     </div>
 </template>
