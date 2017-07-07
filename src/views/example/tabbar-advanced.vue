@@ -19,7 +19,7 @@
         <div style="flex: 1; background-color:grey">
             <bui-tabbar-item-a index="0" :currentTabIndex="currentTabIndex">
                 <scroller>
-                    <div style="height: 1000px;width: 750px">
+                    <div style="height: 1500px;width: 750px">
                         <text>选项卡1</text>
                         <text>我是滚动的内容</text>
                         <text>我是滚动的内容</text>
@@ -80,15 +80,6 @@
 
 <style lang="sass" src="../../css/layout.scss"></style>
 
-<style>
-    .tab1 {
-        height: 1800px;
-    }
-
-    .slider {
-        flex: 1;
-    }
-</style>
 <script>
     var buiweex = require("../../js/buiweex.js");
     module.exports = {
