@@ -41,7 +41,7 @@
             return {
                 opts: {
                     src: "http://flv2.bn.netease.com/videolib3/1611/01/XGqSL5981/SD/XGqSL5981-mobile.mp4",
-//                    src: "http://4667.liveplay.myqcloud.com/live/4667_a977d09a999b7108.m3u8",
+//                    src: "http://4667.liveplay.myqcloud.com/live/4667_7d9bbb4d66f7eaa2.m3u8",
                     status: "start",
                     isAuto: false,
                     seek: 0
@@ -78,7 +78,7 @@
                 buiweex.toast(type);
             },
             progress: function (total, progress) {
-                buiweex.toast(total + " " + progress);
+                //buiweex.toast(total + " " + progress);
             }
         }
     }
