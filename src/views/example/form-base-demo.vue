@@ -9,7 +9,7 @@
         <scroller class="bui-container span1 flex-column">
             <div style="padding-bottom:30px;">
                 <bui-panel title="搜索布局——图标在左边" border="1">
-                    <bui-searchbar-left placeholder="请输入数字" @search="onSearch"></bui-searchbar-left>
+                    <bui-searchbar-left ref="dd" placeholder="请输入数字" @search="onSearch"></bui-searchbar-left>
                 </bui-panel>
                 <bui-panel title="搜索布局——图标在中间" border="1">
                     <bui-searchbar-center></bui-searchbar-center>
@@ -48,6 +48,7 @@
 <style lang="sass" src="../../css/example.scss"></style>
 
 <script>
+    const dom = weex.requireModule('dom');
     var buiweex = require("../../js/buiweex.js");
     module.exports = {
         data: function () {
@@ -147,6 +148,7 @@
                 console.log(yy);
             },
             "onSearch": function (value) {
+                console.log(this.$refs.dd);
                 buiweex.toast("搜索事件" + value);
             }
         }

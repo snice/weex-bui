@@ -49,6 +49,10 @@
                         <bui-icon name="icon-go"></bui-icon>
                     </div>
                 </cell>
+                <cell>
+                    <text> {{arry}}</text>
+                    <text>{{arryevent}}</text>
+                </cell>
             </list>
         </bui-content>
 
@@ -63,6 +67,7 @@
         ></bui-actionsheet>
 
         <bui-dropdown
+                :datadrop="newdatas"
                 :show="showDropdown"
                 @close="closeDropdown"
                 ref="dropdown">
@@ -141,10 +146,13 @@
 <style lang="sass" src="../../css/list.scss"></style>
 
 <script>
+//    const dom = weex.requireModule('dom');
     var buiweex=require("../../js/buiweex.js");
     export default {
         data: function(){
             return {
+                arry: '',
+                arryevent: '',
                 leftItem: {
                     icons: 'icon-back',
                 },
@@ -202,18 +210,25 @@
                 }, 1);
             },
             "openDropdown2": function (event) {
+//                const result = dom.getComponentRect(this.$refs.dropdownevent, option => {
+//                    console.log('getComponentRect:', option);
+//                    this.arry = option;
+//                })
                 var _this = this;
                 _this.showDropdown2 = true;
-                setTimeout(function () {
+                _this.$nextTick(function(){
                     _this.$refs.dropdown2.open(event);
-                }, 1);
+//                    _this.arryevent = event.position;
+                });
             },
             "openDropdown3": function (event) {
+
                 var _this = this;
                 console.log(event);
                 _this.showDropdown3 = true;
                 setTimeout(function () {
                     _this.$refs.dropdown3.open(event);
+
                 }, 1);
             },
             "openDropdown4": function (event) {
@@ -244,8 +259,12 @@
                 this.showLoading = false;
             }
         },
+        mounted () {
+
+        },
         created: function () {
 
+//            this.newdates = new Date().getTime();
         }
     }
 </script>

@@ -6,7 +6,7 @@
                 <text class="bui-search-icon-box-text" v-if="!searchstatus">搜索</text>
             </div>
             <input class="span1 bui-search-input-text" v-if="searchstatus" @focus="onfocus($event)" @blur="onblur($event)" @input="oninput($event)" :value="value" :autofocus="autofocus" type="text" :placeholder="placeholder"/>
-            <bui-icon class="bui-search-icon-delete" @click="clear()" v-if="deletestatus" :name="'icon-delete-little'"></bui-icon>
+            <bui-icon class="bui-search-icon-delete" @click="onclear($event)" v-if="deletestatus" :name="'icon-delete-little'"></bui-icon>
         </div>
         <text :class="['bui-search-search', 'bui-search-text-color-'+type]" @click="search()" v-if="searchstatus">搜索</text>
     </div>
@@ -67,16 +67,16 @@
             //搜索输入值更改
             "oninput": function (event) {
                 this.value = event.value;
-                this.deletestatus = true;
+                if(this.value.length == 0) this.deletestatus = false;
+                else this.deletestatus = true;
                 this.$emit('input', event);
             },
             //清除搜索输入值
-            "clear": function () {
+            "onclear": function (event) {
                 console.log("clear");
-                this.value = "";
+                this.autofocus = false;
                 this.deletestatus = false;
-                console.log('value:' +this.value);
-                this.autofocus = true;
+                this.value = "";
                 this.$emit('clear');
             },
 //            //取消搜索

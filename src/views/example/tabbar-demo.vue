@@ -19,9 +19,9 @@
         <slider class="slider" :index="index" auto-play="false" @change="change($event)">
             <!--选项卡内容-->
             <bui-tabbar-item tabId="tab1" :currentTab="currentTab">
-                <scroller style="height: 1000px;">
-                    <div class="tab1">
-                        <text>选项卡1</text>
+                <scroller style="background-color: #00cc66;width: 750px;flex: 1">
+                    <div>
+                        <text v-for="i in 100">选项卡1{{i}}</text>
                         <text>我是滚动的内容</text>
                     </div>
                 </scroller>

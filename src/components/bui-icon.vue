@@ -1,5 +1,5 @@
 <template>
-    <text @click="_click($event)" class="iconfont" :style="{color: color, fontSize: size, 'font-family': 'iconfont' }" :ref="name">{{getFontName}}</text>
+    <text @click="_click($event)" class="iconfont" :style="{color: color, fontSize: size, 'font-family': 'iconfont' }">{{getFontName}}</text>
 </template>
 
 <script>

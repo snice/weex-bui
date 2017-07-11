@@ -16,30 +16,44 @@
                     <text class="bui-refresh-indicator">{{refreshText}}</text>
                 </refresh>
 
-                <cell class="bui-cell-xlarge" v-for="item in messageList">
-                    <div class="bui-list-left">
-                        <bui-image class="bui-list-thumb" radius="50px" v-bind:src="item['l-icon']"></bui-image>
-                    </div>
+                <!--<cell class="bui-cell-xlarge" v-for="item in messageList">-->
+                    <!--<div class="bui-list-left">-->
+                        <!--<bui-image class="bui-list-thumb" radius="50px" v-bind:src="item['l-icon']"></bui-image>-->
+                    <!--</div>-->
+                    <!--<div class="bui-list-main">-->
+                        <!--<text class="bui-list-title">{{item.title}}</text>-->
+                        <!--<text class="bui-list-subtitle">{{item.subtitle}}</text>-->
+                    <!--</div>-->
+                    <!--<div class="bui-list-right">-->
+                        <!--<bui-icon name="icon-go"></bui-icon>-->
+                    <!--</div>-->
+                <!--</cell>-->
+                <cell class="bui-cell-xlarge" v-for="i in list">
                     <div class="bui-list-main">
-                        <text class="bui-list-title">{{item.title}}</text>
-                        <text class="bui-list-subtitle">{{item.subtitle}}</text>
-                    </div>
-                    <div class="bui-list-right">
-                        <bui-icon name="icon-go"></bui-icon>
+                        <text class="bui-list-title">{{i}}</text>
                     </div>
                 </cell>
+                <!--上拉组件-->
+                <!--<cell class="bui-loading" v-if="showLoading">-->
+                    <!--<loading class="">-->
+                        <!--<text class="bui-loading-indicator">{{loadingText}}</text>-->
+                        <!--<loading-indicator class="indicator"></loading-indicator>-->
+                    <!--</loading>-->
+                <!--</cell>-->
                 <loading class="bui-loading" @loading="onLoading" :display="showLoading ? 'show' : 'hide'">
-                    <text class="bui-loading-indicator">{{loadingText}}</text>
+                    <text class="bui-loading-indicator" v-if="showLoading">{{loadingText}}</text>
+                    <loading-indicator class="bui-indicator"></loading-indicator>
                 </loading>
             </list>
         </bui-content>
     </div>
 
 </template>
+<style>
+
+</style>
 <style lang="sass" src="../../css/layout.scss"></style>
 <style lang="sass" src="../../css/list.scss"></style>
-<style lang="sass" src="../../css/refresh.scss"></style>
-<style lang="sass" src="../../css/loading.scss"></style>
 <style lang="sass" src="../../css/example.scss"></style>
 <script>
     var iconDev = "/image/icon_dev.png";
@@ -53,11 +67,15 @@
                 leftItem: {
                     icons: 'icon-back',
                 },
+                LOADMORE_COUNT: 4,
+                LOADMORE: [7,8,9,9,10],
                 refreshing: false,
                 showLoading: false,
                 refreshIcon: "icon-todown",
                 refreshText: "下拉刷新...",
-                loadingText: "正在加载更多数据...",
+                loadingText: "加载更多数据...",
+                list: [1,2,3,4,5],
+                newList:  [1,2,3,4,5,6,7,8,9,10],
                 messageList: [
                     {'l-icon': iconKefu, 'title': '在线客服', 'subtitle': '亲,使用过程中有任何问题可以联系我！'},
                     {'l-icon': iconChat, 'title': 'SherryLee', 'subtitle': '请问，我们现在有北京国药的项目吗？'},
@@ -90,6 +108,7 @@
 
                     setTimeout(() => {
                         this.refreshing = false;
+                        this.list = this.newList;
                     }, 300);
 
                 }, 500);
@@ -106,11 +125,43 @@
                     this.refreshText = "松开即可刷新...";
                 }
             },
+            //list滚动到底部触发事件
+//            "onLoadmore": function (e) {
+//                buiweex.toast("onloadmore");
+//                this.showLoading = true;
+//                setTimeout(() => {
+//                    const length = this.list.length;
+//                    this.showLoading = false;
+//                    if(length > 60 ){
+//                        this.loadingText = '没有更多数据了'
+//                        return
+//                    }else{
+//                        for (let i = length; i < length + this.LOADMORE_COUNT; ++i) {
+//                            this.list.push(i + 1)
+//                        }
+//                    }
+////                    this.list = this.list.concat(this.LOADMORE);
+//
+//                }, 2000);
+//            },
             "onLoading": function (e) {
                 buiweex.toast("loading");
                 this.showLoading = true;
                 setTimeout(() => {
+                    const length = this.list.length;
                     this.showLoading = false;
+                    if(length > 60 ){
+                        this.loadingText = '没有更多数据了'
+                        return
+                    }else{
+                        this.loadingText = '加载更多数据...'
+                        for (let i = length; i < length + this.LOADMORE_COUNT; ++i) {
+                            this.list.push(i + 1)
+                        }
+                    }
+
+//                    this.list = this.list.concat(this.LOADMORE);
+
                 }, 2000);
             }
         }

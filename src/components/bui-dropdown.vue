@@ -30,6 +30,7 @@
             }
         },
         props: {
+            datadrop: {},
             bgColor: {
                 type: String,
                 default: "#ffffff"
@@ -77,14 +78,13 @@
                 var _this = this;
                 var el = _this.$refs.dropdownBox;
 
-                _this.position = data.position;
+                _this.position = data.position;\
                 //showArrow为false,宽度按触发元素宽度自适应,如果控制宽度可设置为true,默认宽度为260px,也可自传宽度
                 if(!_this.showArrow){
                     if(_this.position.width >= 260) {
                         _this.widthDrop = _this.position.width;
                     }
                     if(_this.center){
-                        console.log(11);
                         _this.sanjiaoLeft = _this.position.x + _this.position.width/2-20;
                         _this.left = _this.position.x;
                     }else{
@@ -96,11 +96,7 @@
                         }
                     }
                 }else{
-                    if(_this.center){
-                        console.log(22);
-                        console.log(_this.position.x);
-                        console.log(_this.widthDrop);
-
+                    if(_this.center)
 //                        _this.sanjiaoLeft = _this.position.x + 260/2 -40;
                         _this.sanjiaoLeft = 260/2 - 20;
                         _this.left = _this.position.x + _this.position.width/2 - 130;
@@ -117,12 +113,13 @@
                 }
                 //top位置适配
                 var env = weex.config.env.platform.toLowerCase();
+
                 switch(env){
                     case "ios":
                         _this.top = _this.position.y-20;
                         break;
                     case "android":
-                        _this.top = (_this.position.y-20)-152;
+                        _this.top = (_this.position.y-20);
                         break;
                     case "web":
                         _this.top = _this.position.y-20;
