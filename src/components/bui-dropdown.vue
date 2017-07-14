@@ -78,7 +78,7 @@
                 var _this = this;
                 var el = _this.$refs.dropdownBox;
 
-                _this.position = data.position;\
+                _this.position = data.position;
                 //showArrow为false,宽度按触发元素宽度自适应,如果控制宽度可设置为true,默认宽度为260px,也可自传宽度
                 if(!_this.showArrow){
                     if(_this.position.width >= 260) {
@@ -96,7 +96,7 @@
                         }
                     }
                 }else{
-                    if(_this.center)
+                    if(_this.center){
 //                        _this.sanjiaoLeft = _this.position.x + 260/2 -40;
                         _this.sanjiaoLeft = 260/2 - 20;
                         _this.left = _this.position.x + _this.position.width/2 - 130;
