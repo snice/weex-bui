@@ -23,7 +23,7 @@
     "serve": "node build/init.js && serve -p 8181",
     "debug": "weex-devtool",
     "build": "webpack",
-    "publish":"node build/publish.js"
+    "start":"npm run serve & npm run dev"
   },
   "dependencies": {
     "vue": "^2.1.8",
