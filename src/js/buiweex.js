@@ -12,8 +12,6 @@ var common = {
     "buiActionSheet": require("../components/bui-actionsheet.vue"),
     "buiButton": require("../components/bui-button.vue"),
     "buiCheckbox": require("../components/bui-checkbox.vue"),
-    "buiContent": require("../components/bui-content.vue"),
-    "buiContentScroll": require("../components/bui-content-scroll.vue"),
     "buiDialog": require("../components/bui-dialog.vue"),
     "buiDropdown": require("../components/bui-dropdown.vue"),
     "buiHeader": require("../components/bui-header.vue"),
