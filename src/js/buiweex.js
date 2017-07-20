@@ -28,6 +28,7 @@ var common = {
     "buiSwitch": require("../components/bui-switch.vue"),
     "buiTabbar": require("../components/bui-tabbar.vue"),
     "buiTabbarItem": require("../components/bui-tabbar-item.vue"),
+    "buiTabbarItemA" :require("../components/bui-tabbar-item-a.vue") ,
     "buiTabbarScroll": require("../components/bui-tabbar-scroll.vue"),
     "buiTabbarScrollItem": require("../components/bui-tabbar-scroll-item.vue"),
     "buiTip": require("../components/bui-tip.vue"),

@@ -4,7 +4,7 @@
            v-bind:style="{'border-radius':radius, 'width': width, 'height': height}"
            v-bind:resize="resize"
            @click="_click($event)"
-           @load="_load()"></image>
+           @load="_load($event)"></image>
 </template>
 
 <script>
@@ -61,7 +61,7 @@
                 this.$emit('click', event);
             },
             "_load": function () {
-                this.$emit('load');
+                this.$emit('load',event);
             }
         }
     }
