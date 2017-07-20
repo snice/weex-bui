@@ -14,16 +14,22 @@
                 <bui-panel title="搜索布局——图标在中间" border="1">
                     <bui-searchbar-center></bui-searchbar-center>
                 </bui-panel>
+
+
                 <bui-panel title="单选按钮(bui-radio)——横向布局" border="1">
                     <bui-radio
-                            :radioItems="radioItems"
-                            :flexDirection="'flex-row'"
-                            @change="radiohh"
+                            :items="radioItems"
+                            direction="horizontal"
+                            @change="radioChange"
                     ></bui-radio>
                 </bui-panel>
                 <bui-panel title="单选按钮(bui-radio)——纵向布局" border="1">
-                    <bui-radio :radioItems="radioItems2" :flexDirection="'flex-column'"></bui-radio>
+                    <bui-radio
+                            :items="radioItems2"
+                            direction="vertical"></bui-radio>
                 </bui-panel>
+
+
                 <bui-panel title="多选按钮(bui-checkbox)——横向布局" border="1">
                     <bui-checkbox :checkboxItems="checkboxItems" :flexDirection="'flex-row'"></bui-checkbox>
                 </bui-panel>
@@ -59,7 +65,6 @@
                 "radioItems": [
                     {
                         title: "男",         //文本
-                        disabled: true,      //表明是否激活按钮, true为激活、false为不激活、默认值为false
                         select: true,         //表明是否是选中项, true为选中、false为不选中
                         value: "1"
                     },
@@ -72,25 +77,21 @@
                 "radioItems2": [
                     {
                         title: "设计部",
-//                    disabled: false,
                         select: true,
                         value: "0"
                     },
                     {
                         title: "产品部",
-                        disabled: true,
                         select: false,
                         value: "1"
                     },
                     {
                         title: "销售部",
-//                    disabled: false,
                         select: false,
                         value: "2"
                     },
                     {
                         title: "行政部",
-//                    disabled: false,
                         select: false,
                         value: "3"
                     }
@@ -144,7 +145,7 @@
             "back": function () {
                 buiweex.pop();
             },
-            radiohh: function (yy) {
+            "radioChange": function (yy) {
                 console.log(yy);
             },
             "onSearch": function (value) {
