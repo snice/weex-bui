@@ -9,10 +9,10 @@
         <scroller class="bui-container span1 flex-column">
             <div style="padding-bottom:30px;">
                 <bui-panel title="搜索布局——图标在左边" border="1">
-                    <bui-searchbar-left ref="dd" placeholder="请输入数字" @search="onSearch"></bui-searchbar-left>
+                    <bui-searchbar-left placeholder="请输入数字" @search="onSearch"></bui-searchbar-left>
                 </bui-panel>
                 <bui-panel title="搜索布局——图标在中间" border="1">
-                    <bui-searchbar-center></bui-searchbar-center>
+                    <bui-searchbar-center  @search="onSearch"></bui-searchbar-center>
                 </bui-panel>
 
 
@@ -26,15 +26,17 @@
                 <bui-panel title="单选按钮(bui-radio)——纵向布局" border="1">
                     <bui-radio
                             :items="radioItems2"
+                            @change="radioChange"
                             direction="vertical"></bui-radio>
                 </bui-panel>
 
 
                 <bui-panel title="多选按钮(bui-checkbox)——横向布局" border="1">
-                    <bui-checkbox :checkboxItems="checkboxItems" :flexDirection="'flex-row'"></bui-checkbox>
+                    <bui-checkbox :items="checkboxItems"
+                                  @change="checkboxChange"></bui-checkbox>
                 </bui-panel>
                 <bui-panel title="多选按钮(bui-checkbox)——纵向布局" border="1">
-                    <bui-checkbox :checkboxItems="checkboxItems2" :flexDirection="'flex-column'"></bui-checkbox>
+                    <bui-checkbox :items="checkboxItems2" direction="vertical" @change="checkboxChange"></bui-checkbox>
                 </bui-panel>
                 <bui-panel title="switch按钮" border="1">
                     <bui-switch
@@ -145,11 +147,14 @@
             "back": function () {
                 buiweex.pop();
             },
-            "radioChange": function (yy) {
-                console.log(yy);
+            "radioChange": function (a) {
+                console.log(a);
+            },
+            "checkboxChange": function (item, selecteArray) {
+                console.log(item);
+                console.log(selecteArray);
             },
             "onSearch": function (value) {
-                console.log(this.$refs.dd);
                 buiweex.toast("搜索事件" + value);
             }
         }
