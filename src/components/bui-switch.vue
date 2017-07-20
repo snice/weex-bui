@@ -1,9 +1,14 @@
 <template>
-    <div :class="['flex-row', 'row-space-between', 'switchBox', disabled ? 'disabled':'']" @click="change()">
-        <text class="label">{{title}}</text>
-        <switch class="switchstyle" @change="onchange($event)" :checked="checked" :disabled="disabled"></switch>
+    <div class="switch-box">
+        <switch  class="switch"
+                 @change="onchange"
+                 :checked="checked"
+                 :disabled="disabled"></switch>
+        <text class="switch-label">{{title}}</text>
     </div>
 </template>
+
+
 <style lang="sass" src="../css/radio.scss"></style>
 
 <script>
@@ -22,15 +27,7 @@
             }
 
         },
-        components: {},
         methods: {
-            //整个switch-box点击触发开关
-            "change": function () {
-                if(this.disabled) return;
-                this.checked = !this.checked;
-                this.$emit("change", this.checked);
-            },
-            //switch触发开关
             "onchange": function (event) {
                 this.checked = event.value;
                 this.$emit("change", this.checked);

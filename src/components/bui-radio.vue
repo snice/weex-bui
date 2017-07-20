@@ -1,13 +1,11 @@
 <template>
     <div :class="[changeDirection]">
-        <div class="radioBox flex-row" :class="[v.disabled ? 'disabled':'']" v-for="v in radioItems" @click="select(v)">
+        <div class="radio-box flex-row" :class="[v.disabled ? 'disabled':'']" v-for="v in radioItems" @click="select(v)">
             <div class="bui-icon-box" v-if="v.select"><bui-icon @click="select(v)" name="icon-radio-on" :color="selectedColor"></bui-icon></div>
             <div class="bui-icon-box" v-if="!v.select"><bui-icon @click="select(v)" name="icon-radio" :color="unSelectedColor"></bui-icon></div>
-            <text :class="['label']">{{v.title}}</text>
+            <text class="radio-label">{{v.title}}</text>
         </div>
     </div>
-
-
 </template>
 <style lang="sass" src="../css/radio.scss"></style>
 

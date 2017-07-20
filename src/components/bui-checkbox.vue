@@ -1,9 +1,9 @@
 <template>
     <div :class="[changeDirection]">
-        <div class="radioBox flex-row" :class="[v.disabled ? 'disabled':'']" @click="select(v)" v-for="v in checkboxItems">
+        <div class="radio-box flex-row" :class="[v.disabled ? 'disabled':'']" @click="select(v)" v-for="v in checkboxItems">
             <div v-if="v.select"><bui-icon @click="select(v)" name="icon-checkbox-on" :color="selectedColor"></bui-icon></div>
             <div v-if="!v.select"><bui-icon @click="select(v)" name="icon-radio" :color="unSelectedColor"></bui-icon></div>
-            <text :class="['label']">{{v.title}}</text>
+            <text class="radio-label">{{v.title}}</text>
         </div>
     </div>
 </template>
