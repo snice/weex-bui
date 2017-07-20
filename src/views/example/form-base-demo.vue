@@ -40,12 +40,11 @@
                 </bui-panel>
                 <bui-panel title="switch按钮" border="1">
                     <bui-switch
-                            :title="'接收新消息通知'"
-                            :checked=false
-                            :disabled=false
-                            @change="switchFn"
+                            title="接收新消息通知"
+                            @change="switchChange"
                     ></bui-switch>
                 </bui-panel>
+
             </div>
         </scroller>
     </div>
@@ -54,13 +53,20 @@
 
 <style lang="sass" src="../../css/layout.scss"></style>
 <style lang="sass" src="../../css/example.scss"></style>
-
+<style>
+    .example {
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 60px;
+    }
+</style>
 <script>
     const dom = weex.requireModule('dom');
     var buiweex = require("../../js/buiweex.js");
     module.exports = {
         data: function () {
             return {
+                checked: false,
                 leftItem: {
                     icons: 'icon-back',
                 },
@@ -156,6 +162,9 @@
             },
             "onSearch": function (value) {
                 buiweex.toast("搜索事件" + value);
+            },
+            "switchChange":function (value) {
+                console.log(value);
             }
         }
     }
