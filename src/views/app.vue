@@ -13,6 +13,9 @@
 
     module.exports = {
         methods: {},
-        components: {}
+        components: {},
+        mounted:function () {
+
+        }
     }
 </script>

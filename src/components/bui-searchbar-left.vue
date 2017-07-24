@@ -1,7 +1,6 @@
 <template>
     <div :class="['flex-row', 'row-center-left', 'bui-searchbar', 'bui-search-bg-'+type]" @click="onfocusFn()">
         <div :class="['flex-row', 'row-center-left', 'span1', 'bui-input']">
-            <!--<text class="iconfont">&#xe623;</text>-->
             <bui-icon :name="'icon-search'"></bui-icon>
             <input class="span1 bui-search-input-text" @focus="onfocus($event)" @blur="onblur($event)" @input="oninput($event)" :value="value" :autofocus="autofocus" type="text" :placeholder="placeholder"/>
             <bui-icon class="bui-search-icon-delete" @click="onclear($event)" v-if="deletestatus" :name="'icon-delete-little'"></bui-icon>
