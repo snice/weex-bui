@@ -66,7 +66,7 @@
         computed:{
             //匹配对应的字体图标的unicode
             getFontName: function() {
-                return he.decode(this.iconItems[this.name]);
+                return decodeURIComponent(this.iconItems[this.name]);
             }
         },
         methods: {
