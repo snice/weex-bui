@@ -6,13 +6,13 @@
                 <text class="bui-header-title" @click="_centerClick($event)">{{title}}</text>
             </div>
             <div class="bui-header-left">
-                <bui-icon @click="_leftClick($event)" v-if="leftItem.icons" :name="leftItem.icons" size="45px"
+                <bui-icon @click="_leftClick($event)" v-if="leftItem.icon||leftItem.icons" :name="leftItem.icon||leftItem.icons" size="45px"
                           color="#ffffff" class="pdr10"></bui-icon>
                 <text @click="_leftClick($event)" v-if="leftItem.text" class="bui-header-text">{{leftItem.text}}</text>
                 <slot name="left"></slot>
             </div>
             <div class="bui-header-right">
-                <bui-icon @click="_rightClick($event)" v-if="rightItem.icons" :name="rightItem.icons" size="45px"
+                <bui-icon @click="_rightClick($event)" v-if="rightItem.icon||rightItem.icons" :name="rightItem.icon||rightItem.icons" size="45px"
                           color="#ffffff" class="pdl10"></bui-icon>
                 <text @click="_rightClick($event)" v-if="rightItem.text" class="bui-header-text">{{rightItem.text}}
                 </text>
@@ -25,6 +25,7 @@
 
 <script>
     var defaultItem = {
+        icon:'',
         icons: '',
         text: ''
     };
@@ -107,4 +108,3 @@
         }
     }
 </script>
-
