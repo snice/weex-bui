@@ -10,11 +10,7 @@
             //此url可以是指向本地字体图标文件路径 也可以直接用阿里巴巴字体图标库的的字体图标地址 ,比如'https://at.alicdn.com/t/font_3ppcziztn5wpcik9.ttf'
             var bundleUrl = weex.config.bundleUrl;
             var url = bundleUrl.split('/').slice(0, -1).join('/');
-            if (bundleUrl.indexOf("weex.html") > 0) {
-                url += "/dist/";
-            }
             url += '/font/iconfonts.ttf';
-
             var domModule = weex.requireModule("dom");
             domModule.addRule('fontFace',{
                 'fontFamily': 'iconfont',
@@ -70,7 +66,7 @@
         computed:{
             //匹配对应的字体图标的unicode
             getFontName: function() {
-                return he.decode(this.iconItems[this.name]);
+                return decodeURIComponent(this.iconItems[this.name]);
             }
         },
         methods: {

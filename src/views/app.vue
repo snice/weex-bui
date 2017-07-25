@@ -14,15 +14,14 @@
 
     module.exports = {
         methods: {
-            fn: function () {
-                var yy = this.$refs.dd;
-                animate.init(yy).left("10px").right("-10px");
-                animate.init("dd").left("10px").right("-10px");
-            }
-
+                fn: function () {
+                    var yy = this.$refs.dd;
+                    animate.init(yy).left("10px").right("-10px");
+                    animate.init("dd").left("10px").right("-10px");
+                }
         },
         components: {},
-        created: function () {
+        mounted:function () {
         }
     }
 </script>

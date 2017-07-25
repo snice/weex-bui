@@ -3,7 +3,9 @@ var fs = require('fs'), stat = fs.stat;
 //拷贝文件
 var copy = function (src, dst) {
     fs.readdir(src, function (err, paths) {
-        if (err) {throw err;}
+        if (err) {
+            throw err;
+        }
 
         paths.forEach(function (path) {
             var _src = src + '/' + path,
@@ -16,7 +18,7 @@ var copy = function (src, dst) {
                 // 判断是否为文件
                 if (st.isFile()) {
                     //*.web.js不拷贝
-                    if(path.indexOf("web.js")<0){
+                    if (path.indexOf("web.js") < 0) {
                         readable = fs.createReadStream(_src);
                         writable = fs.createWriteStream(_dst);
                         readable.pipe(writable);
