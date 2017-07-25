@@ -6,7 +6,7 @@
                 <text class="bui-search-icon-box-text" v-if="!searchstatus">搜索</text>
             </div>
             <input class="span1 bui-search-input-text" v-if="searchstatus" @focus="onfocus($event)" @blur="onblur($event)" @input="oninput($event)" :value="value" :autofocus="autofocus" type="text" :placeholder="placeholder"/>
-            <bui-icon class="bui-search-icon-delete" @click="onclear($event)" v-if="deletestatus" :name="'icon-delete-little'"></bui-icon>
+            <bui-icon class="bui-search-icon-delete" @click="onclear($event)" v-if="deletestatus" :name="'icon-roundclosefill'"></bui-icon>
         </div>
         <text :class="['bui-search-search', 'bui-search-text-color-'+type]" @click="search()" v-if="searchstatus">搜索</text>
     </div>

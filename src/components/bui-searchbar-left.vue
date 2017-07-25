@@ -3,7 +3,7 @@
         <div :class="['flex-row', 'row-center-left', 'span1', 'bui-input']">
             <bui-icon :name="'icon-search'"></bui-icon>
             <input class="span1 bui-search-input-text" @focus="onfocus($event)" @blur="onblur($event)" @input="oninput($event)" :value="value" :autofocus="autofocus" type="text" :placeholder="placeholder"/>
-            <bui-icon class="bui-search-icon-delete" @click="onclear($event)" v-if="deletestatus" :name="'icon-delete-little'"></bui-icon>
+            <bui-icon class="bui-search-icon-delete" @click="onclear($event)" v-if="deletestatus" :name="'icon-roundclosefill'"></bui-icon>
         </div>
         <text :class="['bui-search-search', 'bui-search-text-color-'+type]" @click="search()" v-if="searchstatus">搜索</text>
     </div>
