@@ -1,7 +1,6 @@
 <template>
     <div class="center">
         <bui-image src="/image/logo.png" width="244px" height="172px" @click="fn()"></bui-image>
-        <bui-icon :name="'icon-home'"></bui-icon>
         <text class="h2">BUI-Weex</text>
         <text class="h4" ref="dd">专注为Weex前端开发者提供高质量UI组件</text>
     </div>

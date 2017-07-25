@@ -1,5 +1,5 @@
 <template>
-    <text @click="_click($event)" class="iconfont" :style="{color: color, fontSize: size, 'font-family': 'auiicon' }">{{getFontName}}</text>
+    <text @click="_click($event)" class="iconfont" :style="{color: color, fontSize: size, 'font-family': 'iconfont' }">{{getFontName}}</text>
 </template>
 
 <script>
@@ -10,10 +10,10 @@
             //此url可以是指向本地字体图标文件路径 也可以直接用阿里巴巴字体图标库的的字体图标地址 ,比如'https://at.alicdn.com/t/font_3ppcziztn5wpcik9.ttf'
             var bundleUrl = weex.config.bundleUrl;
             var url = bundleUrl.split('/').slice(0, -1).join('/');
-            url += '/font/aui_iconfont.ttf';
+            url += '/font/iconfont.ttf';
             var domModule = weex.requireModule("dom");
             domModule.addRule('fontFace',{
-                'fontFamily': 'auiicon',
+                'fontFamily': 'iconfont',
                 'src': "url('"+url+"')"
             });
         },
