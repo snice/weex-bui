@@ -1,6 +1,6 @@
 <template>
     <div class="bui-dialog-layout">
-        <bui-mask v-if="show" @click="_layoutClick"></bui-mask>
+        <bui-mask v-if="show" @click="_maskClick"></bui-mask>
         <div class="bui-dialog" v-if="show">
             <div class="bui-dialog-title">
                 <text class="dialog-title-text">{{title}}</text>
@@ -43,8 +43,8 @@
             "_click": function (text) {
                 this.$emit("btnClick", text);
             },
-            "_layoutClick": function () {
-                this.$emit("close");
+            "_maskClick": function () {
+                this.$emit("maskClick");
             }
         }
 

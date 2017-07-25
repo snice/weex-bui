@@ -32,7 +32,6 @@
       title: { default: '' },
       paddingBody: { default: 20 },
       paddingHead: { default: 20 },
-      dataClass: { default: '' },
       border:{ default: 0 }
     }
   }
