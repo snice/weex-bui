@@ -232,8 +232,6 @@
                     "icon-write": "&#xe761;",
                     "icon-punch": "&#xe764;",
                     "icon-shake": "&#xe765;",
-//                    "icon-add1": "&#xe767;",
-//                    "icon-move1": "&#xe768;",
                     "icon-safe": "&#xe769;",
                     "icon-crownfill": "&#xe776;",
                     "icon-crown": "&#xe777;",
@@ -245,6 +243,8 @@
                     "icon-sponsor": "&#xe77d;",
                     "icon-babyfill": "&#xe710;",
                     "icon-baby": "&#xe711;",
+                    "icon-add1": "&#xe767;",
+                    "icon-move1": "&#xe768;",
 
                     "icon-user": "&#xe736;",
                     "icon-msg": "&#xe779;",
