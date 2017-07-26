@@ -6,10 +6,10 @@
                 <slot>
                 </slot>
             </div>
-            <bui-icon name="icon-jiantou" :color="iconColor" class="bui-dropdown-jiantou" :style="{'left': sanjiaoLeft}"></bui-icon>
+            <text class="bui-dropdown-jiantou" :style="{color: iconColor, fontSize: '40px', 'font-family': 'jiantou' ,'left': sanjiaoLeft}">&#xe646;</text>
+            <!--<bui-icon name="icon-jiantou" :color="iconColor" class="bui-dropdown-jiantou" :style="{'left': sanjiaoLeft}"></bui-icon>-->
         </div>
     </div>
-
 </template>
 
 <script>
@@ -51,6 +51,17 @@
                 type: Boolean,
                 default: false
             }
+        },
+        created: function () {
+            //此url可以是指向本地字体图标文件路径 也可以直接用阿里巴巴字体图标库的的字体图标地址 ,比如'https://at.alicdn.com/t/font_3ppcziztn5wpcik9.ttf'
+            var bundleUrl = weex.config.bundleUrl;
+            var url = bundleUrl.split('/').slice(0, -1).join('/');
+            url += '/font/jiantou.ttf';
+            var domModule = weex.requireModule("dom");
+            domModule.addRule('fontFace',{
+                'fontFamily': 'jiantou',
+                'src': "url('"+url+"')"
+            });
         },
         computed:{
         },
