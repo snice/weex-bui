@@ -33,6 +33,9 @@ var common = {
     "buiTabbarScrollItem": require("../components/bui-tabbar-scroll-item.vue"),
     "buiTip": require("../components/bui-tip.vue"),
     "buiVideo": require("../components/bui-video.vue"),
+    "buiContent": require("../components/bui-content.vue"),
+    "buiContentScroll": require("../components/bui-content-scroll.vue"),
+    "buiImageSlider": require("../components/bui-image-slider.vue"),
 
     "toast": function (msg) {
         modal.toast({
