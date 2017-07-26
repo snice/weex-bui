@@ -171,13 +171,6 @@ var common = {
             }
         }
         return params;
-    },
-    "obj2QueryStr": function (obj) {
-        var queryStr = "";
-        for (var key in obj) {
-            queryStr += key + "=" + obj[key] + "&";
-        }
-        return queryStr;
     }
 }
 
