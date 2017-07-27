@@ -1,7 +1,7 @@
 {
   "name": "bui-weex",
   "description": "UI Component for weex developer",
-  "version": "0.1.8",
+  "version": "0.1.10",
   "main": "src/js/buiweex.js",
   "keywords": [
     "weex",
