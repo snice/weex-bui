@@ -2,6 +2,7 @@
 /assets
 /build
 /dist
+/publish
 /node_modules
 /config.js
 /.idea
