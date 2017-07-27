@@ -24,7 +24,7 @@
             },
             "placeholder": {
                 type: String,
-                default: "请输入用户名"
+                default: "请输入搜索内容"
             },
             "value": {
                 type: String,

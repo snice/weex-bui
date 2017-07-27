@@ -90,7 +90,7 @@
                 var el = _this.$refs.dropdownBox;
 
                 _this.position = data.position;
-                //autowidth为true,宽度按触发元素宽度自适应,如果控制宽度可设置为true,默认宽度为260px,也可自传宽度
+                //autowidth默认true，宽度按触发元素宽度自适应，如果控制宽度可设置为false，宽度为260px
                 if(_this.autowidth){
                     if(_this.position.width >= 260) {
                         _this.widthDrop = _this.position.width;

@@ -21,7 +21,7 @@
             },
             "placeholder": {
                 type: String,
-                default: "请输入用户名"
+                default: "请输入搜索内容"
             },
             "value": {
                 type: String,
@@ -51,8 +51,8 @@
             },
             //搜索获得输入焦点
             "onfocus": function (event) {
-//                console.log(event);
-                console.log('onfocus');
+                console.log(event);
+                console.log('onfocus11');
                 this.searchstatus = true;
                 this.$emit("focus", event);
             },
