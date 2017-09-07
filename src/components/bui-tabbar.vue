@@ -31,8 +31,8 @@
             selectedBackground: {default: '#f7f7f7'},
             normalColor: {default: '#818181'},
             selectedColor: {default: '#4ca4fe'},
-            containerStyle: {default: function(){ return{}}},
-            itemStyle: {default: function(){ return{}}},
+            containerStyle: {default: function(){ return{} }},
+            itemStyle: {default: function(){ return{} }},
             showSelectedLine: { default: false}
         },
         created: function () {
