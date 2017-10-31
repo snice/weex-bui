@@ -1,6 +1,5 @@
 /node_modules
 /dist
-/config.js
 /publish
 /.idea
 /.sass-cache
@@ -9,4 +8,6 @@
 /src/css/*.css.map
 *log
 **/.DS_Store
+config.js
+package-lock.json
 
