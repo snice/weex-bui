@@ -9,19 +9,18 @@
 <style lang="sass" src="../css/buiweex.scss"></style>
 
 <script>
-    var buiweex = require("../js/buiweex.js");
+    const buiweex = require("../js/buiweex.js");
+    const globalEvent = weex.requireModule('globalEvent');
     module.exports = {
-        data: function () {
-            return {
-            }
+        data () {
+            return {}
         },
-        methods: {
+        mounted () {
 
-        },
-        components: {
 
-        },
-        mounted: function () {
+            globalEvent.addEventListener("androidback", function (e) {
+                buiweex.pop();
+            });
         }
     }
 </script>

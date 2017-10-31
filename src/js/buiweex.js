@@ -2,12 +2,14 @@
  * 框架中常用的工具方法
  */
 
-var modal = weex.requireModule('modal');
-var animation = weex.requireModule('animation');
-var navigator = weex.requireModule('navigator');
-var navigatorEx = weex.requireModule("NavigatorExModule");
+const modal = weex.requireModule('modal');
+const animation = weex.requireModule('animation');
+const navigator = weex.requireModule('navigator');
+const navigatorEx = weex.requireModule("NavigatorExModule");
+const ajax = require("./ajax.js");
+const linkapi = require("./linkapi.js");
 
-var common = {
+let common = {
     //components下的组件
     "buiActionSheet": require("../components/bui-actionsheet.vue"),
     "buiButton": require("../components/bui-button.vue"),
@@ -28,7 +30,7 @@ var common = {
     "buiSwitch": require("../components/bui-switch.vue"),
     "buiTabbar": require("../components/bui-tabbar.vue"),
     "buiTabbarItem": require("../components/bui-tabbar-item.vue"),
-    "buiTabbarItemA" :require("../components/bui-tabbar-item-a.vue") ,
+    "buiTabbarItemA": require("../components/bui-tabbar-item-a.vue"),
     "buiTabbarScroll": require("../components/bui-tabbar-scroll.vue"),
     "buiTabbarScrollItem": require("../components/bui-tabbar-scroll-item.vue"),
     "buiTip": require("../components/bui-tip.vue"),
@@ -36,15 +38,15 @@ var common = {
     "buiContent": require("../components/bui-content.vue"),
     "buiContentScroll": require("../components/bui-content-scroll.vue"),
     "buiImageSlider": require("../components/bui-image-slider.vue"),
-
-    "toast": function (msg) {
+    "linkapi": linkapi, //link平台api
+    toast(msg) {
         modal.toast({
             message: msg,
             duration: 0.4
         });
     },
-    "alert": function (msg, callback, option) {
-        var okTitle = "确定";
+    alert(msg, callback, option) {
+        let okTitle = "确定";
         if (option) {
             if (option.okTitle)
                 okTitle = option.okTitle;
@@ -53,12 +55,12 @@ var common = {
             message: msg,
             duration: 0.4,
             okTitle: okTitle
-        }, function (value) {
+        }, value => {
             callback && callback(value);
         });
     },
-    "confirm": function (msg, callback, option) {
-        var okTitle = "确定", cancelTitle = "取消";
+    confirm(msg, callback, option) {
+        let okTitle = "确定", cancelTitle = "取消";
         if (option) {
             if (option.okTitle)
                 okTitle = option.okTitle;
@@ -70,19 +72,19 @@ var common = {
             duration: 0.4,
             okTitle: okTitle,
             cancelTitle: cancelTitle,
-        }, function (value) {
+        }, value => {
             callback && callback(value);
         });
     },
-    "show": function (params, callback) {
-        var el = params.id;
+    show(params, callback) {
+        let el = params.id;
         if (!el) {
             return;
         }
-        var duration = params.duration;
-        var transform = params.transform || 'translate(0, 0)';
-        var transformOrigin = params.transformOrigin || 'center center';
-        var timingFunction = params.timingFunction || 'ease';
+        let duration = params.duration;
+        let transform = params.transform || 'translate(0, 0)';
+        let transformOrigin = params.transformOrigin || 'center center';
+        let timingFunction = params.timingFunction || 'ease';
 
         animation.transition(el, {
             styles: {
@@ -93,20 +95,19 @@ var common = {
             duration: duration || 0,
             timingFunction: timingFunction,
             delay: 0
-        }, function () {
+        }, () => {
             callback && callback();
         });
     },
-    "hide": function (params, callback) {
-        var el = params.id;
+    hide(params, callback) {
+        let el = params.id;
         if (!el) {
             return;
         }
-        var duration = params.duration;
-        var transform = params.transform || 'translate(0, 0)';
-        var transformOrigin = params.transformOrigin || 'center center';
-        var timingFunction = params.timingFunction || 'ease';
-
+        let duration = params.duration;
+        let transform = params.transform || 'translate(0, 0)';
+        let transformOrigin = params.transformOrigin || 'center center';
+        let timingFunction = params.timingFunction || 'ease';
         animation.transition(el, {
             styles: {
                 opacity: '0',
@@ -116,20 +117,20 @@ var common = {
             duration: duration || 0,
             timingFunction: timingFunction,
             delay: 0
-        }, function () {
+        }, () => {
             callback && callback();
         });
     },
-    "getContextPath": function () {
-        var url;
-        var bundleUrl = weex.config.bundleUrl;
+    getContextPath() {
+        let url;
+        let bundleUrl = weex.config.bundleUrl;
         url = bundleUrl.split('/').slice(0, -1).join('/');
         return url;
     },
-    "push": function (url, params) {
-        var paramsStr = "";
+    push(url, params) {
+        let paramsStr = "";
         if (params) {
-            for (var key in params) {
+            for (let key in params) {
                 paramsStr += key + "=" + encodeURIComponent(params[key]) + "&";
             }
         }
@@ -144,24 +145,24 @@ var common = {
             navigator.push({
                 url: url,
                 animated: 'true'
-            }, function (e) {
+            }, e => {
             });
         }
     },
-    "pop": function () {
+    pop() {
         navigator.pop({
             animated: 'true'
-        }, function (e) {
+        }, e => {
         });
     },
-    "getPageParams": function () {
-        var params = {};
-        var url = weex.config.bundleUrl;
-        var index = url.indexOf("?");
+    getPageParams() {
+        let params = {};
+        let url = weex.config.bundleUrl;
+        let index = url.indexOf("?");
         if (index > 0) {
-            var query = url.substring(index + 1);
-            var temp = query.split('&');
-            var key, value;
+            let query = url.substring(index + 1);
+            let temp = query.split('&');
+            let key, value;
             for (var p in temp) {
                 if (temp[p]) {
                     key = temp[p].split('=')[0];
@@ -171,6 +172,12 @@ var common = {
             }
         }
         return params;
+    },
+    post(params){
+        return ajax.post(params);
+    },
+    get(params){
+        return ajax.get(params);
     }
 }
 
