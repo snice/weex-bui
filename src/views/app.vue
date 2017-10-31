@@ -16,8 +16,6 @@
             return {}
         },
         mounted () {
-
-
             globalEvent.addEventListener("androidback", function (e) {
                 buiweex.pop();
             });

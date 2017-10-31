@@ -1,44 +1,40 @@
 /**
  * 框架中常用的工具方法
  */
-
 const modal = weex.requireModule('modal');
 const animation = weex.requireModule('animation');
 const navigator = weex.requireModule('navigator');
 const navigatorEx = weex.requireModule("NavigatorExModule");
-const ajax = require("./ajax.js");
-const linkapi = require("./linkapi.js");
 
-let common = {
+let buiweex = {
     //components下的组件
-    "buiActionSheet": require("../components/bui-actionsheet.vue"),
-    "buiButton": require("../components/bui-button.vue"),
-    "buiCheckbox": require("../components/bui-checkbox.vue"),
-    "buiDialog": require("../components/bui-dialog.vue"),
-    "buiDropdown": require("../components/bui-dropdown.vue"),
-    "buiHeader": require("../components/bui-header.vue"),
-    "buiIcon": require("../components/bui-icon.vue"),
-    "buiImage": require("../components/bui-image.vue"),
-    "buiLazyRender": require("../components/bui-lazy-render.vue"),
-    "buiLoad": require("../components/bui-load.vue"),
-    "buiMask": require("../components/bui-mask.vue"),
-    "buiPanel": require("../components/bui-panel.vue"),
-    "buiRadio": require("../components/bui-radio.vue"),
-    "buiSearchbarCenter": require("../components/bui-searchbar-center.vue"),
-    "buiSearchbarLeft": require("../components/bui-searchbar-left.vue"),
-    "buiSliderBar": require("../components/bui-slider-bar.vue"),
-    "buiSwitch": require("../components/bui-switch.vue"),
-    "buiTabbar": require("../components/bui-tabbar.vue"),
-    "buiTabbarItem": require("../components/bui-tabbar-item.vue"),
-    "buiTabbarItemA": require("../components/bui-tabbar-item-a.vue"),
-    "buiTabbarScroll": require("../components/bui-tabbar-scroll.vue"),
-    "buiTabbarScrollItem": require("../components/bui-tabbar-scroll-item.vue"),
-    "buiTip": require("../components/bui-tip.vue"),
-    "buiVideo": require("../components/bui-video.vue"),
-    "buiContent": require("../components/bui-content.vue"),
-    "buiContentScroll": require("../components/bui-content-scroll.vue"),
-    "buiImageSlider": require("../components/bui-image-slider.vue"),
-    "linkapi": linkapi, //link平台api
+    buiActionSheet: require("../components/bui-actionsheet.vue"),
+    buiButton: require("../components/bui-button.vue"),
+    buiCheckbox: require("../components/bui-checkbox.vue"),
+    buiDialog: require("../components/bui-dialog.vue"),
+    buiDropdown: require("../components/bui-dropdown.vue"),
+    buiHeader: require("../components/bui-header.vue"),
+    buiIcon: require("../components/bui-icon.vue"),
+    buiImage: require("../components/bui-image.vue"),
+    buiLazyRender: require("../components/bui-lazy-render.vue"),
+    buiLoad: require("../components/bui-load.vue"),
+    buiMask: require("../components/bui-mask.vue"),
+    buiPanel: require("../components/bui-panel.vue"),
+    buiRadio: require("../components/bui-radio.vue"),
+    buiSearchbarCenter: require("../components/bui-searchbar-center.vue"),
+    buiSearchbarLeft: require("../components/bui-searchbar-left.vue"),
+    buiSliderBar: require("../components/bui-slider-bar.vue"),
+    buiSwitch: require("../components/bui-switch.vue"),
+    buiTabbar: require("../components/bui-tabbar.vue"),
+    buiTabbarItem: require("../components/bui-tabbar-item.vue"),
+    buiTabbarItemA: require("../components/bui-tabbar-item-a.vue"),
+    buiTabbarScroll: require("../components/bui-tabbar-scroll.vue"),
+    buiTabbarScrollItem: require("../components/bui-tabbar-scroll-item.vue"),
+    buiTip: require("../components/bui-tip.vue"),
+    buiVideo: require("../components/bui-video.vue"),
+    buiContent: require("../components/bui-content.vue"),
+    buiContentScroll: require("../components/bui-content-scroll.vue"),
+    buiImageSlider: require("../components/bui-image-slider.vue"),
     toast(msg) {
         modal.toast({
             message: msg,
@@ -174,11 +170,59 @@ let common = {
         return params;
     },
     post(params){
-        return ajax.post(params);
+        let url = params.url || "";
+        let headers = params.headers || {};
+        let data = params.data;
+        let type = params.type || "json";
+        if (typeof data == "object") {
+            data = JSON.stringify(data);
+        }
+        // headers["Content-Type"]="application/x-www-form-urlencoded";
+        // headers["Content-Type"]="application/json";
+        return new Promise((resolve, reject) => {
+            stream.fetch({
+                method: "POST",
+                type: type,
+                url: url,
+                headers: headers,
+                body: data
+            }, (res) => {
+                if (res.ok) {
+                    resolve(res.data, res.status, res.statusText);
+                } else {
+                    reject(res.status, res.statusText);
+                }
+            });
+        });
     },
     get(params){
-        return ajax.get(params);
+        return new Promise((resolve, reject) => {
+            let url = params.url || "";
+            let headers = params.headers || {};
+            let data = params.data || {};
+            let type = params.type || "json";
+            if (!url.includes("?")) {
+                url += "?";
+            }
+            if (typeof data == "object") {
+                for (let key in data) {
+                    url += `&${key}=${encodeURIComponent(data[key])}`;
+                }
+            }
+            stream.fetch({
+                method: "GET",
+                type: type,
+                url: url,
+                headers: headers
+            }, (res) => {
+                if (res.ok) {
+                    resolve(res.data, res.status, res.statusText);
+                } else {
+                    reject(res.status, res.statusText);
+                }
+            });
+        });
     }
 }
 
-module.exports = common;
+module.exports = buiweex;
