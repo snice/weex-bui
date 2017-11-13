@@ -35,12 +35,25 @@ let buiweex = {
     buiContent: require("../components/bui-content.vue"),
     buiContentScroll: require("../components/bui-content-scroll.vue"),
     buiImageSlider: require("../components/bui-image-slider.vue"),
+
+    /**
+     * 弹出吐司信息(自动消失)
+     * @param msg {string} 提示文本
+     */
     toast(msg) {
         modal.toast({
             message: msg,
             duration: 0.4
         });
     },
+
+    /**
+     * 弹出警告
+     * @param msg {string} 提示文本
+     * @param callback {function} 点击确定后回调函数
+     * @param option {object} 参数
+     * @param option.okTitle {string} 确定按钮文本
+     */
     alert(msg, callback, option) {
         let okTitle = "确定";
         if (option) {
@@ -55,6 +68,15 @@ let buiweex = {
             callback && callback(value);
         });
     },
+
+    /**
+     * 弹出确认框
+     * @param msg {string} 提示文本
+     * @param callback {function} 点击确定/取消后回调函数
+     * @param option {object} 参数
+     * @param option.okTitle {string} 确定按钮文本
+     * @param option.cancelTitle {string} 取消按钮文本
+     */
     confirm(msg, callback, option) {
         let okTitle = "确定", cancelTitle = "取消";
         if (option) {
@@ -72,6 +94,12 @@ let buiweex = {
             callback && callback(value);
         });
     },
+
+    /**
+     * 显示一个组件（可设置动画）
+     * @param params
+     * @param callback
+     */
     show(params, callback) {
         let el = params.id;
         if (!el) {
@@ -95,6 +123,12 @@ let buiweex = {
             callback && callback();
         });
     },
+
+    /**
+     * 隐藏一个组件(可设置动画)
+     * @param params
+     * @param callback
+     */
     hide(params, callback) {
         let el = params.id;
         if (!el) {
@@ -117,12 +151,24 @@ let buiweex = {
             callback && callback();
         });
     },
+
+    /**
+     * 获取当前上下文路径
+     * @return {string|*}
+     */
     getContextPath() {
         let url;
         let bundleUrl = weex.config.bundleUrl;
         url = bundleUrl.split('/').slice(0, -1).join('/');
         return url;
     },
+
+    /**
+     * 加载一个新的页面(bundleJS)
+     * @method push
+     * @param url {string} bundle js 地址
+     * @param params {object} 传递的参数
+     */
     push(url, params) {
         let paramsStr = "";
         if (params) {
@@ -145,12 +191,23 @@ let buiweex = {
             });
         }
     },
+
+    /**
+     * 返回上个页面
+     * @method pop
+     */
     pop() {
         navigator.pop({
             animated: 'true'
         }, e => {
         });
     },
+
+    /**
+     * 获取页面参数(bundleJS),从url查询参数中获取
+     * @method getPageParams
+     * @return {object} 返回json数据
+     */
     getPageParams() {
         let params = {};
         let url = weex.config.bundleUrl;
@@ -169,6 +226,17 @@ let buiweex = {
         }
         return params;
     },
+
+    /**
+     * 发送POST请求
+     * @method post
+     * @param params {object} 请求参数
+     * @param params.url {string} 请求的URL
+     * @param params.headers {object} 请求头, Content-Type默认值是 application/x-www-form-urlencoded
+     * @param params.type {string} 响应类型, json(默认),text
+     * @param params.data {object} 请求数据，带到 HTTP body中
+     * @return {Promise.<TResult>} 成功: resolve(data, status, statusText), 失败: reject(status, statusText)
+     */
     post(params){
         let url = params.url || "";
         let headers = params.headers || {};
@@ -195,6 +263,17 @@ let buiweex = {
             });
         });
     },
+
+    /**
+     * 发送GET请求
+     * @method get
+     * @param params {object} 请求参数
+     * @param params.url {string} 请求的URL
+     * @param params.headers {object} 请求头
+     * @param params.type {string} 响应类型, json(默认),text
+     * @param params.data {object} 请求数据，自动拼接到url后面
+     * @return {Promise.<TResult>} 成功: resolve(data, status, statusText), 失败: reject(status, statusText)
+     */
     get(params){
         return new Promise((resolve, reject) => {
             let url = params.url || "";
