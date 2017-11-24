@@ -1,27 +1,26 @@
 <template>
-    <text @click="_click($event)" class="iconfont" :style="{color: color, fontSize: size, 'font-family': 'iconfont' }">{{getFontName}}</text>
+    <text @click="_click($event)" :style="{color: color, fontSize: size, 'font-family': 'iconfont' }">{{getFontName}}</text>
 </template>
 
 <script>
-    //引入he模块，使用它解决weex-template-compiler在编译阶段进行decode
     var he = require("he");
     module.exports = {
-        created: function () {
-            //此url可以是指向本地字体图标文件路径 也可以直接用阿里巴巴字体图标库的的字体图标地址 ,比如'https://at.alicdn.com/t/font_3ppcziztn5wpcik9.ttf'
+        beforeCreate () {
+            //ttf地址可以是本地/src/font/xx.ttf
+            //也可以是远程字体文件
             var bundleUrl = weex.config.bundleUrl;
             var url = bundleUrl.split('/').slice(0, -1).join('/');
             url += '/font/iconfont.ttf';
+
             var domModule = weex.requireModule("dom");
-            domModule.addRule('fontFace',{
+            domModule.addRule('fontFace', {
                 'fontFamily': 'iconfont',
-                'src': "url('"+url+"')"
+                'src': "url('" + url + "')"
             });
         },
-        data: function () {
+        data () {
             return {
-                //weex字体图标目前只支持unicode格式
-                iconItems:{
-
+                iconItems: {
                     "icon-appreciate": "&#xe644;",
                     "icon-appreciatefill": "&#xe6e3",
                     "icon-check": "&#xe645;",
@@ -278,14 +277,13 @@
                 default: '40px'
             }
         },
-        computed:{
-            //匹配对应的字体图标的unicode
-            getFontName: function() {
+        computed: {
+            getFontName() {
                 return he.decode(this.iconItems[this.name]);
             }
         },
         methods: {
-            "_click": function ($event) {
+            _click($event) {
                 this.$emit("click", $event);
             }
         }
