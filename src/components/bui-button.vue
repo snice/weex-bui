@@ -1,8 +1,8 @@
 <template>
     <text :class="['btn', 'btn-' + (disabled?'disabled':type)]"
           :style="{'border-radius':radius}"
-          @longpress="longpress($event)"
-          @click="click($event)">{{value}}</text>
+          @longpress="_longpress($event)"
+          @click="_click($event)">{{value}}</text>
 </template>
 <style lang="sass" src="../css/button.scss"></style>
 
@@ -15,12 +15,12 @@
             "radius": {default: "0px"}
         },
         methods: {
-            click(e) {
+            _click(e) {
                 if (!this.disabled) {
                     this.$emit("click",e);
                 }
             },
-            longpress(e) {
+            _longpress(e) {
                 if (!this.disabled) {
                     this.$emit("longpress",e);
                 }
