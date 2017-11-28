@@ -42,7 +42,7 @@ let buiweex = {
      */
     toast(msg) {
         modal.toast({
-            message: msg,
+            message: msg || "",
             duration: 0.4
         });
     },
@@ -61,7 +61,7 @@ let buiweex = {
                 okTitle = option.okTitle;
         }
         modal.alert({
-            message: msg,
+            message: msg || "",
             duration: 0.4,
             okTitle: okTitle
         }, value => {
@@ -86,7 +86,7 @@ let buiweex = {
                 cancelTitle = option.cancelTitle;
         }
         modal.confirm({
-            message: msg,
+            message: msg || "",
             duration: 0.4,
             okTitle: okTitle,
             cancelTitle: cancelTitle,
@@ -301,6 +301,85 @@ let buiweex = {
                 }
             });
         });
+    },
+
+    install(Vue, options) {
+        let that = buiweex;
+        Vue.mixin({
+            components: {
+                'bui-header': that.buiHeader,
+                'bui-icon': that.buiIcon,
+                'bui-button': that.buiButton,
+                'bui-image': that.buiImage,
+                'bui-actionsheet': that.buiActionSheet,
+                'bui-checkbox': that.buiCheckbox,
+                'bui-dialog': that.buiDialog,
+                'bui-dropdown': that.buiDropdown,
+                'bui-lazy-render': that.buiLazyRender,
+                'bui-load': that.buiLoad,
+                'bui-mark': that.buiMask,
+                'bui-panel': that.buiPanel,
+                'bui-radio': that.buiRadio,
+                'bui-searchbar-center': that.buiSearchbarCenter,
+                'bui-searchbar-left': that.buiSearchbarLeft,
+                'bui-slider-bar': that.buiSliderBar,
+                'bui-switch': that.buiSwitch,
+                'bui-tabbar': that.buiTabbar,
+                'bui-tabbar-item': that.buiTabbarItem,
+                'bui-tabbar-item-a': that.buiTabbarItemA,
+                'bui-tabbar-scroll': that.buiTabbarScroll,
+                'bui-tabbar-scroll-item': that.buiTabbarScrollItem,
+                'bui-tip': that.buiTip,
+                'bui-video': that.buiVideo,
+                'bui-content': that.buiContent,
+                'bui-content-scroll': that.buiContentScroll,
+                'bui-image-slider': that.buiImageSlider,
+            }
+        });
+
+        Vue.prototype.$alert = function (msg, callback, option) {
+            that.alert(msg, callback, option);
+        };
+
+        Vue.prototype.$toast = function (msg) {
+            that.toast(msg);
+        }
+
+        Vue.prototype.$confirm = function (msg, callback, option) {
+            that.confirm(msg, callback, option);
+        }
+
+        Vue.prototype.$show = function (params, callback) {
+            that.show(params, callback);
+        }
+
+        Vue.prototype.$hide = function (params, callback) {
+            that.hide(params, callback);
+        }
+
+        Vue.prototype.$getContextPath = function () {
+            return that.getContextPath();
+        }
+
+        Vue.prototype.$push = function (url, params) {
+            that.push(url, params);
+        }
+
+        Vue.prototype.$pop = function () {
+            that.pop();
+        }
+
+        Vue.prototype.$getPageParams = function () {
+            return that.getPageParams();
+        }
+
+        Vue.prototype.$post = function (params) {
+            return that.post(params);
+        }
+
+        Vue.prototype.$get = function (params) {
+            return that.get(params);
+        }
     }
 }
 
