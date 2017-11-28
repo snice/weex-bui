@@ -337,49 +337,27 @@ let buiweex = {
             }
         });
 
-        Vue.prototype.$alert = function (msg, callback, option) {
-            that.alert(msg, callback, option);
-        };
+        Vue.prototype.$alert = that.alert;
 
-        Vue.prototype.$toast = function (msg) {
-            that.toast(msg);
-        }
+        Vue.prototype.$toast = that.toast;
 
-        Vue.prototype.$confirm = function (msg, callback, option) {
-            that.confirm(msg, callback, option);
-        }
+        Vue.prototype.$confirm = that.confirm;
 
-        Vue.prototype.$show = function (params, callback) {
-            that.show(params, callback);
-        }
+        Vue.prototype.$show = that.show;
 
-        Vue.prototype.$hide = function (params, callback) {
-            that.hide(params, callback);
-        }
+        Vue.prototype.$hide = that.hide;
 
-        Vue.prototype.$getContextPath = function () {
-            return that.getContextPath();
-        }
+        Vue.prototype.$getContextPath = that.getContextPath;
 
-        Vue.prototype.$push = function (url, params) {
-            that.push(url, params);
-        }
+        Vue.prototype.$push = that.push;
 
-        Vue.prototype.$pop = function () {
-            that.pop();
-        }
+        Vue.prototype.$pop = that.pop;
 
-        Vue.prototype.$getPageParams = function () {
-            return that.getPageParams();
-        }
+        Vue.prototype.$getPageParams = that.getPageParams;
 
-        Vue.prototype.$post = function (params) {
-            return that.post(params);
-        }
+        Vue.prototype.$post = that.post;
 
-        Vue.prototype.$get = function (params) {
-            return that.get(params);
-        }
+        Vue.prototype.$get = that.get;
     }
 }
 
