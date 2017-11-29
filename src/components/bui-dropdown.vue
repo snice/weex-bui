@@ -15,7 +15,7 @@
     var platform = weex.config.env.platform;
     var colorWhite = "#ffffff";
     module.exports = {
-        data: () => {
+        data(){
             return {
                 width: "260px",
                 left: "0px",
