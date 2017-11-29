@@ -1,15 +1,6 @@
 @import "common";
 
-.bui-actionsheet{
-  //position: absolute;
-  //left:0px;
-  //right: 0px;
-  //top: 0px;
-  //bottom: 0px;
-  //background-color: #00c277;
-}
-
-.bui-actionsheet-box{
+.bui-actionsheet-box {
   position: fixed;
   left: 0px;
   right: 0px;
@@ -18,29 +9,30 @@
   flex-direction: column;
   overflow: hidden;
 }
-.bui-actionsheet-top{
+
+.bui-actionsheet-top {
   border-radius: $nb10;
-  //border-bottom-left-radius: $nb10;
   overflow: hidden;
   background-color: $color_white;
 }
-.bui-actionsheet-bottom{
+
+.bui-actionsheet-bottom {
   margin-top: $nb15;
 }
-.bui-actionsheet-title{
+
+.bui-actionsheet-title {
   padding: $nb30;
   text-align: center;
   font-size: $nb28;
   color: $color_subtitle;
 }
 
-.bui-actionsheet-content{
-  //padding: $nb30;
-  //margin-top: $nb50;
+.bui-actionsheet-content {
   flex-direction: column;
   flex: 1;
 }
-.bui-actionsheet-list{
+
+.bui-actionsheet-list {
   border-top-width: 1px;
   border-top-color: $color_border;
   padding: $nb30;
@@ -48,10 +40,12 @@
   font-size: $nb34;
   color: $color_primary;
 }
-.bui-actionsheet-list:active{
+
+.bui-actionsheet-list:active {
   background-color: $color_default;
 }
-.bui-actionsheet-btn{
+
+.bui-actionsheet-btn {
   font-size: $nb34;
   color: $color_primary;
   font-weight: bold;
@@ -60,6 +54,7 @@
   text-align: center;
   border-radius: $nb10;
 }
-.bui-actionsheet-btn:active{
+
+.bui-actionsheet-btn:active {
   background-color: $color_default;
 }
