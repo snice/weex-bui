@@ -1,5 +1,5 @@
 <template>
-    <text @click="_click($event)" :style="{color: color, fontSize: size, 'font-family': 'ionfont'}">{{getFontName}}</text>
+    <text @click="_click($event)" :value="getFontName" :style="{'color': color, 'font-size': size, 'font-family': 'ionfont'}"></text>
 </template>
 
 <script>
@@ -33,12 +33,12 @@
         computed: {
             getFontName() {
                 var icon = iconItems[this.name];
-                return he.decode(icon||'');
+                return he.decode(icon || '');
             }
         },
         methods: {
-            _click($event) {
-                this.$emit("click", $event);
+            _click(e) {
+                this.$emit("click", e);
             }
         }
     }

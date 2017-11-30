@@ -1,46 +1,33 @@
 @charset "UTF-8";
-
 @import "common";
 
-//标题栏
-.bui-header-box{
-
-}
 .bui-header{
-  flex: 1;
-  padding-left:$nb20;
-  padding-right: $nb20;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 .bui-header-left{
+  flex: 1;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  position: absolute;
-  left: $nb20;
-  top: 0;
-  bottom: 0;
+  justify-content: flex-start;
+  padding-left: $nb20;
 }
 
 .bui-header-main{
-  flex: 1;
-  justify-content: center;
-  padding-left: $nb10;
-  padding-right: $nb10;
+  flex: 2;
   flex-direction: row;
+  align-content: center;
+  justify-content: center;
 }
 
 .bui-header-right{
+  flex: 1;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  position: absolute;
-  right: $nb20;
-  top: 0;
-  bottom: 0;
+  justify-content: flex-end;
+  padding-right: $nb20;
 }
 
 .bui-header-title{
@@ -50,9 +37,8 @@
   text-overflow:ellipsis;
 }
 .bui-header-text{
-  font-size: $nb32;
+  font-size: $nb34;
   text-align: center;
-  lines:1;
 }
 
 
