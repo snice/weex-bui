@@ -58,9 +58,6 @@
                 return (this.items.length + 1) * 100 + 80;
             }
         },
-        components: {
-            'bui-mask': require('./bui-mask.vue'),
-        },
         methods: {
             show(){
                 this.$nextTick(e => {

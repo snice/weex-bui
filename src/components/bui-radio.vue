@@ -1,9 +1,9 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
         <div class="radio-box flex-row" :class="[v.disabled ? 'disabled':'']" v-for="v in radioItems" @click="select(v)">
-            <div class="bui-icon-box" v-if="v.select"><bui-icon @click="select(v)" name="icon-radio-on" :color="selectedColor"></bui-icon></div>
-            <div class="bui-icon-box" v-if="!v.select"><bui-icon @click="select(v)" name="icon-radio" :color="unSelectedColor"></bui-icon></div>
-            <text class="radio-label">{{v.title}}</text>
+            <div class="bui-icon-box" v-if="v.select"><bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-on" :color="selectedColor"></bui-icon></div>
+            <div class="bui-icon-box" v-if="!v.select"><bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-off" :color="unSelectedColor"></bui-icon></div>
+            <text class="radio-label" :style="{'font-size':fontSize}">{{v.title}}</text>
         </div>
     </div>
 </template>
@@ -17,8 +17,16 @@
                 default: 'horizontal' // horizontal | vertical
             },
             "items": {
-                type: Object,
+                type: Array,
                 default: []
+            },
+            "fontSize":{
+                type:String,
+                default:"32px"
+            },
+            "iconSize":{
+                type:String,
+                default:"48px"
             },
             "selectedColor":{
                 type: String,
@@ -30,17 +38,17 @@
             }
         },
         computed:{
-            changeDirection:function () {
+            changeDirection () {
                 return this.direction=="horizontal"? "flex-row":"flex-column";
             }
         },
-        data:function () {
+        data() {
           return{
               radioItems:[]
           }
         },
         methods: {
-            "select": function (v) {
+            select (v) {
                 if(v.disabled) return;
                 var self = this;
                 self.radioItems.forEach(function (val, index) {
@@ -50,7 +58,7 @@
                 this.$emit("change", v);
             }
         },
-        created: function(){
+        created(){
             this.radioItems=JSON.parse(JSON.stringify(this.items));
         }
     }

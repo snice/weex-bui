@@ -1,9 +1,9 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
         <div class="radio-box flex-row" :class="[v.disabled ? 'disabled':'']" @click="select(v)" v-for="v in checkboxItems">
-            <div v-if="v.select"><bui-icon @click="select(v)" name="icon-checkbox-on" :color="selectedColor"></bui-icon></div>
-            <div v-if="!v.select"><bui-icon @click="select(v)" name="icon-radio" :color="unSelectedColor"></bui-icon></div>
-            <text class="radio-label">{{v.title}}</text>
+            <div v-if="v.select"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark" :color="selectedColor"></bui-icon></div>
+            <div v-if="!v.select"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark-outline" :color="unSelectedColor"></bui-icon></div>
+            <text class="radio-label" :style="{'font-size':fontSize}">{{v.title}}</text>
         </div>
     </div>
 </template>
@@ -17,8 +17,16 @@
                 default: 'horizontal' // horizontal | vertical
             },
             "items": {
-                type: Object,
+                type: Array,
                 default: []
+            },
+            "fontSize":{
+              type:String,
+                default:"32px"
+            },
+            "iconSize":{
+                type:String,
+                default:"48px"
             },
             "selectedColor":{
                 type: String,
@@ -30,18 +38,18 @@
             }
         },
         computed:{
-            changeDirection:function () {
+            changeDirection(){
                 return this.direction=="horizontal"? "flex-row":"flex-column";
             }
         },
-        data: function () {
+        data () {
             return {
-                "selectItems" : [],
+                selectItems: [],
                 checkboxItems: []
             }
         },
         methods: {
-            "select": function (v) {
+            select (v) {
                 var self = this;
                 v.select = !v.select;
 
@@ -53,7 +61,7 @@
                 this.$emit("change", v, newAry);
             }
         },
-        created: function () {
+        created () {
             this.checkboxItems = JSON.parse(JSON.stringify(this.items));
         }
     }

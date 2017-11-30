@@ -5,7 +5,7 @@
             <div class="bui-dropdown-content" :style="{ 'background-color': bgColor }">
                 <slot></slot>
             </div>
-            <text class="bui-dropdown-arrow" :style="{'color':bgColor,'font-family':'jiantou','left':arrowLeft}">&#xe646;</text>
+            <bui-icon name="ion-arrow-up-b" size="60px" :color="bgColor" class="bui-dropdown-arrow" :style="{'left':arrowLeft}"></bui-icon>
         </div>
     </div>
 </template>
@@ -61,19 +61,6 @@
                 this.visible = true;
             }
         },
-        created () {
-            var bundleUrl = weex.config.bundleUrl;
-            var url = bundleUrl.split('/').slice(0, -1).join('/');
-            url += '/font/jiantou.ttf';
-            var domModule = weex.requireModule("dom");
-            domModule.addRule('fontFace', {
-                'fontFamily': 'jiantou',
-                'src': "url('" + url + "')"
-            });
-        },
-        components: {
-            'bui-mask': require('./bui-mask.vue')
-        },
         methods: {
             show(event){
                 this._reset();
@@ -87,7 +74,6 @@
             },
             _open(event) {
                 var el = this.$refs.dropdownBox;
-
                 this.position = event.position;
                 //autoWidth默认true，宽度按触发元素宽度自适应，如果控制宽度可设置为false，宽度为260px
                 if (this.autoWidth) {
@@ -151,9 +137,9 @@
                         transform: translate,
                         transformOrigin: 'center center'
                     },
-                    duration: 200, //ms
+                    duration: 200,
                     timingFunction: timing,
-                    delay: 0 //ms
+                    delay: 0
                 }, () => {
                     fn && fn();
                 })

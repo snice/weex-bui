@@ -317,7 +317,7 @@ let buiweex = {
                 'bui-dropdown': that.buiDropdown,
                 'bui-lazy-render': that.buiLazyRender,
                 'bui-load': that.buiLoad,
-                'bui-mark': that.buiMask,
+                'bui-mask': that.buiMask,
                 'bui-panel': that.buiPanel,
                 'bui-radio': that.buiRadio,
                 'bui-searchbar-center': that.buiSearchbarCenter,

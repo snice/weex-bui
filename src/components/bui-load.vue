@@ -1,8 +1,8 @@
 <template>
-    <div class="load-layout">
-        <bui-mask v-if="show" @click="layoutClick"></bui-mask>
-        <div v-if="show" class="load-block">
-            <bui-icon class="load-icon" name="icon-loadding"></bui-icon>
+    <div :value="value" v-if="visible">
+        <bui-mask @click="_maskClick"></bui-mask>
+        <div class="load-block">
+            <bui-icon name="ion-load-b" class="load-icon"></bui-icon>
             <text class="load-text">{{message}}</text>
         </div>
     </div>
@@ -12,33 +12,39 @@
     var animation = weex.requireModule('animation');
     module.exports = {
         props: {
-            show: {
+            message: {
+                type: String,
+                default: '加载中...'
+            },
+            value: {
                 type: Boolean,
                 default: false
             },
-            message: {
-                type: String,
-                default: '努力加载中...'
-            }
         },
         data: function () {
-            return {}
+            return {
+                visible: false
+            }
         },
-        components: {
-            'bui-mask': require('./bui-mask.vue'),
+        watch: {
+            value(val) {
+                this.visible = val;
+            },
+            visible(val) {
+                this.$emit('input', val);
+            }
+        },
+        mounted(){
+            if (this.value) {
+                this.visible = true;
+            }
         },
         methods: {
-            //点击mask遮罩层
-            "layoutClick": function () {
-                var _this = this;
-                _this.$emit("close");
-            },
-
-        },
-        created: function () {
-
+            _maskClick(){
+                this.visible = false;
+                this.$emit("maskClick");
+            }
         }
-        
     }
 </script>
 

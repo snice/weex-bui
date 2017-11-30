@@ -1,8 +1,8 @@
 <template>
-    <div class="bui-slider-bar">
-        <bui-mask v-if="show" @click="layoutClick"></bui-mask>
-        <div v-if="show" class="bui-slider-bar-box" :class="['bui-'+type+'-slider-bar-box']" v-on:swipe="onSwipe($event)" ref="navbar">
-            <!--<text class="bui-slider-title">{{type=='left' ? '左':'右'}}侧滑动栏题</text>-->
+    <div :value="value" v-if="visible">
+        <bui-mask @click="_maskClick"></bui-mask>
+        <div class="bui-slider-bar-box" :style="{'width':width}" :class="['bui-'+type+'-slider-bar-box']" v-on:swipe="_onSwipe($event)"
+             ref="navbar">
             <div class="bui-slider-content">
                 <scroller>
                     <slot>
@@ -11,7 +11,6 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <style lang="sass" src="../css/slider-bar.scss"></style>
@@ -20,81 +19,90 @@
     var animation = weex.requireModule('animation');
     module.exports = {
         props: {
-            show: {
-                type: Boolean,
-                default: false
-            },
             type: {
                 type: String,
                 default: 'left'
+            },
+            value: {
+                type: Boolean,
+                default: false
+            },
+            width:{
+                type:String,
+                default:'400px'
             }
         },
-        components: {
-            'bui-mask': require('./bui-mask.vue')
+        data(){
+            return {
+                visible: false
+            }
+        },
+        watch: {
+            value(val) {
+                this.visible = val;
+            },
+            visible(val) {
+                this.$emit('input', val);
+            }
+        },
+        mounted(){
+            if (this.value) {
+                this.visible = true;
+            }
         },
         methods: {
-            //动画操作
-            animationFn : function (el, translate, timing, fn) {
+            _animationFn: function (translate, fn) {
+                var el = this.$refs.navbar;
                 animation.transition(el, {
-                    styles:{
+                    styles: {
                         transform: translate,
                         transformOrigin: 'center center'
                     },
-                    duration: 300, //ms
-                    timingFunction: timing,
-                    delay: 0 //ms
+                    duration: 300,
+                    timingFunction: "ease-in",
+                    delay: 0
                 }, function () {
                     fn && fn();
                 })
             },
-            //打开左侧滑动栏
-            "openBar": function () {
-                var navbar = this.$refs['navbar'];
-                if(this.type == 'left'){
-                    this.animationFn(navbar, 'translate(600px, 0)',  'ease-in');
-                }else{
-                    this.animationFn(navbar, 'translate(-600px, 0)',  'ease-in');
-                }
-
+            show () {
+                this.$nextTick(()=>{
+                    this._openBar();
+                })
             },
-            //点击mask遮罩层
-            "layoutClick": function () {
-                var _this = this;
-                var navbar = this.$refs['navbar'];
-
-                switch(this.type) {
-                    case "left":
-                        this.animationFn(navbar, 'translate(-600px, 0px)',  'ease-in', function () {
-                            _this.show = false;
-                            _this.$emit("close");
-                        });
-                        break;
-                    case "right":
-                        this.animationFn(navbar, 'translate(600px, 0px)',  'ease-in', function () {
-                            _this.show = false;
-                            _this.$emit("close");
-                        });
-                        break;
-                    default:
-                        console.log("6666");
+            _openBar () {
+                var translate = '';
+                if(this.type=="right"){
+                    translate ='translate(-600px, 0)';
+                }else if(this.type=="left"){
+                    translate = 'translate(600px, 0)';
                 }
+                this._animationFn(translate);
             },
-            //手势
-            "onSwipe": function (event) {
-                console.log('onSwipe'+11111);
-                switch(this.type){
+            _maskClick () {
+                var translate = '';
+                if(this.type=="right"){
+                    translate ='translate(600px, 0px)';
+                }else if(this.type=="left"){
+                    translate = 'translate(-600px, 0px)';
+                }
+                this._animationFn(translate, () => {
+                    this.visible = false;
+                    this.$emit("close");
+                });
+            },
+            _onSwipe(event) {
+                switch (this.type) {
                     case "left":
-                        if(event.direction == 'left'){
-                            this.layoutClick();
+                        if (event.direction == 'left') {
+                            this._maskClick();
                         }
                         break;
                     case  "right":
-                        if(event.direction == 'right'){
-                            this.layoutClick();
+                        if (event.direction == 'right') {
+                            this._maskClick();
                         }
                         break;
-                    default:
-                        console.log("手势无效");
                 }
             }
         },
