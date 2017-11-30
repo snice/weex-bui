@@ -8,8 +8,7 @@
     module.exports = {
         props: {
             padded: {default: false},
-            padding: {default: "20px"}, //default 20px
-        },
-        methods: {}
+            padding: {default: "20px"}
+        }
     }
 </script>

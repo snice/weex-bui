@@ -11,7 +11,7 @@
             }
         },
         methods: {
-            "_click": function () {
+            _click() {
                 this.$emit("click");
             }
         }

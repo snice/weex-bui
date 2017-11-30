@@ -66,9 +66,6 @@
                 return this.buttons.split(',');
             }
         },
-        components: {
-            'bui-mask': require('./bui-mask.vue')
-        },
         methods: {
             _click(text) {
                 this.$emit("btnClick", text);

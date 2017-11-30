@@ -1,6 +1,6 @@
 <template>
     <div :style="{'background-color':backgroundColor}">
-        <div style="height: 40px;" v-if="iosfixed"></div>
+        <div style="height: 40px;" v-if="iosFixed"></div>
         <div class="bui-header" :style="{'height':height}">
             <div class="bui-header-left">
                 <bui-icon @click="_leftClick($event)" v-if="leftItem.icon||leftItem.icons"
@@ -35,9 +35,6 @@
     };
     var platform = weex.config.env.platform.toLowerCase();
     module.exports = {
-        data: function () {
-            return {}
-        },
         props: {
             title: {
                 type: String,
@@ -77,19 +74,19 @@
             }
         },
         computed: {
-            iosfixed: function () {
+            iosFixed () {
                 return platform === "ios";
             }
         },
         methods: {
-            _leftClick: function ($event) {
-                this.$emit('leftClick', $event);
+            _leftClick (e) {
+                this.$emit('leftClick', e);
             },
-            _rightClick: function ($event) {
-                this.$emit('rightClick', $event);
+            _rightClick (e) {
+                this.$emit('rightClick', e);
             },
-            _centerClick: function ($event) {
-                this.$emit('centerClick', $event);
+            _centerClick (e) {
+                this.$emit('centerClick', e);
             }
         }
     }

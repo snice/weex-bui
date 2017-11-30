@@ -64,14 +64,11 @@
                 default: ""
             }
         },
-        data: function () {
-            return {}
-        },
         methods: {
-            "_change": function (e) {
+            _change(e) {
                 this.$emit("change", e);
             },
-            "_click": function (e, index) {
+            _click(e, index) {
                 this.$emit("itemClick", e, index);
             }
         }
