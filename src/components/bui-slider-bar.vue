@@ -66,9 +66,9 @@
                 })
             },
             show () {
-                this.$nextTick(()=>{
+                setTimeout(()=>{
                     this._openBar();
-                })
+                },50);
             },
             _openBar () {
                 var translate = '';

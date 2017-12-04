@@ -64,9 +64,9 @@
         methods: {
             show(event){
                 this._reset();
-                this.$nextTick(e => {
+                setTimeout(()=>{
                     this._open(event);
-                });
+                },50);
             },
             _reset(){
                 this.width="260px";

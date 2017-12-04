@@ -4,7 +4,7 @@
                 @change="onchange"
                 :checked="checked"
                 :disabled="disabled"></switch>
-        <text class="switch-label">{{title}}</text>
+        <text class="switch-label" v-if="title">{{title}}</text>
     </div>
 </template>
 

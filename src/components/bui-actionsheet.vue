@@ -60,9 +60,9 @@
         },
         methods: {
             show(){
-                this.$nextTick(e => {
+                setTimeout(()=>{
                     this._open();
-                });
+                },50);
             },
             _animationFn: function (translate, fn) {
                 var el = this.$refs.actionsheetBox;
