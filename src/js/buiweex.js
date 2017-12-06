@@ -37,6 +37,7 @@ let buiweex = {
     buiImageSlider: require("../components/bui-image-slider.vue"),
     buiCell: require("../components/bui-cell.vue"),
     buiPopup: require("../components/bui-popup.vue"),
+    buiNumberInput: require("../components/bui-number-input.vue"),
     /**
      * 弹出吐司信息(自动消失)
      * @param msg {string} 提示文本
@@ -350,7 +351,8 @@ let buiweex = {
                 'bui-content-scroll': that.buiContentScroll,
                 'bui-image-slider': that.buiImageSlider,
                 'bui-cell':that.buiCell,
-                'bui-popup':that.buiPopup
+                'bui-popup':that.buiPopup,
+                'bui-number-input': that.buiNumberInput,
             }
         });
 
