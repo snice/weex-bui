@@ -42,6 +42,13 @@ let buiweex = {
      * @param msg {string} 提示文本
      */
     toast(msg) {
+        let type = typeof msg;
+        if(type =='object'){
+            msg = type;
+        }
+        if(type == 'boolean'){
+            msg = (msg == true?'true':'false');
+        }
         modal.toast({
             message: msg || "",
             duration: 0.4
@@ -60,6 +67,13 @@ let buiweex = {
         if (option) {
             if (option.okTitle)
                 okTitle = option.okTitle;
+        }
+        let type = typeof msg;
+        if(type =='object'){
+            msg = type;
+        }
+        if(type == 'boolean'){
+            msg = (msg == true?'true':'false');
         }
         modal.alert({
             message: msg || "",
