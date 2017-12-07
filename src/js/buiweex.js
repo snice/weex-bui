@@ -5,6 +5,7 @@ const modal = weex.requireModule('modal');
 const animation = weex.requireModule('animation');
 const navigator = weex.requireModule('navigator');
 const navigatorEx = weex.requireModule("NavigatorExModule");
+const stream = weex.requireModule('stream');
 
 let buiweex = {
     //components下的组件
