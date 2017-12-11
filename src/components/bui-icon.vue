@@ -1,10 +1,23 @@
 <template>
-    <text @click="_click($event)" :value="getFontName" :style="{'color': color, 'font-size': size, 'font-family': 'ionfont'}"></text>
+    <div class="icon-block" :style="{width:size,height:size}" @click="_click($event)">
+        <text class="icon" :value="getFontName" :style="getStyle"></text>
+    </div>
 </template>
+
+<style>
+    .icon-block {
+        justify-content: flex-start;
+    }
+
+    .icon {
+        text-align: center;
+    }
+</style>
 
 <script>
     var he = require("he");
     var iconItems = require('../font/ionicons.json');
+    var fontFamily = "ionfont";
     module.exports = {
         beforeCreate () {
             var bundleUrl = weex.config.bundleUrl;
@@ -13,27 +26,42 @@
 
             var domModule = weex.requireModule("dom");
             domModule.addRule('fontFace', {
-                'fontFamily': 'ionfont',
+                'fontFamily': fontFamily,
                 'src': "url('" + url + "')"
             });
         },
         props: {
             name: {
-                type: String
+                type: String,
+                defalut: ''
             },
             color: {
                 type: String,
                 default: '#9ea7b4'
             },
             size: {
-                type: String,
-                default: '40px'
+                type: [Number, String],
+                default: 48
+            },
+            activeColor: {
+                type: String
             }
         },
         computed: {
             getFontName() {
                 var icon = iconItems[this.name];
                 return he.decode(icon || '');
+            },
+            getStyle(){
+                var style = {
+                    'color': this.color,
+                    'font-size': this.size,
+                    'font-family': fontFamily
+                };
+                if(this.activeColor){
+                    style["color:active"]=this.activeColor;
+                }
+                return style;
             }
         },
         methods: {
