@@ -3,15 +3,15 @@
 
         <div v-for="(item,index) in tabItems"
              :style="getItemStyle(item, index)"
-             @click="itemClick($event,item,index)"> <!-- ? -->
+             @click="itemClick($event,item,index)">
             
             <bui-icon v-if="item.icon" :name="item.icon"
                       :color="index === value ? selectedColor : normalColor"
-                      @click="itemClick($event,item,index)" :size="iconSize"><!-- ? -->
+                      @click="itemClick($event,item,index)" :size="iconSize">
             </bui-icon>
 
             <text v-if="item.title" :style="getTitleStyle(item, index)"
-                  @click="itemClick($event,item,index)">{{ item.title }}</text> <!-- ? -->
+                  @click="itemClick($event,item,index)">{{ item.title }}</text>
         </div>
 
     </div>
@@ -35,14 +35,12 @@
             showSelectedLine: { default: false}
         },
         methods: {
-            //tabbar扩展样式
             "getContainerStyle": function () {
                 //合并样式
                 var style = {'flex-direction': 'row', 'height': this.height};
                 style = Object.assign(style, this.containerStyle);
                 return style;
             },
-            //item扩展样式
             "getItemStyle": function (item, index) {
                 const selected = index === this.value;
                 
@@ -50,7 +48,6 @@
 
                 const borderBottomColor = (selected && this.showSelectedLine) ? this.borderBottomColor : backgroundColor;
 
-                //合并样式
                 const style = {
                     'flex': 1,
                     'align-items': 'center',
@@ -63,7 +60,6 @@
                 return Object.assign(style, this.itemStyle);
                 return style;
             },
-            //文本样式
             "getTitleStyle": function (item, index) {
                 const selected = index === this.value;
                 var style = {

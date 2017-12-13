@@ -1,13 +1,13 @@
 {
   "name": "bui-weex",
-  "description": "UI Component for weex developer",
-  "version": "0.1.10",
+  "description": "UI Component for weex framework",
+  "version": "0.2.0",
   "main": "src/js/buiweex.js",
   "keywords": [
     "weex",
     "vue"
   ],
-  "author": "<yulsh@bingosoft.net> (tonyyls <yulsh@bingosoft.net>)  <liyueqing@bingosoft.net> (liyueqing <liyueqing@bingosoft.net>)",
+  "author": "bingosoft",
   "repository": {
     "type": "git",
     "url": "https://github.com/bingo-oss/bui-weex.git"

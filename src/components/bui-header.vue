@@ -87,7 +87,7 @@
             },
             maxTitleWidth: {
                 type: String,
-                default: "480px"
+                default: "400px"
             }
         },
         computed: {

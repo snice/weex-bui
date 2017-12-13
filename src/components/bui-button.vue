@@ -113,10 +113,10 @@
         },
         methods: {
             _click (e) {
-                if (!this.disabled) this.$emit('click', {e})
+                if (!this.disabled) this.$emit('click', e)
             },
             _longPress(e){
-                if (!this.disabled) this.$emit('longpress', {e})
+                if (!this.disabled) this.$emit('longpress', e)
             }
         }
     }

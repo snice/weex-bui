@@ -52,7 +52,7 @@ let buiweex = {
             msg = (msg == true?'true':'false');
         }
         modal.toast({
-            message: msg || "",
+            message: msg.toString() || "",
             duration: 0.4
         });
     },
@@ -78,7 +78,7 @@ let buiweex = {
             msg = (msg == true?'true':'false');
         }
         modal.alert({
-            message: msg || "",
+            message: msg.toString() || "",
             duration: 0.4,
             okTitle: okTitle
         }, value => {

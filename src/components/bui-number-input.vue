@@ -1,7 +1,7 @@
 <template>
     <div class='number-input'>
         <bui-icon class="number-control" name="ion-minus" size="35px" @click="minusClicked" :style="controlStyle"></bui-icon>
-        <input type="number" v-model="value" :style="inputStyle"/>
+        <input type="number"  disabled=true v-model="value" :style="inputStyle"/>
         <bui-icon class="number-control" name="ion-plus" size="35px" @click="plusClicked" :style="controlStyle"></bui-icon>
     </div>
 </template>
@@ -41,7 +41,8 @@
                 default:0
             },
             max:{
-                type:Number
+                type:Number,
+                default:100
             }
         },
         computed: {
@@ -66,20 +67,19 @@
         watch: {
             value(newValue) {
                 this.$emit('input', Number(newValue));
+                this.$emit("change",this.value);
             }
         },
         methods: {
             minusClicked() {
-                if(this.value <= this.min) return;
-                this.value = this.value - this.step;
-                this.$emit("change",this.value);
+                if(this.value <= Number(this.min)) return;
+                this.value = Number(this.value) - Number(this.step);
+
             },
             plusClicked() {
-                if(this.value >= this.max) return;
+                if(this.value >= Number(this.max)) return;
                 this.value = Number(this.value) + Number(this.step);
-                this.$emit("change",this.value);
             },
         }
     }
 </script>
-

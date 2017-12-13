@@ -37,7 +37,7 @@
                 }
             },
             indicatorStyle: {
-                default: ""
+                default: {}
             },
             items: {
                 default: []

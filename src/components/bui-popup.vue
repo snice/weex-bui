@@ -109,6 +109,7 @@
         },
         methods: {
             _maskClick () {
+                this.show=false;
                 this.appearPopup(false);
             },
             appearPopup (bool) {
