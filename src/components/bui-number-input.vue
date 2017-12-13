@@ -7,33 +7,41 @@
 </template>
 
 <style>
-.number-input {
-    flex-direction: row;
-}
-.number-control {
-    background-color: #eeeeee;
-    border-radius: 10px;
-    text-align: center;
-}
+    .number-input {
+        flex-direction: row;
+    }
+    .number-control {
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
 <script>
     module.exports = {
         data() {
             return {
-            }  
+            }
         },
         props: {
             value: {
                 type: Number,
-                "default": 1,
+                default: 1,
             },
             step: {
                 type: Number,
-                "default": 1,
+                default: 1,
             },
             controlSize: {
-                "default": 70,
+                default: 70,
+            },
+            min:{
+                type:Number,
+                default:0
+            },
+            max:{
+                type:Number
             }
         },
         computed: {
@@ -51,7 +59,7 @@
                 return {
                     width: this.controlSize,
                     height: this.controlSize,
-                    "line-height": this.controlSize, 
+                    "line-height": this.controlSize,
                 }
             }
         },
@@ -62,10 +70,14 @@
         },
         methods: {
             minusClicked() {
+                if(this.value <= this.min) return;
                 this.value = this.value - this.step;
+                this.$emit("change",this.value);
             },
             plusClicked() {
+                if(this.value >= this.max) return;
                 this.value = Number(this.value) + Number(this.step);
+                this.$emit("change",this.value);
             },
         }
     }
