@@ -9,7 +9,6 @@
 <style lang="sass" src="../css/buiweex.scss"></style>
 
 <script>
-    const buiweex = require("../js/buiweex.js");
     const globalEvent = weex.requireModule('globalEvent');
     module.exports = {
         data () {
@@ -20,7 +19,7 @@
         },
         mounted () {
             globalEvent.addEventListener("androidback", function (e) {
-                buiweex.pop();
+                this.$pop();
             });
         }
     }
