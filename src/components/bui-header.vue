@@ -1,23 +1,39 @@
 <template>
-    <div class="bui-header-box" :style="styleNew">
-        <div :style="{ 'height': '30px' }" v-if="iosfixed"></div>
-        <div class="bui-header">
-            <div class="bui-header-main">
-                <text class="bui-header-title" @click="_centerClick($event)">{{title}}</text>
-            </div>
+    <div :style="{'background-color':backgroundColor}">
+
+        <div style="height: 40px;" v-if="iosFixed"></div>
+
+        <div class="bui-header" :style="{'height':height}">
             <div class="bui-header-left">
-                <bui-icon @click="_leftClick($event)" v-if="leftItem.icon||leftItem.icons" :name="leftItem.icon||leftItem.icons" size="45px"
-                          color="#ffffff" class="pdr10"></bui-icon>
-                <text @click="_leftClick($event)" v-if="leftItem.text" class="bui-header-text">{{leftItem.text}}</text>
+                <bui-icon @click="_leftClick($event)" :activeColor="activeColor"
+                          v-if="leftItem.icon||leftItem.icons" :name="leftItem.icon||leftItem.icons" :size="iconSize"
+                          :color="iconColor"></bui-icon>
+                <text @click="_leftClick($event)" :style="{'color':textColor,'color:active':activeColor,'margin-left':'10px'}" v-if="leftItem.text"
+                      class="bui-header-text" :value="leftItem.text"></text>
                 <slot name="left"></slot>
             </div>
+            <div class="bui-header-left" v-if="!leftItem">
+            </div>
+
+            <div class="bui-header-main">
+                <div :style="{width:maxTitleWidth}" v-if="title!==''">
+                    <text :value="title" class="bui-header-title" :style="{'color':textColor}" @click="_centerClick($event)">
+                    </text>
+                </div>
+                <slot name="center"></slot>
+            </div>
+
             <div class="bui-header-right">
-                <bui-icon @click="_rightClick($event)" v-if="rightItem.icon||rightItem.icons" :name="rightItem.icon||rightItem.icons" size="45px"
-                          color="#ffffff" class="pdl10"></bui-icon>
-                <text @click="_rightClick($event)" v-if="rightItem.text" class="bui-header-text">{{rightItem.text}}
-                </text>
+                <bui-icon @click="_rightClick($event)" :activeColor="activeColor" v-if="rightItem.icon||rightItem.icons"
+                          :name="rightItem.icon||rightItem.icons" :size="iconSize" :color="iconColor"></bui-icon>
+                <text @click="_rightClick($event)" :style="{'color':textColor,'color:active':activeColor,'margin-left':'10px'}"
+                      v-if="rightItem.text" class="bui-header-text" :value="rightItem.text"></text>
                 <slot name="right"></slot>
             </div>
+
+            <div class="bui-header-right" v-if="!rightItem">
+            </div>
+
         </div>
     </div>
 </template>
@@ -25,86 +41,70 @@
 
 <script>
     var defaultItem = {
-        icon:'',
+        icon: '',
         icons: '',
         text: ''
     };
+    var platform = weex.config.env.platform.toLowerCase();
     module.exports = {
-        data:function () {
-            return {}
+        data(){
+            return{
+                activeColor:"#b9c2cf"
+            }
         },
         props: {
-            styleEx: {},
             title: {
                 type: String,
-                default: ''
+                default: ""
             },
             leftItem: {
                 type: Object,
-                default: function () {
-                    return defaultItem
-                }
+                default: defaultItem
             },
             rightItem: {
                 type: Object,
-                default: function () {
-                    return defaultItem
-                }
+                default: defaultItem
             },
-            ios: {
-                type: Boolean,
-                default: true
-            }
-        },
-        data: function () {
-            return {
-                height: '117px',
-                styleNew: {},
-                style: {'background-color': '#4ca4fe'}
+            textColor: {
+                type: String,
+                default: "#ffffff"
+            },
+            iconColor: {
+                type: String,
+                default: "#ffffff"
+            },
+            iconSize: {
+                type: String,
+                default: "48px"
+            },
+            backgroundColor: {
+                type: String,
+                default: "#4ca4fe"
+            },
+            height: {
+                type: String,
+                default: "90px"
+            },
+            maxTitleWidth: {
+                type: String,
+                default: "400px"
             }
         },
         computed: {
-            iosfixed: function () {
-                var ios = false;
-                if (!this.ios) {
-                    ios = false;
-                }else{
-                    //头部位置适配
-                    var env = weex.config.env.platform.toLowerCase();
-                    switch (env) {
-                        case "ios":
-                            ios = true;
-                            break;
-                        case "android":
-                            ios = false;
-                            break;
-                        case "web":
-                            ios = false;
-                            break;
-                        default:
-                            ios = false;
-                    }
-                }
-                return ios;
+            iosFixed () {
+                return platform === "ios";
             }
         },
         methods: {
-            _leftClick: function ($event) {
-                this.$emit('leftClick', $event);
+            _leftClick (e) {
+                this.$emit('leftClick', e);
             },
-            _rightClick: function ($event) {
-                this.$emit('rightClick', $event);
+            _rightClick (e) {
+                this.$emit('rightClick', e);
             },
-            _centerClick: function ($event) {
-                this.$emit('centerClick', $event);
+            _centerClick (e) {
+                this.$emit('centerClick', e);
             }
-        },
-        created: function () {
-            var env = weex.config.env.platform.toLowerCase();
-            if (!this.ios || env == "android") {
-                this.height = '100px';
-            }
-            this.styleNew = Object.assign({}, this.style, this.styleEx, {'height': this.height});
         }
     }
 </script>

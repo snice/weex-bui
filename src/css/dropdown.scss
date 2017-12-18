@@ -1,11 +1,6 @@
 @import "common";
 
 .bui-dropdown{
-  //position: fixed;
-  //left:0px;
-  //right: 0px;
-  //top: 0px;
-  //bottom: 0px;
 }
 
 .bui-dropdown-box{
@@ -14,7 +9,6 @@
   transform: scale(0.9, 0.9);
 }
 
-
 .bui-dropdown-content{
   position: relative;
   margin-top: $nb40;
@@ -22,12 +16,11 @@
   flex-direction: column;
   overflow: hidden;
   padding: 15px;
-  //background-color: $color_white;
   flex-direction: column;
   flex: 1;
 }
 
-.bui-dropdown-jiantou{
+.bui-dropdown-arrow{
   position: absolute;
   top: 1px;
 }

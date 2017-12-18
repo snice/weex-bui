@@ -10,28 +10,18 @@
 <script>
     module.exports = {
         computed: {
-            "imagePath": function () {
-                if (this.src.indexOf("http") >= 0) {
+            imagePath() {
+                if (this.src.startsWith("http")) {
                     return this.src;
                 }
-                var bundleUrl = weex.config.bundleUrl;
-                var url = bundleUrl.split('/').slice(0, -1).join('/');
-                if (bundleUrl.indexOf("weex.html") > 0) {
-                    url += "/dist/";
-                }
-                return url + this.src;
+                return this._getContext() + this.src;
             },
-            "placeholderPath": function () {
+            placeholderPath() {
                 if (this.placeholder!="") {
-                    if (this.placeholder.indexOf("http") >= 0) {
+                    if (this.placeholder.startsWith("http")) {
                         return this.placeholder;
                     }
-                    var bundleUrl = weex.config.bundleUrl;
-                    var url = bundleUrl.split('/').slice(0, -1).join('/');
-                    if (bundleUrl.indexOf("weex.html") > 0) {
-                        url += "/dist/";
-                    }
-                    return url + this.placeholder;
+                    return this._getContext() + this.placeholder;
                 }
             }
         },
@@ -53,15 +43,20 @@
                 default: "0px"
             }
         },
-        data: function () {
-            return {}
-        },
         methods: {
-            "_click": function (event) {
-                this.$emit('click', event);
+            _click(e) {
+                this.$emit('click', e);
             },
-            "_load": function () {
+            _load() {
                 this.$emit('load');
+            },
+            _getContext(){
+                var bundleUrl = weex.config.bundleUrl;
+                var url = bundleUrl.split('/').slice(0, -1).join('/');
+                if (bundleUrl.indexOf("weex.html") > 0) {
+                    url += "/dist/";
+                }
+                return url;
             }
         }
     }

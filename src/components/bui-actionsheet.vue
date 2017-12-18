@@ -1,15 +1,16 @@
 <template>
-    <div class="bui-actionsheet">
-        <bui-mask v-if="show" @click="layoutClick"></bui-mask>
-        <div v-if="show" class="bui-actionsheet-box" :style="{'bottom': '-'+bottom+'px'}" ref="actionsheetBox">
+    <div :value="value" v-if="visible">
+        <bui-mask @click="_maskClick"></bui-mask>
+
+        <div class="bui-actionsheet-box" :style="{'bottom': '-'+bottom+'px'}" ref="actionsheetBox">
             <div class="bui-actionsheet-top">
-                <text class="bui-actionsheet-title">{{title}}</text>
+                <text class="bui-actionsheet-title" v-if="title">{{title}}</text>
                 <div class="bui-actionsheet-content">
-                    <text class="bui-actionsheet-list" v-for="item in items" @click="actionsheetItemClick(item)">{{item}}</text>
+                    <text class="bui-actionsheet-list" v-for="item in items" @click="_itemClick(item)">{{item}}</text>
                 </div>
             </div>
             <div class="bui-actionsheet-bottom">
-                <text class="bui-actionsheet-btn" @click="actionsheetBtnClick">{{button}}</text>
+                <text class="bui-actionsheet-btn" @click="_btnClick">{{button}}</text>
             </div>
         </div>
     </div>
@@ -26,81 +27,84 @@
             items: {
                 type: Array
             },
-            show: {
-                type: Boolean,
-                default: false
-            },
             button: {
                 default: "取消"
+            },
+            value: {
+                type: Boolean,
+                default: false
             }
         },
-        computed:{
-            "bottom":function () {
-                //根据下拉菜单内容计算bottom距离
-                var length = this.items.length;
-                var len = (length+1)*100+80;
-                console.log(len);
-                return len;
+        data(){
+            return {
+                visible: false
             }
         },
-        components: {
-            'bui-mask': require('./bui-mask.vue'),
+        watch: {
+            value(val) {
+                this.visible = val;
+            },
+            visible(val) {
+                this.$emit('input', val);
+            }
+        },
+        mounted(){
+            if (this.value) {
+                this.visible = true;
+            }
+        },
+        computed: {
+            bottom () {
+                return (this.items.length + 1) * 100 + 80;
+            }
         },
         methods: {
-            //动画操作
-            animationFn : function (el, translate, timing, fn) {
+            show(){
+                setTimeout(()=>{
+                    this._open();
+                },50);
+            },
+            _animationFn: function (translate, fn) {
+                var el = this.$refs.actionsheetBox;
                 animation.transition(el, {
-                    styles:{
+                    styles: {
                         transform: translate,
                         transformOrigin: 'center center'
                     },
-                    duration: 200, //ms
-                    timingFunction: timing,
-                    delay: 0 //ms
-                }, function () {
+                    duration: 200,
+                    timingFunction: "ease-in",
+                    delay: 0
+                }, () => {
                     fn && fn();
                 })
             },
-            //打开上拉菜单
-            "open": function () {
-                console.log("open"+this.bottom);
-                var _this = this;
-                var el = _this.$refs.actionsheetBox;
-                var translate = 'translate(0px, -'+ (_this.bottom+20) +'px, 0px)';
-                _this.animationFn(el, translate,  'ease-in')
+            _open() {
+                var translate = 'translate(0px, -' + (this.bottom + 20) + 'px, 0px)';
+                this._animationFn(translate)
             },
-            //点击mask遮罩层
-            "layoutClick": function () {
-                var _this = this;
-                var el = this.$refs.actionsheetBox;
-                var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
-                _this.animationFn(el, translate,  'ease-in', function () {
-                    _this.show = false;
-                    _this.$emit("close");
+            _maskClick () {
+                var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
+                this._animationFn(translate, () => {
+                    this.visible = false;
+                    this.$emit("maskClick");
                 });
             },
-            //上拉菜单项点击事件
-            "actionsheetItemClick": function (item) {
-                var _this = this;
-                var el = this.$refs.actionsheetBox;
-                var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
-                _this.animationFn(el, translate,  'ease-in', function () {
-                    _this.show = false;
-                    _this.$emit('itemClick', item);
+            _itemClick(item) {
+                var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
+                this._animationFn(translate, () => {
+                    this.visible = false;
+                    this.$emit('itemClick', item);
                 });
             },
-            //上拉菜单按钮点击事件
-            "actionsheetBtnClick": function () {
-                var _this = this;
-                var el = this.$refs.actionsheetBox;
-                var translate = 'translate(0px, '+ (_this.bottom+20) +'px, 0px)';
-                _this.animationFn(el, translate,  'ease-in', function () {
-                    _this.show = false;
-                    _this.$emit('btnClick');
+            _btnClick() {
+                var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
+                this._animationFn(translate, () => {
+                    this.visible = false;
+                    this.$emit('cancel');
                 });
             }
         }
     }
 </script>
 
-<style lang="sass" src="../css/actionsheet.scss" />
+<style lang="sass" src="../css/actionsheet.scss"/>

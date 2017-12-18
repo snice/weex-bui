@@ -1,11 +1,11 @@
 <template>
-    <div class="bui-dialog-layout">
-        <bui-mask v-if="show" @click="_maskClick"></bui-mask>
-        <div class="bui-dialog" v-if="show">
+    <div :value="value" v-if="visible">
+        <bui-mask @click="_maskClick"></bui-mask>
+        <div class="bui-dialog" :style="{top:top}">
             <div class="bui-dialog-title">
                 <text class="dialog-title-text">{{title}}</text>
             </div>
-            <div class="bui-dialog-content">
+            <div class="bui-dialog-content" :style="{height:height}">
                 <scroller>
                     <slot>
                     </slot>
@@ -22,31 +22,58 @@
 <script>
     module.exports = {
         props: {
-            show: {
+            height:{
+                type:String,
+                default:"200px"
+            },
+            top:{
+                type:String,
+                default:"300px"
+            },
+            title: {
+                type:String,
+                default: "标题"
+            },
+            buttons: {
+                type:String,
+                default: "取消,确定"
+            },
+            value: {
                 type: Boolean,
                 default: false
+            }
+        },
+        data(){
+            return{
+                visible:false
+            }
+        },
+        watch: {
+            value(val) {
+                this.visible = val;
             },
-            title: {default: "标题"},
-            buttons: {
-                default: "取消,确定"
+            visible(val) {
+                this.$emit('input', val);
+            }
+        },
+        mounted(){
+            if (this.value) {
+                this.visible = true;
             }
         },
         computed: {
-            "getButtons": function () {
+            getButtons() {
                 return this.buttons.split(',');
             }
         },
-        components: {
-            'bui-mask': require('./bui-mask.vue')
-        },
         methods: {
-            "_click": function (text) {
+            _click(text) {
                 this.$emit("btnClick", text);
             },
-            "_maskClick": function () {
+            _maskClick() {
+                this.visible = false;
                 this.$emit("maskClick");
             }
         }
-
     }
 </script>
