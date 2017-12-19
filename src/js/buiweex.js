@@ -40,7 +40,7 @@ let buiweex = {
     buiPopup: require("../components/bui-popup.vue"),
     buiNumberInput: require("../components/bui-number-input.vue"),
     /**
-     * 弹出吐司信息(自动消失)
+     * 吐司信息
      * @param msg {string} 提示文本
      */
     toast(msg) {
@@ -171,7 +171,7 @@ let buiweex = {
 
     /**
      * 获取当前上下文路径
-     * @return {string|*}
+     * @return {string} 当前上下文路径
      */
     getContextPath() {
         let url;

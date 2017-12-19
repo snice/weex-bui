@@ -8,6 +8,8 @@
 /src/css/*.css.map
 *log
 **/.DS_Store
-config.js
-package-lock.json
+/config.js
+/package-lock.json
+/publish.zip
+/publish
 
