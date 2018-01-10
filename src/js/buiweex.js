@@ -320,6 +320,14 @@ let buiweex = {
         });
     },
 
+    /**
+     * 判断是否是 iphone x
+     * @return {*|boolean}
+     */
+    isIPhoneX() {
+        return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
+    },
+
     install(Vue, options) {
         let that = buiweex;
         Vue.mixin({
@@ -378,6 +386,8 @@ let buiweex = {
         Vue.prototype.$post = that.post;
 
         Vue.prototype.$get = that.get;
+
+        Vue.prototype.$isIPhoneX = that.isIPhoneX;
     }
 }
 
