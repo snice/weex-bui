@@ -17,7 +17,7 @@
                 return this._getContext() + this.src;
             },
             placeholderPath() {
-                if (this.placeholder!="") {
+                if (this.placeholder!= "") {
                     if (this.placeholder.startsWith("http")) {
                         return this.placeholder;
                     }
@@ -26,8 +26,12 @@
             }
         },
         props: {
-            width: {default: '0px'},
-            height: {default: '0px'},
+            width: {
+                type: String
+            },
+            height: {
+                type:String
+            },
             src: {
                 type: String
             },
@@ -40,6 +44,7 @@
                 default: ""
             },
             radius: {
+                type:String,
                 default: "0px"
             }
         },

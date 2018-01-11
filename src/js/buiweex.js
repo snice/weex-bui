@@ -39,6 +39,7 @@ let buiweex = {
     buiCell: require("../components/bui-cell.vue"),
     buiPopup: require("../components/bui-popup.vue"),
     buiNumberInput: require("../components/bui-number-input.vue"),
+    buiRichcell: require("../components/bui-richcell.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -362,6 +363,7 @@ let buiweex = {
                 'bui-cell':that.buiCell,
                 'bui-popup':that.buiPopup,
                 'bui-number-input': that.buiNumberInput,
+                'bui-richcell':that.buiRichcell
             }
         });
 
