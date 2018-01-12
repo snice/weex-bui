@@ -1,15 +1,13 @@
 <template>
-    <div>
-        <div class="rich-cell" :style="{width:width}" v-if="content.length!=0">
-            <div v-for="v in content">
-                <bui-richcell-text @click="_click($event,v)" v-if="v.type=='text' && v.value"
-                                    :text-value="v.value"
-                                    :text-style="v.style"
-                                    :has-text-margin="hasTextMargin"
-                                    :text-theme="v.theme"></bui-richcell-text>
-                <bui-icon @click="_click($event,v)" v-if="v.type=='icon' && v.icon" :name="v.icon" :color="v.color" :size="v.size"></bui-icon>
-                <bui-image @click="_click($event,v)" v-if="v.type=='image' && v.src" :src="v.src" :width="v.width" :height="v.height"></bui-image>
-            </div>
+    <div class="rich-cell" v-if="content.length!=0">
+        <div v-for="v in content">
+            <bui-richcell-text @click="_click($event,v)" v-if="v.type=='text' && v.value"
+                               :text-value="v.value"
+                               :text-style="v.style"
+                               :has-text-margin="hasTextMargin"
+                               :text-theme="v.theme"></bui-richcell-text>
+            <bui-icon @click="_click($event,v)" v-if="v.type=='icon' && v.icon" :name="v.icon" :color="v.color" :size="v.size"></bui-icon>
+            <bui-image @click="_click($event,v)" v-if="v.type=='image' && v.src" :src="v.src" :width="v.width" :height="v.height"></bui-image>
         </div>
     </div>
 </template>
@@ -28,10 +26,6 @@
             "bui-richcell-text": require('./bui-richcell-text.vue')
         },
         props: {
-            width:{
-              type:[String,Number],
-                default:750
-            },
             content: {
                 type: Array,
                 default: function () {
