@@ -18,7 +18,7 @@
             },
             placeholderPath() {
                 if (this.placeholder!= "") {
-                    if (this.placeholder.startsWith("http")||this.src.startsWith("file")) {
+                    if (this.placeholder.startsWith("http")||this.placeholder.startsWith("file")) {
                         return this.placeholder;
                     }
                     return this._getContext() + this.placeholder;
