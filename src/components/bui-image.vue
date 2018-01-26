@@ -11,14 +11,14 @@
     module.exports = {
         computed: {
             imagePath() {
-                if (this.src.startsWith("http")) {
+                if (this.src.startsWith("http")||this.src.startsWith("file")) {
                     return this.src;
                 }
                 return this._getContext() + this.src;
             },
             placeholderPath() {
                 if (this.placeholder!= "") {
-                    if (this.placeholder.startsWith("http")) {
+                    if (this.placeholder.startsWith("http")||this.src.startsWith("file")) {
                         return this.placeholder;
                     }
                     return this._getContext() + this.placeholder;
