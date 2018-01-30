@@ -15,7 +15,6 @@
 </style>
 
 <script>
-    var he = require("he");
     var iconItems = require('../font/ionicons.json');
     var fontFamily = "ionfont";
     module.exports = {
@@ -50,7 +49,7 @@
         computed: {
             getFontName() {
                 var icon = iconItems[this.name];
-                return he.decode(icon || '');
+                return this.decode(icon || '');
             },
             getStyle(){
                 var style = {
@@ -58,8 +57,8 @@
                     'font-size': this.size,
                     'font-family': fontFamily
                 };
-                if(this.activeColor){
-                    style["color:active"]=this.activeColor;
+                if (this.activeColor) {
+                    style["color:active"] = this.activeColor;
                 }
                 return style;
             }
@@ -67,6 +66,13 @@
         methods: {
             _click(e) {
                 this.$emit("click", e);
+            },
+            decode(fontCode){
+                if (/^&#x/.test(fontCode)) {
+                    return String.fromCharCode(fontCode.replace(/^&#x/, '0x').replace(/;$/, ''))
+                } else {
+                    return String.fromCharCode('0x' + fontCode);
+                }
             }
         }
     }
