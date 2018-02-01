@@ -24,12 +24,12 @@
                 default: []
             },
             "fontSize":{
-                type:String,
-                default:"32px"
+                type:[String,Number],
+                default:32
             },
             "iconSize":{
-                type:String,
-                default:"48px"
+                type:[String,Number],
+                default:48
             },
             "selectedColor":{
                 type: String,
