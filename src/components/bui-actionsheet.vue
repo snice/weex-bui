@@ -1,12 +1,12 @@
 <template>
-    <div :value="value" v-if="visible">
+    <div v-if="value">
         <bui-mask @click="_maskClick"></bui-mask>
 
         <div class="bui-actionsheet-box" :style="{'bottom': '-'+bottom+'px'}" ref="actionsheetBox">
             <div class="bui-actionsheet-top">
                 <text class="bui-actionsheet-title" v-if="title">{{title}}</text>
                 <div class="bui-actionsheet-content">
-                    <text class="bui-actionsheet-list" v-for="item in items" @click="_itemClick(item)">{{item}}</text>
+                    <text class="bui-actionsheet-list" v-for="(item,index) in items" @click="_itemClick(item,index)">{{item}}</text>
                 </div>
             </div>
             <div class="bui-actionsheet-bottom">
@@ -22,7 +22,7 @@
     module.exports = {
         props: {
             title: {
-                default: "请选择操作"
+                default: "请选择"
             },
             items: {
                 type: Array
@@ -35,22 +35,14 @@
                 default: false
             }
         },
-        data(){
-            return {
-                visible: false
-            }
-        },
         watch: {
             value(val) {
-                this.visible = val;
-            },
-            visible(val) {
                 this.$emit('input', val);
-            }
-        },
-        mounted(){
-            if (this.value) {
-                this.visible = true;
+                setTimeout(()=>{
+                    if(val){
+                        this._open();
+                    }
+                },50);
             }
         },
         computed: {
@@ -59,11 +51,7 @@
             }
         },
         methods: {
-            show(){
-                setTimeout(()=>{
-                    this._open();
-                },50);
-            },
+            show(){ },
             _animationFn: function (translate, fn) {
                 var el = this.$refs.actionsheetBox;
                 animation.transition(el, {
@@ -85,21 +73,21 @@
             _maskClick () {
                 var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate, () => {
-                    this.visible = false;
+                    this.$emit('input', false);
                     this.$emit("maskClick");
                 });
             },
-            _itemClick(item) {
+            _itemClick(item,index) {
                 var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate, () => {
-                    this.visible = false;
-                    this.$emit('itemClick', item);
+                    this.$emit('input', false);
+                    this.$emit('itemClick', item,index);
                 });
             },
             _btnClick() {
                 var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate, () => {
-                    this.visible = false;
+                    this.$emit('input', false);
                     this.$emit('cancel');
                 });
             }

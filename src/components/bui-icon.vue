@@ -1,6 +1,6 @@
 <template>
     <div class="icon-block" :style="{width:size,height:size}" @click="_click($event)">
-        <text class="icon" :value="getFontName" :style="getStyle"></text>
+        <text class="icon" :value="getFontName" :style="getStyle" @click="_click($event)"></text>
     </div>
 </template>
 

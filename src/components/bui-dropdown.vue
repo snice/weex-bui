@@ -1,5 +1,5 @@
 <template>
-    <div class="bui-dropdown" :value="value" v-if="visible">
+    <div class="bui-dropdown" v-if="value">
         <bui-mask @click="_maskClick"></bui-mask>
         <div class="bui-dropdown-box" ref="dropdownBox" :style="{'left': left, 'top': top, 'width': width}">
             <div class="bui-dropdown-content" :style="{ 'background-color': bgColor }">
@@ -27,7 +27,6 @@
                     left: '0px',
                     right: '0px'
                 },
-                visible: false
             }
         },
         props: {
@@ -50,15 +49,7 @@
         },
         watch: {
             value(val) {
-                this.visible = val;
-            },
-            visible(val) {
                 this.$emit('input', val);
-            }
-        },
-        mounted(){
-            if (this.value) {
-                this.visible = true;
             }
         },
         methods: {
@@ -148,8 +139,7 @@
                 var el = this.$refs.dropdownBox;
                 var translate = 'scale(0.9, 0.9)';
                 this._animationFn(el, "0", translate, 'ease-out', () => {
-                    this.visible = false;
-                    this.$emit("onMaskClick");
+                    this.$emit('input', false);
                 });
             }
         }
