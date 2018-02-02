@@ -59,6 +59,13 @@
                     this._open(event);
                 },50);
             },
+            hide(){
+                var el = this.$refs.dropdownBox;
+                var translate = 'scale(0.9, 0.9)';
+                this._animationFn(el, "0", translate, 'ease-out', () => {
+                    this.$emit('input', false);
+                });
+            },
             _reset(){
                 this.width="260px";
                 this.arrowLeft="40px";
@@ -136,11 +143,7 @@
                 })
             },
             _maskClick() {
-                var el = this.$refs.dropdownBox;
-                var translate = 'scale(0.9, 0.9)';
-                this._animationFn(el, "0", translate, 'ease-out', () => {
-                    this.$emit('input', false);
-                });
+                this.hide();
             }
         }
     }
