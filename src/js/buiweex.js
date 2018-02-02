@@ -45,16 +45,12 @@ let buiweex = {
      * @param msg {string} 提示文本
      */
     toast(msg) {
-        let type = typeof msg;
-        if(type =='object'){
-            msg = type;
-        }
-        if(type == 'boolean'){
-            msg = (msg == true?'true':'false');
+        if (typeof msg !== 'string') {
+            msg = JSON.stringify(msg);
         }
         modal.toast({
-            message: msg.toString() || "",
-            duration: 0.4
+            message: msg || "",
+            duration: 1
         });
     },
 
@@ -71,16 +67,12 @@ let buiweex = {
             if (option.okTitle)
                 okTitle = option.okTitle;
         }
-        let type = typeof msg;
-        if(type =='object'){
-            msg = type;
-        }
-        if(type == 'boolean'){
-            msg = (msg == true?'true':'false');
+        if (typeof msg !== 'string') {
+            msg = JSON.stringify(msg);
         }
         modal.alert({
-            message: msg.toString() || "",
-            duration: 0.4,
+            message: msg || "",
+            duration: 1,
             okTitle: okTitle
         }, value => {
             callback && callback(value);
