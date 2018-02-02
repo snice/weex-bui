@@ -23,12 +23,12 @@
     module.exports = {
         props: {
             height:{
-                type:String,
-                default:"200px"
+                type:[String,Number],
+                default:200
             },
             top:{
-                type:String,
-                default:"300px"
+                type:[String,Number],
+                default:300
             },
             title: {
                 type:String,
