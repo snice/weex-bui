@@ -1,6 +1,6 @@
 <template>
     <div class="rich-cell" v-if="content.length!=0">
-        <div v-for="v in content">
+        <div :key="i" v-for="(v,i) in content">
             <bui-richcell-text @click="_click($event,v)" v-if="v.type=='text' && v.value"
                                :text-value="v.value"
                                :text-style="v.style"

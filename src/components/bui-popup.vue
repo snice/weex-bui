@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <bui-mask v-if="value" @click="maskClick"></bui-mask>
+    <div v-if="value">
+        <bui-mask @click="maskClick"></bui-mask>
         <div ref="popupBox"
-             v-if="value"
              :height="popupHeight"
              :hack="isNeedShow"
              :class="['bui-popup', pos]"

@@ -1,7 +1,7 @@
 <template>
     <slider :style="sliderStyle" :interval="interval" :auto-play="autoplay" :infinite="infinite"
             @change="_change">
-        <div v-for="(item,index) in items">
+        <div :key="index" v-for="(item,index) in items">
             <bui-image @click="_click($event,index)"
                        :width="imgWidth"
                        :resize="imgResize"
@@ -31,36 +31,46 @@
     module.exports = {
         props: {
             sliderStyle: {
+                type:Object,
                 default: {
                     "width": "750px",
                     "height": "400px"
                 }
             },
             indicatorStyle: {
+                type:Object,
                 default: {}
             },
             items: {
+                type:Array,
                 default: []
             },
             interval: {
-                default: 2000
+                type:Number,
+                default: 6000 //ms
             },
             autoplay: {
+                type:Boolean,
                 default: true
             },
             infinite: {
+                type:Boolean,
                 default: true
             },
             imgResize: {
+                type:String,
                 default: "stretch"
             },
             imgWidth: {
-                default: "750px"
+                type:[Number,String],
+                default: 750
             },
             imgHeight: {
-                default: "750px"
+                type:[Number,String],
+                default: 750
             },
             placeholder: {
+                type:String,
                 default: ""
             }
         },
