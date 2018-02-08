@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <bui-mask v-if="show" @click="_maskClick"></bui-mask>
+    <div v-if="value">
+        <bui-mask @click="maskClick"></bui-mask>
         <div ref="popupBox"
-             v-if="show"
              :height="popupHeight"
              :hack="isNeedShow"
              :class="['bui-popup', pos]"
@@ -44,9 +43,9 @@
     const animation = weex.requireModule('animation');
     export default {
         props: {
-            show: {
-                type: Boolean,
-                default: false
+            value:{
+               type:Boolean,
+                default:false
             },
             pos: {
                 type: String,
@@ -65,15 +64,20 @@
                 default: 750
             }
         },
+        watch:{
+          value(val){
+              this.$emit("input",val);
+          }
+        },
         computed: {
             isNeedShow () {
                 setTimeout(()=>{
-                    this.appearPopup(this.show);
+                    this.appearPopup(this.value);
                 },50);
-                return this.show;
+                return this.value;
             },
             popupHeight () {
-                this.appearPopup(this.show, 150);
+                this.appearPopup(this.value, 150);
                 return this.height;
             },
             popupStyle () {
@@ -108,8 +112,7 @@
             }
         },
         methods: {
-            _maskClick () {
-                this.show=false;
+            maskClick () {
                 this.appearPopup(false);
             },
             appearPopup (bool) {
@@ -125,7 +128,7 @@
                     delay: 0,
                 }, () => {
                     if (!bool) {
-                        this.$emit('maskClick', { pos: this.pos });
+                        this.$emit("input",false);
                     }
                 });
             },

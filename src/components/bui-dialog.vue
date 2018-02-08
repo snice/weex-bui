@@ -1,5 +1,5 @@
 <template>
-    <div :value="value" v-if="visible">
+    <div v-if="value">
         <bui-mask @click="_maskClick"></bui-mask>
         <div class="bui-dialog" :style="{top:top}">
             <div class="bui-dialog-title">
@@ -23,12 +23,12 @@
     module.exports = {
         props: {
             height:{
-                type:String,
-                default:"200px"
+                type:[String,Number],
+                default:200
             },
             top:{
-                type:String,
-                default:"300px"
+                type:[String,Number],
+                default:300
             },
             title: {
                 type:String,
@@ -43,22 +43,9 @@
                 default: false
             }
         },
-        data(){
-            return{
-                visible:false
-            }
-        },
         watch: {
             value(val) {
-                this.visible = val;
-            },
-            visible(val) {
                 this.$emit('input', val);
-            }
-        },
-        mounted(){
-            if (this.value) {
-                this.visible = true;
             }
         },
         computed: {
@@ -71,7 +58,7 @@
                 this.$emit("btnClick", text);
             },
             _maskClick() {
-                this.visible = false;
+                this.$emit('input', false);
                 this.$emit("maskClick");
             }
         }

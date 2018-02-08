@@ -1,7 +1,7 @@
 {
   "name": "bui-weex",
   "description": "UI Component for weex framework",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "main": "src/js/buiweex.js",
   "keywords": [
     "weex",
@@ -23,10 +23,10 @@
     "serve": "node build/init.js && serve -p 8181",
     "debug": "weex-devtool",
     "build": "webpack",
-    "start": "npm run serve & npm run dev",
     "publish": "node build/publish.js"
   },
   "dependencies": {
+    "archiver": "^2.1.0",
     "glob": "^7.1.2",
     "vue": "^2.4.2",
     "vue-router": "^2.1.1",

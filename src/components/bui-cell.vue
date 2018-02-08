@@ -1,5 +1,5 @@
 <template>
-    <div :class="['bui-cell', hasTopBorder && 'cell-top-border', hasBottomBorder && 'cell-bottom-border', hasMargin && 'cell-margin', hasVerticalIndent && 'cell-indent', desc && 'has-desc']"
+    <div :class="['bui-cell', hasTopBorder?'cell-top-border':'', hasBottomBorder?'cell-bottom-border':'', hasMargin?'cell-margin':'', desc?'has-desc':'']"
             :style="cellStyle"
             @click="_cellClick">
         <slot name="label">
@@ -35,11 +35,6 @@
 
     .cell-title {
         flex: 1;
-    }
-
-    .cell-indent {
-        padding-bottom: 30px;
-        padding-top: 30px;
     }
 
     .has-desc {
@@ -105,13 +100,9 @@
                 type: Boolean,
                 default: true
             },
-            hasVerticalIndent: {
-                type: Boolean,
-                default: false
-            },
             cellStyle: {
                 type: Object,
-                default: () => ({})
+                default: {}
             }
         },
         methods: {

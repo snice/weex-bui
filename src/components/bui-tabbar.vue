@@ -1,7 +1,7 @@
 <template>
     <div :style="getContainerStyle()">
 
-        <div v-for="(item,index) in tabItems"
+        <div :key="index" v-for="(item,index) in tabItems"
              :style="getItemStyle(item, index)"
              @click="itemClick($event,item,index)">
             

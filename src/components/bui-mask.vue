@@ -1,15 +1,10 @@
 <template>
-    <div class="bui-mask" :style="{'opacity': opacity}" @click="_click"></div>
+    <div class="bui-mask" @click="_click"></div>
 </template>
 
 <script>
 
     module.exports = {
-        props: {
-            "opacity": {
-                default: '0.2'
-            }
-        },
         methods: {
             _click() {
                 this.$emit("click");
@@ -17,4 +12,14 @@
         }
     }
 </script>
-<style lang="sass" src="../css/mask.scss"></style>
+
+<style>
+    .bui-mask{
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        background-color:rgba(0,0,0,0.2);
+    }
+</style>

@@ -24,13 +24,8 @@ let buiweex = {
     buiRadio: require("../components/bui-radio.vue"),
     buiSearchbarCenter: require("../components/bui-searchbar-center.vue"),
     buiSearchbarLeft: require("../components/bui-searchbar-left.vue"),
-    buiSliderBar: require("../components/bui-slider-bar.vue"),
     buiSwitch: require("../components/bui-switch.vue"),
     buiTabbar: require("../components/bui-tabbar.vue"),
-    buiTabbarItem: require("../components/bui-tabbar-item.vue"),
-    buiTabbarItemA: require("../components/bui-tabbar-item-a.vue"),
-    buiTabbarScroll: require("../components/bui-tabbar-scroll.vue"),
-    buiTabbarScrollItem: require("../components/bui-tabbar-scroll-item.vue"),
     buiTip: require("../components/bui-tip.vue"),
     buiVideo: require("../components/bui-video.vue"),
     buiContent: require("../components/bui-content.vue"),
@@ -39,21 +34,19 @@ let buiweex = {
     buiCell: require("../components/bui-cell.vue"),
     buiPopup: require("../components/bui-popup.vue"),
     buiNumberInput: require("../components/bui-number-input.vue"),
+    buiRichcell: require("../components/bui-richcell.vue"),
+    buiPopupShow: require("../components/bui-popupshow.vue"),
     /**
-     * 弹出吐司信息(自动消失)
+     * 吐司信息
      * @param msg {string} 提示文本
      */
     toast(msg) {
-        let type = typeof msg;
-        if(type =='object'){
-            msg = type;
-        }
-        if(type == 'boolean'){
-            msg = (msg == true?'true':'false');
+        if (typeof msg !== 'string') {
+            msg = JSON.stringify(msg);
         }
         modal.toast({
-            message: msg.toString() || "",
-            duration: 0.4
+            message: msg || "",
+            duration: 1
         });
     },
 
@@ -70,16 +63,12 @@ let buiweex = {
             if (option.okTitle)
                 okTitle = option.okTitle;
         }
-        let type = typeof msg;
-        if(type =='object'){
-            msg = type;
-        }
-        if(type == 'boolean'){
-            msg = (msg == true?'true':'false');
+        if (typeof msg !== 'string') {
+            msg = JSON.stringify(msg);
         }
         modal.alert({
-            message: msg.toString() || "",
-            duration: 0.4,
+            message: msg || "",
+            duration: 1,
             okTitle: okTitle
         }, value => {
             callback && callback(value);
@@ -171,7 +160,7 @@ let buiweex = {
 
     /**
      * 获取当前上下文路径
-     * @return {string|*}
+     * @return {string} 当前上下文路径
      */
     getContextPath() {
         let url;
@@ -320,6 +309,14 @@ let buiweex = {
         });
     },
 
+    /**
+     * 判断是否是 iphone x
+     * @return {*|boolean}
+     */
+    isIPhoneX() {
+        return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
+    },
+
     install(Vue, options) {
         let that = buiweex;
         Vue.mixin({
@@ -339,13 +336,8 @@ let buiweex = {
                 'bui-radio': that.buiRadio,
                 'bui-searchbar-center': that.buiSearchbarCenter,
                 'bui-searchbar-left': that.buiSearchbarLeft,
-                'bui-slider-bar': that.buiSliderBar,
                 'bui-switch': that.buiSwitch,
                 'bui-tabbar': that.buiTabbar,
-                'bui-tabbar-item': that.buiTabbarItem,
-                'bui-tabbar-item-a': that.buiTabbarItemA,
-                'bui-tabbar-scroll': that.buiTabbarScroll,
-                'bui-tabbar-scroll-item': that.buiTabbarScrollItem,
                 'bui-tip': that.buiTip,
                 'bui-video': that.buiVideo,
                 'bui-content': that.buiContent,
@@ -354,6 +346,8 @@ let buiweex = {
                 'bui-cell':that.buiCell,
                 'bui-popup':that.buiPopup,
                 'bui-number-input': that.buiNumberInput,
+                'bui-richcell':that.buiRichcell,
+                'bui-popupshow':that.buiPopupShow
             }
         });
 
@@ -378,6 +372,8 @@ let buiweex = {
         Vue.prototype.$post = that.post;
 
         Vue.prototype.$get = that.get;
+
+        Vue.prototype.$isIPhoneX = that.isIPhoneX;
     }
 }
 

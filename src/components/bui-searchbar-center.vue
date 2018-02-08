@@ -1,5 +1,5 @@
 <template>
-    <div :class="['flex-row', 'row-center-left', 'bui-searchbar', 'bui-search-bg-'+type]" @click="onfocusFn">
+    <div :class="['flex-row', 'row-center-left', 'bui-searchbar', 'bui-search-bg']" @click="onfocusFn">
         <div :class="['flex-row', 'row-center-left', 'span1', 'bui-input']">
             <div class="flex-row center" :class="[!searchstatus ? 'span1':'']">
                 <bui-icon v-if="!deletestatus" name="ion-ios-search-strong" @click="onfocusFn"></bui-icon>
@@ -8,7 +8,7 @@
             <input class="span1 bui-search-input-text" v-if="searchstatus" @focus="onfocus($event)" @return="search" return-key-type="search" @blur="onblur($event)" @input="oninput($event)" :value="valueNew" :autofocus="autofocusNew" type="text" :placeholder="placeholder"/>
             <bui-icon class="bui-search-icon-delete" @click="onclear($event)" v-if="deletestatus" name='ion-ios-close-outline'></bui-icon>
         </div>
-        <text :class="['bui-search-search', 'bui-search-text-color-'+type]" @click="search()" v-if="searchstatus">搜索</text>
+        <text :class="['bui-search-search', 'bui-search-text-color']" @click="search()" v-if="searchstatus">搜索</text>
     </div>
 </template>
 
@@ -18,10 +18,6 @@
 <script>
     module.exports = {
         props: {
-            "type": {
-                type: String,
-                default: 'default'
-            },
             "placeholder": {
                 type: String,
                 default: "请输入搜索内容"

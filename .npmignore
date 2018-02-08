@@ -5,6 +5,7 @@
 /publish
 /node_modules
 /config.js
+/publish.zip
 /.idea
 /src/css/.sass-cache
 *log
