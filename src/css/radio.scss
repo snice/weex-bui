@@ -5,8 +5,12 @@
   padding-top: $nb15;
   padding-bottom: $nb15;
   padding-left: $nb5;
-  margin-right: $nb40;
-  padding-right: $nb20;
+  //margin-right: $nb40;
+  //padding-right: $nb20;
+}
+.checkbox{
+  border-bottom-width: 1px;
+  border-bottom-color: #e2e2e2;
 }
 
 .radio-label {
@@ -45,4 +49,13 @@
 
 .flex-fluid{
   flex-wrap: wrap;
+}
+
+.cb-flex-9{
+  flex: 9;
+}
+.cb-flex-1{
+  flex: 1;
+  flex-direction:row;
+  justify-content:flex-end;
 }
