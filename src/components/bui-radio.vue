@@ -37,7 +37,7 @@
             },
             "unSelectedColor":{
                 type: String,
-                default:"#9ea7b4"
+                default:"#e2e2e2"
             }
         },
         computed:{

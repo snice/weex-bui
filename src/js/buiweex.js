@@ -12,7 +12,7 @@ let buiweex = {
     buiActionSheet: require("../components/bui-actionsheet.vue"),
     buiButton: require("../components/bui-button.vue"),
     buiCheckbox: require("../components/bui-checkbox.vue"),
-    buiCheckboxCell: require("../components/bui-checkbox-cell.vue"),
+    buiCheckboxCell: require("../components/bui-checkbox-list.vue"),
     buiDialog: require("../components/bui-dialog.vue"),
     buiDropdown: require("../components/bui-dropdown.vue"),
     buiHeader: require("../components/bui-header.vue"),

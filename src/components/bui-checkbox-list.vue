@@ -2,8 +2,8 @@
     <div :class="['flex-fluid']">
         <div class="radio-box checkbox flex-row" :class="[v.disabled ? 'disabled':'']" @click="select(v)" v-for="v in items">
             <text class="radio-label cb-flex-9" :style="{'font-size':fontSize}">{{v.title || v.value}}</text>
-            <div class="cb-flex-1" v-if="value.indexOf(v.value) != -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark" :color="selectedColor"></bui-icon></div>
-            <div class="cb-flex-1" v-if="value.indexOf(v.value) == -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark-outline" :color="unSelectedColor"></bui-icon></div>
+            <div class="cb-flex-1" v-if="value.indexOf(v.value) != -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-android-checkbox" :color="selectedColor"></bui-icon></div>
+            <div class="cb-flex-1" v-if="value.indexOf(v.value) == -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-android-checkbox-outline-blank" :color="unSelectedColor"></bui-icon></div>
         </div>
     </div>
 </template>
@@ -33,7 +33,7 @@
             },
             "unSelectedColor":{
                 type: String,
-                default:"#9ea7b4"
+                default:"#e2e2e2"
             }
         },
         data () {
