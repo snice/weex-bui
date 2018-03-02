@@ -18,7 +18,7 @@
          
         },
         mounted () {
-            globalEvent.addEventListener("androidback", function (e) {
+            globalEvent.addEventListener("androidback", (e)=> {
                 this.$pop();
             });
         }
