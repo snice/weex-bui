@@ -46,7 +46,7 @@
 
 <style scoped>
     .text {
-        font-size: 24px;
+        font-size: 28px;
         color: #3d3d3d;
     }
 

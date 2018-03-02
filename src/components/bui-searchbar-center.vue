@@ -5,7 +5,7 @@
                 <bui-icon v-if="!deletestatus" name="ion-ios-search-strong" @click="onfocusFn"></bui-icon>
                 <text class="bui-search-icon-box-text" v-if="!searchstatus">搜索</text>
             </div>
-            <input class="span1 bui-search-input-text" v-if="searchstatus" @focus="onfocus($event)" @return="search" return-key-type="search" @blur="onblur($event)" @input="oninput($event)" :value="valueNew" :autofocus="autofocusNew" type="text" :placeholder="placeholder"/>
+            <input ref="inputSearch" class="span1 bui-search-input-text" v-if="searchstatus" @focus="onfocus($event)" @return="search" return-key-type="search" @blur="onblur($event)" @input="oninput($event)" :value="valueNew" :autofocus="autofocusNew" type="text" :placeholder="placeholder"/>
             <bui-icon class="bui-search-icon-delete" @click="onclear($event)" v-if="deletestatus" name='ion-ios-close-outline'></bui-icon>
         </div>
         <text :class="['bui-search-search', 'bui-search-text-color']" @click="search()" v-if="searchstatus">搜索</text>
@@ -41,39 +41,41 @@
         },
         methods: {
             //搜索框触发输入焦点
-            "onfocusFn": function () {
+            onfocusFn () {
                 this.searchstatus = true;
                 this.autofocusNew = true;
             },
             //搜索获得输入焦点
-            "onfocus": function (event) {
+            onfocus(event) {
                 this.$emit("focus", event);
             },
             //搜索失去输入焦点
-            "onblur": function (event) {
+            onblur(event) {
                 this.autofocusNew = false;
                 this.$emit('blur', event);
-
             },
             //搜索输入值更改
-            "oninput": function (event) {
+            oninput(event) {
                 this.valueNew = event.value;
                 if(this.valueNew.length == 0) this.deletestatus = false;
                 else this.deletestatus = true;
                 this.$emit('input', event);
             },
             //清除搜索输入值
-            "onclear": function (event) {
+            onclear(event) {
                 this.autofocusNew = false;
                 this.deletestatus = false;
                 this.valueNew = "";
                 this.$emit('clear');
             },
             //搜索
-            "search": function () {
+            search() {
                 this.$emit("search",this.valueNew);
+            },
+            //关闭键盘
+            hideKeyboard(){
+                this.$refs.inputSearch.blur();
             }
-
         }
     }
 </script>
