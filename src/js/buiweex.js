@@ -328,7 +328,7 @@ let buiweex = {
                 'bui-image': that.buiImage,
                 'bui-actionsheet': that.buiActionSheet,
                 'bui-checkbox': that.buiCheckbox,
-                'bui-checkbox-cell': that.buiCheckboxCell,
+                'bui-checkbox-list': that.buiCheckboxList,
                 'bui-dialog': that.buiDialog,
                 'bui-dropdown': that.buiDropdown,
                 'bui-lazy-render': that.buiLazyRender,
