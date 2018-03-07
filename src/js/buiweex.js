@@ -38,6 +38,8 @@ let buiweex = {
     buiNumberInput: require("../components/bui-number-input.vue"),
     buiRichcell: require("../components/bui-richcell.vue"),
     buiPopupShow: require("../components/bui-popupshow.vue"),
+    buiOption: require("../components/bui-option.vue"),
+    buiGridSelect: require("../components/bui-grid-select.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -351,7 +353,9 @@ let buiweex = {
                 'bui-popup':that.buiPopup,
                 'bui-number-input': that.buiNumberInput,
                 'bui-richcell':that.buiRichcell,
-                'bui-popupshow':that.buiPopupShow
+                'bui-popupshow':that.buiPopupShow,
+                'bui-option':that.buiOption,
+                'bui-grid-select':that.buiGridSelect,
             }
         });
 

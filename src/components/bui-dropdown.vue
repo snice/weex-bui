@@ -54,6 +54,7 @@
         },
         methods: {
             show(event){
+                this.value = true;
                 this._reset();
                 setTimeout(()=>{
                     this._open(event);
@@ -63,7 +64,7 @@
                 var el = this.$refs.dropdownBox;
                 var translate = 'scale(0.9, 0.9)';
                 this._animationFn(el, "0", translate, 'ease-out', () => {
-                    this.$emit('input', false);
+                    this.value = false;
                 });
             },
             _reset(){

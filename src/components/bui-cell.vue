@@ -107,6 +107,7 @@
         },
         methods: {
             _cellClick (e) {
+                this.$emit('click', {e});
                 this.$emit('cellClick', {e});
             }
         }
