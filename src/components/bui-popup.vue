@@ -1,6 +1,6 @@
 <template>
     <div v-if="value">
-        <bui-mask @click="maskClick"></bui-mask>
+        <bui-mask :rgba="rgba" @click="maskClick"></bui-mask>
         <div ref="popupBox"
              :height="popupHeight"
              :hack="isNeedShow"
@@ -43,6 +43,9 @@
     const animation = weex.requireModule('animation');
     export default {
         props: {
+            rgba: {
+                type: [String, Number]
+            },
             value:{
                type:Boolean,
                 default:false

@@ -60,7 +60,7 @@
                 this.valueNew = event.value;
                 if(this.valueNew.length == 0) this.deletestatus = false;
                 else this.deletestatus = true;
-                // this.$emit('input', event);
+                 this.$emit('input', event);
             },
             //清除搜索输入值
             onclear(event) {

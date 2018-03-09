@@ -19,7 +19,7 @@
             return {
                 width: "260px",
                 left: "0px",
-                top: "0px",
+                top: "20px",
                 arrowLeft: "40px",
                 position: {
                     width: '0px',
@@ -73,7 +73,8 @@
             },
             _open(event) {
                 var el = this.$refs.dropdownBox;
-                this.position = event.position;
+                this.position = event.position
+//                this.top = "-300px";
                 //autoWidth默认true，宽度按触发元素宽度自适应，如果控制宽度可设置为false，宽度为260px
                 if (this.autoWidth) {
                     if (this.position.width >= 260) {
@@ -122,11 +123,13 @@
                 if (platform == "android") {
                     this.top = this.position.y - 60;
                 } else if (platform == "iOS") {
-                    this.top = this.position.y - 20;
+                    this.top = "-20px";
                 }
 
                 var translate = 'translate(0px, ' + parseInt(this.position.height) + 'px)';
                 this._animationFn(el, "1", translate, 'ease-in');
+
+                this.$toast(this.top);
 
             },
             _animationFn (el, opacity, translate, timing, fn) {

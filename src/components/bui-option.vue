@@ -16,13 +16,7 @@
 </template>
 
 <script>
-    var animation = weex.requireModule('animation');
     module.exports = {
-        data () {
-            return {
-                newList: this.initList()
-            }
-        },
         props: {
             index: {
                 type: Number,

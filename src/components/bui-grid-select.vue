@@ -1,22 +1,6 @@
 <template>
     <div class="bui-grid-select-box">
-        <!--<div class="bui-grid-select"-->
-             <!--v-for="(item, index) in newList"-->
-             <!--@click="select(index)"-->
-             <!--:style="Object.assign({'marginTop': '20px','width':width,'height':height}, cWrapperStyle(item))"-->
-             <!--v-bind="Object.assign({}, customStyles)">-->
-            <!--<text class="bui-grid-select-title"-->
-                  <!--:style="cTitleStyle(item)">{{item.title}}</text>-->
-            <!--<bui-icon-->
-                    <!--v-if="item.selected && !item.disabled && icon"-->
-                    <!--:color="selectedBorderColor"-->
-                    <!--:name="icon"-->
-                    <!--size="20px" class="bui-grid-select-img"></bui-icon>-->
-        <!--</div>-->
-        <!--<div class="bui-grid-select" v-for="item in hackList" :style="{'opacity': 0, 'marginTop': '20px','width':width,'height':height}">-->
-            <!--<text class="bui-grid-select-title"></text>-->
-        <!--</div>-->
-        <bui-option v-for="(item, index) in newList"
+        <bui-option v-for="(item, index) in newItems"
                     v-bind="Object.assign({}, customStyles, item)"
                     :key="index"
                     :style="{marginTop: index >= cols ? lineSpacing : null}"
@@ -31,14 +15,9 @@
 </template>
 
 <script>
-    var animation = weex.requireModule('animation');
+    import buiOption from './bui-option.vue';
     module.exports = {
-        data () {
-            return {
-                newList: this.initList()
-            }
-        },
-
+        components: { 'bui-option' : buiOption },
         props: {
             // 列数
             cols: {
@@ -62,8 +41,13 @@
                 default: () => ({})
             }
         },
+        data () {
+            return {
+                newItems: this.initList()
+            }
+        },
         watch: {
-            list () {
+            items () {
                 this.newList = this.initList();
             }
         },
@@ -81,13 +65,12 @@
             this.lineSpacing = this.customStyles.lineSpacing || '12px';
         },
         methods: {
-
             //数据赋值
             initList () {
                 const single = this.single;
                 let selectedCount = 0;
 
-                const newList = this.items.map((item, i) => {
+                const newItems = this.items.map((item, i) => {
                     let { selected, disabled } = item;
                     disabled = !!disabled;
                     // disabled为true时认为selected无效，同时单选模式下只认为第一个selected为true的为有效值
@@ -96,12 +79,12 @@
                     return item;
                 });
                 this.selectedCount = selectedCount;
-                return newList;
+                return newItems;
             },
             //点击筛选操作
             select(index){
-                if(this.newList[index].disabled) return;
-                const selected = this.newList[index].selected;
+                if(this.newItems[index].disabled) return;
+                const selected = this.newItems[index].selected;
                 if (this.limit <= this.selectedCount && !selected) {
                     this.$emit('overLimit', this.limit);
                 } else {
@@ -109,7 +92,7 @@
                     this.$emit('select', {
                         selectIndex: index,
                         selected: !selected,
-                        selectedList: this.newList.filter(item => item.selected)
+                        selectedList: this.newItems.filter(item => item.selected)
                     });
                 }
             },
@@ -117,7 +100,7 @@
             updateList(index){
                 const single = this.single;
                 let selectedCount = 0;
-                this.newList = this.newList.map((item, i) => {
+                this.newItems = this.newItems.map((item, i) => {
                     if (single) {
                         item.selected = index === i && !item.selected;
                     } else {
