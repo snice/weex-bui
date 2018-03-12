@@ -1,6 +1,6 @@
 <template>
     <div class="bui-flow-box">
-        <div class="bui-flow" v-for="(item, index) in newItems">
+        <div class="bui-flow" v-for="(item, index) in newItems" @click="_click(index)">
             <div class="bui-flow-header bui-flow-list">
                 <div class="bui-flow-line" :style="Object.assign({'top': (index==0 ? '20px': '0px'),'bottom': (index == newItems.length-1 ? '20px': '0px')}, item.lineStyle)"></div>
                 <div class="bui-flow-header-point" :class="[item.highlight ? 'highlight-point':'']" :style="item.pointStyle"></div>
@@ -42,6 +42,9 @@
 
         },
         methods: {
+            _click(index){
+                this.$emit('click', index);
+            },
             initItems(items){
                     const {
                             lineColor,
