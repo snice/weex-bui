@@ -1,9 +1,9 @@
 <template>
     <div :class="['flex-fluid']">
-        <div class="radio-box flex-row" :class="[v.disabled ? 'disabled':'']" v-for="v in items" @click="select(v)">
+        <div class="radio-box checkbox flex-row" :class="[v.disabled ? 'disabled':'']" v-for="v in items" @click="select(v)">
             <text class="radio-label cb-flex-9" :style="{'font-size':fontSize}">{{v.title || v.value}}</text>
-            <div class="bui-icon-box cb-flex-1" v-if="v.value === value"><bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-on" :color="selectedColor"></bui-icon></div>
-            <div class="bui-icon-box cb-flex-1" v-if="v.value !== value"><bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-off" :color="unSelectedColor"></bui-icon></div>
+            <div class="bui-icon-box cb-flex-1" v-if="v.value === value"><bui-icon @click="select(v)"  :size="iconSize" name="ion-android-checkbox" :color="selectedColor"></bui-icon></div>
+            <div class="bui-icon-box cb-flex-1" v-if="v.value !== value"><bui-icon @click="select(v)"  :size="iconSize" name="ion-android-checkbox-outline-blank" :color="unSelectedColor"></bui-icon></div>
         </div>
     </div>
 </template>
