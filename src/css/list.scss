@@ -19,7 +19,7 @@
 
 .bui-cell-large {
   flex-direction: row;
-  align-items: center;
+  //align-items: center;
   height: $nb120;
   border-bottom-width: 1px;
   border-bottom-color: $color_border;
@@ -54,6 +54,7 @@
   padding-left: $nb20;
   flex: 1;
   justify-content: center;
+  background-color: #ffffff;
 }
 
 .bui-list-right {
@@ -64,7 +65,6 @@
 }
 
 .bui-list-title {
-
   font-size: $nb34;
   color: $color_title;
   text-overflow: ellipsis;
@@ -134,3 +134,44 @@
   width: 60px;
   color: $color_subtitle;
 }
+
+
+.bui-list-swipe{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.bui-list-swipe-btn{
+  flex-direction: row;
+  width: 120px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #c6c7c8;
+}
+.bgRed{
+  background-color: $color_danger_active;
+}
+.bui-list-swipe-btn-text{
+  font-size: 30px;
+  color: $color_white;
+}
+.bui-list-swipe-main{
+  flex-direction: row;
+  justify-content: flex-start
+}
+.bui-list-main-left{
+  justify-content: center;
+  flex: 1
+}
+.bui-list-desc{
+  font-size: 25px;
+  color: $color_title;
+}
+
+
+

@@ -2,6 +2,7 @@
     <div :class="['bui-cell', hasTopBorder?'cell-top-border':'', hasBottomBorder?'cell-bottom-border':'', hasMargin?'cell-margin':'', desc?'has-desc':'']"
             :style="cellStyle"
             @click="_cellClick">
+
         <slot name="label">
             <div v-if="label">
                 <text class="cell-label-text">{{label}}</text>

@@ -80,7 +80,7 @@
                 this.arrowTop ='1px';
             },
             _open(event, height) {
-                var el = this.$refs.dropdownBox;
+                this.$toast(el);
                 this.position = event.position;
                 //autoWidth默认true，宽度按触发元素宽度自适应，如果控制宽度可设置为false，宽度为260px
                 if (this.autoWidth) {
