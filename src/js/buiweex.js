@@ -41,7 +41,7 @@ let buiweex = {
     // buiOption: require("../components/bui-option.vue"),
     buiGridSelect: require("../components/bui-grid-select.vue"),
     buiFlow: require("../components/bui-flow.vue"),
-    buiSwipeMenu: require("../components/bui-swipe-menu.vue"),
+    buiSwipeCell: require("../components/bui-swipe-cell.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -359,7 +359,7 @@ let buiweex = {
                 // 'bui-option':that.buiOption,
                 'bui-grid-select':that.buiGridSelect,
                 'bui-flow':that.buiFlow,
-                'bui-swipe-menu':that.buiSwipeMenu,
+                'bui-swipe-cell':that.buiSwipeCell,
             }
         });
 

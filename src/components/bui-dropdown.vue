@@ -71,7 +71,7 @@
                 var translate = 'scale(0.9, 0.9)';
                 this._animationFn(el, "0", translate, 'ease-out', () => {
                     this.value = false;
-//                    this.$emit('hide');
+                    this.$emit('hide');
                 });
             },
             _reset(){
@@ -80,7 +80,7 @@
                 this.arrowTop ='1px';
             },
             _open(event, height) {
-                this.$toast(el);
+                var el = this.$refs.dropdownBox;
                 this.position = event.position;
                 //autoWidth默认true，宽度按触发元素宽度自适应，如果控制宽度可设置为false，宽度为260px
                 if (this.autoWidth) {

@@ -1,6 +1,6 @@
 <template>
     <div class="bui-list-swipe-menu">
-        <div class="bui-cell-large">
+        <div class="bui-cell-swipe-menu" :style="{'height': height}">
             <div class="bui-list-swipe">
                 <div class="bui-list-swipe-btn" :style="{'background-color': item.bgcolor}" @click="_actionClick(index)" v-for="(item, index) in items">
                     <text class="bui-list-swipe-btn-text">{{item.title}}</text>
@@ -37,6 +37,10 @@
                 type: Array,
                 default:defaultAction
             },
+            height: {
+                type: String,
+                default: '100px'
+            },
             title: {
                 type: String
             }
@@ -65,11 +69,14 @@
                     this.$emit('click', this.index);
                 });
             },
-            close (fn){
+            close(fn){
                 let translate = 'translate(0px, 0px)';
                 let el = this.$refs.swipedom;
-                this._animationFn(el, 1, translate, 'ease-in',()=>{
-                    fn && fn();
+                this._animationFn(el, 1, translate, 'ease-in',()=> {
+                    this.close(() => {
+                        //点击时把传进来的index值传出去同时把事件也暴露出去
+                        this.$emit('click', this.index);
+                    });
                 });
             },
             open(fn){
@@ -80,7 +87,7 @@
                     fn && fn();
                 });
             },
-            _animationFn (el, opacity, translate, timing, fn) {
+            _animationFn (el, opacity, translate, timing, fn){
                 animation.transition(el, {
                     styles: {
                         opacity: opacity,
@@ -92,7 +99,7 @@
                     delay: 0
                 }, () => {
                     fn && fn();
-                })
+                });
             }
         }
     }
