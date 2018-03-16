@@ -2,6 +2,7 @@
     <div :class="['bui-cell', hasTopBorder?'cell-top-border':'', hasBottomBorder?'cell-bottom-border':'', hasMargin?'cell-margin':'', desc?'has-desc':'']"
             :style="cellStyle"
             @click="_cellClick">
+
         <slot name="label">
             <div v-if="label">
                 <text class="cell-label-text">{{label}}</text>
@@ -9,7 +10,7 @@
         </slot>
         <div class="cell-title">
             <slot name="title">
-                <text class="cell-content">{{title}}</text>
+                <text class="cell-content" v-if="title">{{title}}</text>
                 <text class="cell-desc-text" v-if="desc">{{desc}}</text>
             </slot>
         </div>
@@ -107,6 +108,7 @@
         },
         methods: {
             _cellClick (e) {
+                this.$emit('click', {e});
                 this.$emit('cellClick', {e});
             }
         }

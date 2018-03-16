@@ -1,10 +1,21 @@
 <template>
-    <div class="bui-mask" @click="_click"></div>
+    <div class="bui-mask" @click="_click" :style="{'background-color':'rgba(0,0,0,'+ rgba +')'}"></div>
 </template>
 
 <script>
 
     module.exports = {
+        props: {
+            rgba: {
+                type: [String, Number],
+                default: '0.2'
+            }
+        },
+        computed: {
+            newRgba(){
+                return this.rgba + '';
+            }
+        },
         methods: {
             _click() {
                 this.$emit("click");

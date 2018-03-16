@@ -12,6 +12,7 @@ let buiweex = {
     buiActionSheet: require("../components/bui-actionsheet.vue"),
     buiButton: require("../components/bui-button.vue"),
     buiCheckbox: require("../components/bui-checkbox.vue"),
+    buiCheckboxList: require("../components/bui-checkbox-list.vue"),
     buiDialog: require("../components/bui-dialog.vue"),
     buiDropdown: require("../components/bui-dropdown.vue"),
     buiHeader: require("../components/bui-header.vue"),
@@ -22,6 +23,7 @@ let buiweex = {
     buiMask: require("../components/bui-mask.vue"),
     buiPanel: require("../components/bui-panel.vue"),
     buiRadio: require("../components/bui-radio.vue"),
+    buiRadioList: require("../components/bui-radio-list.vue"),
     buiSearchbarCenter: require("../components/bui-searchbar-center.vue"),
     buiSearchbarLeft: require("../components/bui-searchbar-left.vue"),
     buiSwitch: require("../components/bui-switch.vue"),
@@ -36,6 +38,10 @@ let buiweex = {
     buiNumberInput: require("../components/bui-number-input.vue"),
     buiRichcell: require("../components/bui-richcell.vue"),
     buiPopupShow: require("../components/bui-popupshow.vue"),
+    // buiOption: require("../components/bui-option.vue"),
+    buiGridSelect: require("../components/bui-grid-select.vue"),
+    buiFlow: require("../components/bui-flow.vue"),
+    buiSwipeCell: require("../components/bui-swipe-cell.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -327,6 +333,7 @@ let buiweex = {
                 'bui-image': that.buiImage,
                 'bui-actionsheet': that.buiActionSheet,
                 'bui-checkbox': that.buiCheckbox,
+                'bui-checkbox-list': that.buiCheckboxList,
                 'bui-dialog': that.buiDialog,
                 'bui-dropdown': that.buiDropdown,
                 'bui-lazy-render': that.buiLazyRender,
@@ -334,6 +341,7 @@ let buiweex = {
                 'bui-mask': that.buiMask,
                 'bui-panel': that.buiPanel,
                 'bui-radio': that.buiRadio,
+                'bui-radio-list': that.buiRadioList,
                 'bui-searchbar-center': that.buiSearchbarCenter,
                 'bui-searchbar-left': that.buiSearchbarLeft,
                 'bui-switch': that.buiSwitch,
@@ -347,7 +355,11 @@ let buiweex = {
                 'bui-popup':that.buiPopup,
                 'bui-number-input': that.buiNumberInput,
                 'bui-richcell':that.buiRichcell,
-                'bui-popupshow':that.buiPopupShow
+                'bui-popupshow':that.buiPopupShow,
+                // 'bui-option':that.buiOption,
+                'bui-grid-select':that.buiGridSelect,
+                'bui-flow':that.buiFlow,
+                'bui-swipe-cell':that.buiSwipeCell,
             }
         });
 
