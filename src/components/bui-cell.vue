@@ -10,7 +10,7 @@
         </slot>
         <div class="cell-title">
             <slot name="title">
-                <text class="cell-content">{{title}}</text>
+                <text class="cell-content" v-if="title">{{title}}</text>
                 <text class="cell-desc-text" v-if="desc">{{desc}}</text>
             </slot>
         </div>
