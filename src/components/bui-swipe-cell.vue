@@ -1,13 +1,13 @@
 <template>
     <div class="bui-list-swipe-menu">
-        <div class="bui-cell-large">
+        <div class="bui-cell-swipe-menu" :style="{'height': height}">
             <div class="bui-list-swipe">
                 <div class="bui-list-swipe-btn" :style="{'background-color': item.bgcolor}" @click="_closeswipe(index)" v-for="(item, index) in items"><text class="bui-list-swipe-btn-text">{{item.title}}</text></div>
             </div>
             <div @click="_click()" @swipe="_openswipe($event)" class="bui-list-main bui-list-swipe-main" ref="swipedom">
                 <div class="bui-list-main-left">
-                    <text class="bui-list-title">{{title}}</text>
-                    <slot name="title"></slot>
+                    <text v-if="title" class="bui-list-title">{{title}}</text>
+                    <slot name="content"></slot>
                 </div>
             </div>
 
@@ -32,6 +32,10 @@
                     }
                 ]
             },
+            height: {
+                type: String,
+                default: '100px'
+            },
             title: {
                 type: String
             },
@@ -43,7 +47,7 @@
             //点击滑动菜单操作
             _closeswipe (index){
                 var $sel = this;
-                this._close(function () {
+                this.close(function () {
                     //点击滑动菜单组事件暴露同时把当前点击的菜单index指数传出去
                     $sel.$emit('clickmenu', index);
                 });
@@ -60,20 +64,20 @@
                         });
                         break;
                     case 'right':
-                        this._close();
+                        this.close();
                         break;
                 };
             },
             //点击当前文本内容复原
             _click(){
                 var $sel = this;
-                this._close(function () {
+                this.close(function () {
                     //点击时把传进来的index值传出去同时把事件也暴露出去
                     $sel.$emit('click', $sel.index);
                 });
             },
             //复原
-            _close (fn){
+            close (fn){
                 var translate = 'translate(0px, 0px)';
                 var el = this.$refs.swipedom;
                 this._animationFn(el, 1, translate, 'ease-in', function () {

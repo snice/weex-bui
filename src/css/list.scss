@@ -25,6 +25,13 @@
   border-bottom-color: $color_border;
   border-bottom-style: solid;
 }
+.bui-cell-swipe-menu{
+  lex-direction: row;
+  //height: $nb120;
+  border-bottom-width: 1px;
+  border-bottom-color: $color_border;
+  border-bottom-style: solid;
+}
 
 .bui-cell-large:active {
   background-color: $color_default;
