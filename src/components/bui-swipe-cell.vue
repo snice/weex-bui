@@ -46,10 +46,9 @@
         methods: {
             //点击滑动菜单操作
             _closeswipe (index){
-                var $sel = this;
-                this.close(function () {
+                this.close(() => {
                     //点击滑动菜单组事件暴露同时把当前点击的菜单index指数传出去
-                    $sel.$emit('clickmenu', index);
+                    this.$emit('clickmenu', index);
                 });
             },
             //滑动事件操作
@@ -57,10 +56,9 @@
                 var direction = $event.direction;
                 switch (direction) {
                     case 'left':
-                        var $sel = this;
-                        this._open(function () {
+                        this._open(() => {
                             //滑动左边时把传进来的index值传出去同时把事件也暴露出去
-                            $sel.$emit('swipe', $sel.index);
+                            this.$emit('swipe', this.index);
                         });
                         break;
                     case 'right':
@@ -70,10 +68,9 @@
             },
             //点击当前文本内容复原
             _click(){
-                var $sel = this;
-                this.close(function () {
+                this.close(() => {
                     //点击时把传进来的index值传出去同时把事件也暴露出去
-                    $sel.$emit('click', $sel.index);
+                    this.$emit('click', this.index);
                 });
             },
             //复原
