@@ -56,26 +56,25 @@
                 switch (e.direction) {
                     case 'left':
                         this.open(()=>{
-                            this.$emit('swipe');
+                            this.$emit('swipeleft');
                         });
                         break;
                     case 'right':
-                        this.close();
+                        this.close(()=>{
+                            this.$emit('swiperight');
+                        });
                         break;
                 }
             },
             _click(){
-                this.close(()=>{
-                    this.$emit('click');
-                });
+                this.$emit('click');
+                this.close();
             },
             close(fn){
                 let translate = 'translate(0px, 0px)';
                 let el = this.$refs.swipedom;
                 this._animationFn(el, 1, translate, 'ease-in',()=> {
                     fn && fn();
-                    //点击时把传进来的index值传出去同时把事件也暴露出去
-                    this.$emit('click');
                 });
             },
             open(fn){
