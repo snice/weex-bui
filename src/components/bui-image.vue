@@ -56,11 +56,11 @@
                 this.$emit('load');
             },
             _getContext(){
-                var bundleUrl = weex.config.bundleUrl;
-                var url = bundleUrl.split('/').slice(0, -1).join('/');
-                if (bundleUrl.indexOf("weex.html") > 0) {
-                    url += "/dist/";
+                let url = weex.config.bundleUrl;
+                if(url.indexOf('?')>0){
+                    url = url.substring(0,url.indexOf('?'));
                 }
+                url = url.split('/').slice(0, -1).join('/');
                 return url;
             }
         }
