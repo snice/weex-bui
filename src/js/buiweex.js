@@ -169,9 +169,11 @@ let buiweex = {
      * @return {string} 当前上下文路径
      */
     getContextPath() {
-        let url;
-        let bundleUrl = weex.config.bundleUrl;
-        url = bundleUrl.split('/').slice(0, -1).join('/');
+        let url = weex.config.bundleUrl;
+        if(url.indexOf('?')>0){
+            url = url.substring(0,url.indexOf('?'));
+        }
+        url = url.split('/').slice(0, -1).join('/');
         return url;
     },
 
