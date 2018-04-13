@@ -1,6 +1,6 @@
 <template>
     <div :class="['bui-cell', hasTopBorder?'cell-top-border':'', hasBottomBorder?'cell-bottom-border':'', hasMargin?'cell-margin':'', desc?'has-desc':'']"
-            :style="cellStyle"
+            :style="Object.assign({}, cellStyle)"
             @click="_cellClick">
 
         <slot name="label">
@@ -44,12 +44,12 @@
     }
 
     .cell-top-border {
-        border-top-color: #e2e2e2;
+        border-top-color: #eeeeee;
         border-top-width: 1px;
     }
 
     .cell-bottom-border {
-        border-bottom-color: #e2e2e2;
+        border-bottom-color: #eeeeee;
         border-bottom-width: 1px;
     }
 

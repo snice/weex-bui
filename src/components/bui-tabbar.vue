@@ -5,12 +5,13 @@
              :style="getItemStyle(item, index)"
              @click="itemClick($event,item,index)">
             
-            <bui-icon v-if="item.icon" :name="item.icon"
+            <bui-icon v-if="item.icon"
+                      :name="item.icon"
                       :color="index === value ? selectedColor : normalColor"
-                      @click="itemClick($event,item,index)" :size="iconSize">
-            </bui-icon>
-
-            <text v-if="item.title" :style="getTitleStyle(item, index)"
+                      @click="itemClick($event,item,index)"
+                      :size="iconSize"></bui-icon>
+            <text v-if="item.title"
+                  :style="getTitleStyle(item, index)"
                   @click="itemClick($event,item,index)">{{ item.title }}</text>
         </div>
 

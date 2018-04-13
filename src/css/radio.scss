@@ -27,19 +27,19 @@
 
 .switch-box {
   height: 80px;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ffffff;
 }
 
 .switch {
   position: absolute;
   right: 0px;
-  top: 0px;
+  top: 15px;
 }
 
 .switch-label {
   font-size: $nb30;
-  position: absolute;
-  top: 10px;
-  left: 0px;
 }
 
 .flex-column {
