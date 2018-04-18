@@ -190,7 +190,7 @@ let buiweex = {
                 paramsStr += key + "=" + encodeURIComponent(params[key]) + "&";
             }
         }
-        if (url.indexOf('?') < 0) {
+        if (url.indexOf('?') < 0 && paramsStr!="") {
             url += "?";
         }
         url += paramsStr;
