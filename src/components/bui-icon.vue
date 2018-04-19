@@ -15,15 +15,24 @@
 </style>
 
 <script>
-    var iconItems = require('../font/ionicons.json');
-    var fontFamily = "ionfont";
+    const iconItems = require('../font/ionicons.json');
+    const fontFamily = "ionfont";
+    const domModule = weex.requireModule("dom");
+    const platform = weex.config.env.platform.toLowerCase();
     module.exports = {
         beforeCreate () {
-            var bundleUrl = weex.config.bundleUrl;
-            var url = bundleUrl.split('/').slice(0, -1).join('/');
-            url += '/font/ionicons.ttf';
-
-            var domModule = weex.requireModule("dom");
+            let url = weex.config.bundleUrl;
+            if(url.indexOf('?')>0){
+                url = url.substring(0,url.indexOf('?'));
+            }
+            url = url.split('/').slice(0, -1).join('/');
+            if(!url.startsWith("http") && !url.startsWith("file")){
+                if(url.startsWith("/")){
+                    url = url.substring(url.indexOf("/")+1);
+                }
+                url = "local://" + (url == "" ? '' : "/") + url;
+            }
+            url = `${url}/font/ionicons.ttf`;
             domModule.addRule('fontFace', {
                 'fontFamily': fontFamily,
                 'src': "url('" + url + "')"
@@ -48,11 +57,11 @@
         },
         computed: {
             getFontName() {
-                var icon = iconItems[this.name];
+                let icon = iconItems[this.name];
                 return this.decode(icon || '');
             },
             getStyle(){
-                var style = {
+                let style = {
                     'color': this.color,
                     'font-size': this.size,
                     'font-family': fontFamily
