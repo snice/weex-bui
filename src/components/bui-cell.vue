@@ -103,7 +103,9 @@
             },
             cellStyle: {
                 type: Object,
-                default: {}
+                default () {
+                    return {};
+                }
             }
         },
         methods: {
