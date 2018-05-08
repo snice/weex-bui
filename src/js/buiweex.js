@@ -41,6 +41,7 @@ let buiweex = {
     buiGridSelect: require("../components/bui-grid-select.vue"),
     buiFlow: require("../components/bui-flow.vue"),
     buiSwipeCell: require("../components/bui-swipe-cell.vue"),
+    icon:require("../components/icon.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -360,6 +361,7 @@ let buiweex = {
                 'bui-grid-select':that.buiGridSelect,
                 'bui-flow':that.buiFlow,
                 'bui-swipe-cell':that.buiSwipeCell,
+                'icon':that.icon
             }
         });
 
