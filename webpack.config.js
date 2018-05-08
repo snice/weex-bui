@@ -7,6 +7,10 @@ var bannerPlugin = new webpack.BannerPlugin(
     '// { "framework": "Vue" }\n',
     {raw: true}
 )
+//非常酷的插件，自动浏览器预览最后生成的js boundles的内容
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+//非常酷的插件，自动浏览器预览最后生成的js boundles的内容
+var bundleAnalyzerPlugin=new BundleAnalyzerPlugin({analyzerMode: 'static'});
 
 //  文件拷贝插件,将图片和字体拷贝到dist目录
 var copyPlugin = new copy([
@@ -53,7 +57,7 @@ function getBaseConfig() {
             ]
         },
         vue: {},
-        plugins: [bannerPlugin, copyPlugin]
+        plugins: [bannerPlugin, copyPlugin,bundleAnalyzerPlugin]
     }
 }
 
