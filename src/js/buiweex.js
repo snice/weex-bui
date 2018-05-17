@@ -38,10 +38,10 @@ let buiweex = {
     buiNumberInput: require("../components/bui-number-input.vue"),
     buiRichcell: require("../components/bui-richcell.vue"),
     buiPopupShow: require("../components/bui-popupshow.vue"),
-    // buiOption: require("../components/bui-option.vue"),
     buiGridSelect: require("../components/bui-grid-select.vue"),
     buiFlow: require("../components/bui-flow.vue"),
     buiSwipeCell: require("../components/bui-swipe-cell.vue"),
+    icon:require("../components/icon.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -190,7 +190,7 @@ let buiweex = {
                 paramsStr += key + "=" + encodeURIComponent(params[key]) + "&";
             }
         }
-        if (url.indexOf('?') < 0) {
+        if (url.indexOf('?') < 0 && paramsStr!="") {
             url += "?";
         }
         url += paramsStr;
@@ -358,10 +358,10 @@ let buiweex = {
                 'bui-number-input': that.buiNumberInput,
                 'bui-richcell':that.buiRichcell,
                 'bui-popupshow':that.buiPopupShow,
-                // 'bui-option':that.buiOption,
                 'bui-grid-select':that.buiGridSelect,
                 'bui-flow':that.buiFlow,
                 'bui-swipe-cell':that.buiSwipeCell,
+                'icon':that.icon
             }
         });
 

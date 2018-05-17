@@ -1,18 +1,6 @@
 <template>
-    <div class="icon-block" :style="{width:size,height:size}" @click="_click($event)">
-        <text class="icon" :value="getFontName" :style="getStyle" @click="_click($event)"></text>
-    </div>
+    <text :value="getFontName" :style="getStyle"></text>
 </template>
-
-<style>
-    .icon-block {
-        justify-content: flex-start;
-    }
-
-    .icon {
-        text-align: center;
-    }
-</style>
 
 <script>
     const iconItems = require('../font/ionicons.json');

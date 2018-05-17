@@ -6,7 +6,7 @@
             <div class="bui-actionsheet-top">
                 <text class="bui-actionsheet-title" v-if="title">{{title}}</text>
                 <div class="bui-actionsheet-content">
-                    <text class="bui-actionsheet-list" v-for="(item,index) in items" @click="_itemClick(item,index)">{{item}}</text>
+                    <text class="bui-actionsheet-list" :key="index" v-for="(item,index) in items" @click="_itemClick(item,index)">{{item}}</text>
                 </div>
             </div>
             <div class="bui-actionsheet-bottom">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    var animation = weex.requireModule('animation');
+    const animation = weex.requireModule('animation');
     module.exports = {
         props: {
             title: {
@@ -53,7 +53,7 @@
         methods: {
             show(){ },
             _animationFn: function (translate, fn) {
-                var el = this.$refs.actionsheetBox;
+                let el = this.$refs.actionsheetBox;
                 animation.transition(el, {
                     styles: {
                         transform: translate,
@@ -67,25 +67,25 @@
                 })
             },
             _open() {
-                var translate = 'translate(0px, -' + (this.bottom + 20) + 'px, 0px)';
+                let translate = 'translate(0px, -' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate)
             },
             _maskClick () {
-                var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
+                let translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate, () => {
                     this.$emit('input', false);
                     this.$emit("maskClick");
                 });
             },
             _itemClick(item,index) {
-                var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
+                let translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate, () => {
                     this.$emit('input', false);
                     this.$emit('itemClick', item,index);
                 });
             },
             _btnClick() {
-                var translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
+                let translate = 'translate(0px, ' + (this.bottom + 20) + 'px, 0px)';
                 this._animationFn(translate, () => {
                     this.$emit('input', false);
                     this.$emit('cancel');
