@@ -1,10 +1,12 @@
 <template>
     <div class="bui-list-swipe-menu">
         <div class="bui-cell-swipe-menu" :style="{'height': height}">
-            <div class="bui-list-swipe">
-                <div class="bui-list-swipe-btn" :style="{'background-color': item.bgcolor}" @click="_actionClick(index)" v-for="(item, index) in items">
-                    <text class="bui-list-swipe-btn-text">{{item.title}}</text>
-                </div>
+            <div class="bui-list-swipe" ref='swipeBox'>
+                <slot name="action">
+                    <div class="bui-list-swipe-btn" :style="{'background-color': item.bgcolor}" @click="_actionClick(index)" :key="index" v-for="(item, index) in items">
+                        <text class="bui-list-swipe-btn-text">{{item.title}}</text>
+                    </div>
+                </slot>
             </div>
             <div @click="_click" @swipe="_swipe($event)" class="bui-list-main bui-list-swipe-main" ref="swipedom">
                 <div class="bui-list-main-left">
@@ -35,7 +37,9 @@
         props: {
             items: {
                 type: Array,
-                default:defaultAction
+                default(){
+                    return defaultAction;
+                }
             },
             height: {
                 type: String,
@@ -78,7 +82,11 @@
                 });
             },
             open(fn){
-                let len = this.items.length;
+                this.$toast(111);
+                let lenDom =this.$refs.swipeBox.pureChildren
+                            &&this.$refs.swipeBox.pureChildren.length
+                            &&this.$refs.swipeBox.pureChildren[0].pureChildren;
+                let len = (lenDom&&lenDom.length)||0;
                 let translate = 'translate(-'+120*len+'px, 0px)';
                 let el = this.$refs.swipedom;
                 this._animationFn(el, 1, translate, 'ease-in',()=>{
