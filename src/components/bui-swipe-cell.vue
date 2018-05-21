@@ -34,6 +34,11 @@
     ];
 
     module.exports = {
+	    data: function () {
+	            return {
+	                ss : ''
+	                }
+	        },
         props: {
             items: {
                 type: Array,
@@ -82,10 +87,12 @@
                 });
             },
             open(fn){
-                this.$toast(111);
-                let lenDom =this.$refs.swipeBox.pureChildren
-                            &&this.$refs.swipeBox.pureChildren.length
-                            &&this.$refs.swipeBox.pureChildren[0].pureChildren;
+                let swipeDom = this.$refs.swipeBox;
+                let lenDom;
+
+                if(swipeDom.hasOwnProperty('pureChildren')) lenDom = swipeDom.pureChildren;
+                else lenDom = this.$refs.swipeBox.children;
+
                 let len = (lenDom&&lenDom.length)||0;
                 let translate = 'translate(-'+120*len+'px, 0px)';
                 let el = this.$refs.swipedom;
