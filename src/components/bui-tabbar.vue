@@ -27,7 +27,7 @@
             iconSize: {default: "45px"},
             titleSize: {default: '22px'},
             background: {default: '#f7f7f7'},
-            selectedBackground: {default: '#f7f7f7'}, 
+            selectedBackground: {default: '#f7f7f7'},
             normalColor: {default: '#818181'},
             selectedColor: {default: '#4ca4fe'},
             borderBottomColor: {default: '#4ca4fe'},
