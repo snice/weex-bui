@@ -1,7 +1,7 @@
 {
   "name": "bui-weex",
   "description": "UI Component for weex framework",
-  "version": "0.2.9",
+  "version": "0.3.1",
   "main": "src/js/buiweex.js",
   "keywords": [
     "weex",
@@ -21,7 +21,7 @@
     "sass": "sass --watch src/css:src/css",
     "dev": "webpack --watch",
     "serve": "node build/init.js && serve -p 8181",
-    "debug": "weex-devtool",
+    "debug": "weex debug",
     "build": "webpack",
     "publish": "node build/publish.js"
   },
@@ -50,7 +50,7 @@
     "vue-loader": "^10.0.2",
     "vue-template-compiler": "^2.5.13",
     "webpack": "^1.14.0",
-    "weex-devtool": "^0.3.8",
+    "weex-debugger": "^1.0.14",
     "weex-loader": "^0.4.1",
     "weex-vue-loader": "^0.2.5"
   }

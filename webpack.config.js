@@ -8,7 +8,7 @@ var bannerPlugin = new webpack.BannerPlugin(
     {raw: true}
 )
 
-//非常酷的插件，自动浏览器预览最后生成的js boundles的内容
+//自动浏览器预览最后生成的js boundles的内容
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var bundleAnalyzerPlugin=new BundleAnalyzerPlugin({analyzerMode: 'static'});
 
