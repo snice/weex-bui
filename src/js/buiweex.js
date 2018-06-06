@@ -42,6 +42,7 @@ let buiweex = {
     buiFlow: require("../components/bui-flow.vue"),
     buiSwipeCell: require("../components/bui-swipe-cell.vue"),
     icon:require("../components/icon.vue"),
+    tabBar : require("../components/tab-bar"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
