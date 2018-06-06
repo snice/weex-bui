@@ -1,6 +1,7 @@
 <template>
     <div :class="['tip', 'tip-' + type]">
-        <text :class="['tip-txt', 'tip-txt-' + type]">{{value}}</text>
+        <text :class="['tip-txt', 'tip-txt-' + type]" v-if="value">{{value}}</text>
+        <slot name="value"></slot>
     </div>
 </template>
 

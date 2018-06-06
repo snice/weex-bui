@@ -17,7 +17,9 @@
             },
             "items": {
                 type: Array,
-                default: []
+                default: function () {
+                    return[];
+                }
             },
             "fontSize":{
                 type:[String,Number],

@@ -11,17 +11,13 @@
     module.exports = {
         computed: {
             imagePath() {
-                if (this.src.startsWith("http")||this.src.startsWith("file")) {
-                    return this.src;
+                if(this.src!=""){
+                    return this._isHttpOrFile(this.src)?this.src:this._getContext()+this.src;
                 }
-                return this._getContext() + this.src;
             },
             placeholderPath() {
                 if (this.placeholder!= "") {
-                    if (this.placeholder.startsWith("http")||this.placeholder.startsWith("file")) {
-                        return this.placeholder;
-                    }
-                    return this._getContext() + this.placeholder;
+                    return this._isHttpOrFile(this.placeholder)?this.placeholder:this._getContext()+this.placeholder;
                 }
             }
         },
@@ -44,7 +40,7 @@
                 default: ""
             },
             radius: {
-                type:String,
+                type:[String,Number],
                 default: "0px"
             }
         },
@@ -55,11 +51,22 @@
             _load() {
                 this.$emit('load');
             },
+            _isHttpOrFile(path){
+                return path.startsWith("http")||path.startsWith("file");
+            },
             _getContext(){
-                var bundleUrl = weex.config.bundleUrl;
-                var url = bundleUrl.split('/').slice(0, -1).join('/');
-                if (bundleUrl.indexOf("weex.html") > 0) {
-                    url += "/dist/";
+                let url = weex.config.bundleUrl;
+                if(url.indexOf('?')>0){
+                    url = url.substring(0,url.indexOf('?'));
+                }
+                url = url.split('/').slice(0, -1).join('/');
+                if(this._isHttpOrFile(url)){
+                    return url;
+                }else{
+                    if(url.startsWith("/")){
+                        url=url.substring(url.indexOf("/")+1);
+                    }
+                    url =`file:///android_asset${ url==""?'':"/"}${url}`;
                 }
                 return url;
             }

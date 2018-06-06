@@ -15,7 +15,9 @@
             },
             textStyle: {
                 type: Object,
-                default: () => ({})
+                default: function () {
+                    return{};
+                }
             },
             hasTextMargin: {
                 type: Boolean,

@@ -39,11 +39,15 @@
             },
             indicatorStyle: {
                 type:Object,
-                default: {}
+                default:function () {
+                    return {};
+                }
             },
             items: {
                 type:Array,
-                default: []
+                default:function () {
+                    return [];
+                }
             },
             interval: {
                 type:Number,

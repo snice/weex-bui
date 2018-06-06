@@ -59,11 +59,15 @@
             },
             leftItem: {
                 type: Object,
-                default: defaultItem
+                default: function () {
+                    return defaultItem;
+                }
             },
             rightItem: {
                 type: Object,
-                default: defaultItem
+                default: function () {
+                    return defaultItem;
+                }
             },
             textColor: {
                 type: String,
