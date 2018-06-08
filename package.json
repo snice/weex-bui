@@ -49,7 +49,6 @@
     "serve": "^1.4.0",
     "vue-loader": "^10.0.2",
     "vue-template-compiler": "^2.5.13",
-    "weex-debugger": "^1.0.14",
     "webpack": "^1.15.0",
     "weex-loader": "^0.4.1",
     "weex-vue-loader": "^0.2.5"
