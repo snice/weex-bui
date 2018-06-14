@@ -42,6 +42,7 @@ const iconDefaultStyle = {
 	size : 43
 }
 export default {
+	name : 'bui-scroll-tab-bar',
 	props : {
 		tabs : {
 			type : Array,

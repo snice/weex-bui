@@ -7,6 +7,8 @@ const navigator = weex.requireModule('navigator');
 const navigatorEx = weex.requireModule("NavigatorExModule");
 const stream = weex.requireModule('stream');
 
+
+
 let buiweex = {
     //components下的组件
     buiActionSheet: require("../components/bui-actionsheet.vue"),
