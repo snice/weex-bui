@@ -26,6 +26,8 @@
     "publish": "node build/publish.js"
   },
   "dependencies": {
+    "url-parse": "^1.1.9",
+    "weex-bindingx": "0.0.17",
     "archiver": "^2.1.0",
     "glob": "^7.1.2",
     "vue": "^2.5.13",

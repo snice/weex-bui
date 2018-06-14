@@ -12,7 +12,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding-left: $nb20;
+  padding-left: $nb10;
 }
 
 .bui-header-main{
@@ -27,7 +27,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  padding-right: $nb20;
+  padding-right: $nb10;
 }
 
 .bui-header-title{
@@ -41,4 +41,8 @@
   text-align: center;
 }
 
+.hot{
+  padding-left: $nb10;
+  padding-right: $nb10;
+}
 
