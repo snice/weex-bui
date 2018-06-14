@@ -177,4 +177,4 @@ export default {
 	}
 }
 </script>
-<style lang="sass" src="../../css/_tab-bar.scss"></style>
+<style lang="sass" src="../css/_tab-bar.scss"></style>
