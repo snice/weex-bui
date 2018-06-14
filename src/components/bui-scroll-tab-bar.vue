@@ -15,7 +15,7 @@ const dom = weex.requireModule('dom');
 // 默认配置
 
 const tableDefaultStyle = {
-	width : 150,
+	width : 250,
 	height : 120,
 	color : '#999',
 	selectedColor : '#54AAFE',
@@ -102,13 +102,13 @@ export default {
 			const computedPage = tabsNum > visibleNum ? 2 : index;
 			let offset = index+1 >= visibleNum ? -(this.width - width) / 2 : -width * computedPage;
 
-			if(prev > visibleNum || index > 1) {
+			if(prev > visibleNum || index >= 1) {
 				dom.scrollToElement(currentTabEl, {
 	         offset
 	       });
 			} 
 
-			if(index <= 1 && prev > index){
+			if(index < 1 && prev > index){
 				dom.scrollToElement(currentTabEl, {
 				 offset: -width * index
 				});
