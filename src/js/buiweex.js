@@ -43,7 +43,9 @@ let buiweex = {
     buiSwipeCell: require("../components/bui-swipe-cell.vue"),
     icon:require("../components/icon.vue"),
     buiTabbarScrollor:require("../components/bui-tabbar-scrollor.vue"),
-    buiEpSlider:require("../components/bui-ep-slider.vue"),
+    // buiEpSlider:require("../components/bui-ep-slider.vue"),
+    buiTimeline:require("../components/bui-timeline.vue"),
+    buiTimelineItem:require("../components/bui-timeline-item.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -365,7 +367,9 @@ let buiweex = {
                 'bui-swipe-cell':that.buiSwipeCell,
                 'icon':that.icon,
                 'bui-tabbar-scrollor': that.buiTabbarScrollor,
-                'bui-ep-slider': that.buiEpSlider
+                // 'bui-ep-slider': that.buiEpSlider,
+                'bui-timeline': that.buiTimeline,
+                'bui-timeline-item': that.buiTimelineItem,
             }
         });
 
