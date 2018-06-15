@@ -4,17 +4,13 @@
             <div class="bui-flow-header bui-flow-list">
                 <div class="bui-flow-line" :style="Object.assign({'top': (index==0 ? '20px': '0px'),'bottom': (index == newItems.length-1 ? '20px': '0px')}, item.lineStyle)"></div>
                 <div class="bui-flow-header-point" :class="[item.highlight ? 'highlight-point':'']" :style="item.pointStyle"></div>
-                <slot name="title">
-                    <text v-if="item.title" class="bui-flow-text bui-flow-header-title" :class="[item.highlight ? 'text-highlight-title':'']" :style="item.titleStyle">{{item.title}}</text>
-                </slot>
+                <text v-if="item.title" class="bui-flow-text bui-flow-header-title" :class="[item.highlight ? 'text-highlight-title':'']" :style="item.titleStyle">{{item.title}}</text>
             </div>
             <div class="bui-flow-main bui-flow-list" style="background-color: #ffffff">
                 <div class="bui-flow-line" :style="Object.assign({'width': (index == newItems.length-1 ? '0px':'2px')}, item.lineStyle)"></div>
                 <div class="bui-flow-text bui-flow-main-desc">
-                    <slot>
-                        <text v-if="item.desc" class="desc-text">{{item.desc}}</text>
-                        <text v-if="item.date" class="desc-date">{{item.date}}</text>
-                    </slot>
+                    <text v-if="item.desc" class="desc-text">{{item.desc}}</text>
+                    <text v-if="item.date" class="desc-date">{{item.date}}</text>
                 </div>
             </div>
         </div>
