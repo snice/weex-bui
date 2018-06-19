@@ -2,7 +2,7 @@
     <div :class="itemClasses">
         <div :class="contentClasses">
             <slot>
-                <text>{{title}}</text>
+                <text class="timeline-text">{{title}}</text>
             </slot>
         </div>
         <div :class="tailClasses"></div>

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import "common";
 
 .bui-timeline{
   list-style: none;
@@ -8,7 +9,7 @@
 }
 
 .bui-timeline-item{
-  padding-bottom: 30px;
+  padding-bottom: 35px;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
@@ -88,7 +89,13 @@
   padding-bottom: 1px;
   font-size: 28px;
   position: relative;
-  margin-top: -8px;
+}
+
+.timeline-text{
+  font-weight: bold;
+  font-size: $nb32;
+  line-height: $nb32;
+  color: $color_title;
 }
 
 
