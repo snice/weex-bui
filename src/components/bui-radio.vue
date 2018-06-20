@@ -1,9 +1,6 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
         <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'']" v-for="(v, index) in items" :key="index" @click="select(v)">
-            <!--<div class="bui-icon-box" v-if="v.value === value">-->
-                <!--<bui-icon @click="select(v)"  :size="iconSize" :name=names(v.value) :color="selectedColor"></bui-icon>-->
-            <!--</div>-->
             <div v-if="textDirection === 'right'">
                 <div class="bui-icon-box" v-if="v.value === value">
                     <bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-on" :color="selectedColor"></bui-icon>
