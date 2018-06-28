@@ -1,3 +1,4 @@
+var path = require('path');
 var fs = require('fs');
 var webpack = require('webpack');
 var glob = require("glob");
@@ -50,13 +51,14 @@ function getBaseConfig() {
                 }, {
                     test: /\.scss$/,
                     loader: 'style!css!sass'
-                },{
+                },
+                {
                     test: /\.json$/,
                     loader: 'json-loader'
                 }
             ]
         },
-        vue: {},
+        // vue: {},
         plugins: [bannerPlugin, copyPlugin,bundleAnalyzerPlugin]
     }
 }
@@ -70,5 +72,6 @@ webConfig.module.loaders[1].loaders.push('vue');
 var weexConfig = getBaseConfig();
 weexConfig.output.filename = '[name].weex.js';
 weexConfig.module.loaders[1].loaders.push('weex');
+
 
 module.exports = [webConfig, weexConfig];
