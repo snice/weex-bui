@@ -1,9 +1,15 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
-        <div class="radio-box flex-row" :class="[v.disabled ? 'disabled':'']" @click="select(v)" v-for="v in items">
-            <div v-if="value.indexOf(v.value) != -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark" :color="selectedColor"></bui-icon></div>
-            <div v-if="value.indexOf(v.value) == -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark-outline" :color="unSelectedColor"></bui-icon></div>
-            <text class="radio-label" :style="{'font-size':fontSize}">{{v.title || v.value}}</text>
+        <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'']" @click="select(v)" v-for="v in items">
+            <div v-if="textDirection === 'right'">
+                <div v-if="value.indexOf(v.value) != -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark" :color="selectedColor"></bui-icon></div>
+                <div v-if="value.indexOf(v.value) == -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark-outline" :color="unSelectedColor"></bui-icon></div>
+            </div>
+            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="{'font-size':fontSize}">{{v.title || v.value}}</text>
+            <div v-if="textDirection === 'left'":class="[leftColumn ? 'cb-flex-1': '']">
+                <div v-if="value.indexOf(v.value) != -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark" :color="selectedColor"></bui-icon></div>
+                <div v-if="value.indexOf(v.value) == -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark-outline" :color="unSelectedColor"></bui-icon></div>
+            </div>
         </div>
     </div>
 </template>
@@ -12,6 +18,14 @@
 <script>
     module.exports = {
         props: {
+            "textDirection": {
+                type: String,
+                default: 'right'
+            },
+            "disabled": {
+                type: Boolean,
+                default: false
+            },
             "value": {
                 type: Array,
             },
@@ -43,6 +57,9 @@
             }
         },
         computed:{
+            leftColumn (){
+                return this.direction=="horizontal" ? false : true
+            },
             changeDirection(){
                 return this.direction=="horizontal"? "flex-row":"flex-column";
             }
@@ -53,7 +70,7 @@
         },
         methods: {
             select (v) {
-                if(v.disabled) return;
+                if(v.disabled || this.disabled) return;
                 let i = this.value.indexOf(v.value)
                 if (i != -1) {
                     // 已经存在，则将其删除

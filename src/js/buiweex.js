@@ -42,6 +42,11 @@ let buiweex = {
     buiFlow: require("../components/bui-flow.vue"),
     buiSwipeCell: require("../components/bui-swipe-cell.vue"),
     icon:require("../components/icon.vue"),
+    buiTabbarScroller:require("../components/bui-tabbar-scroller.vue"),
+    // buiEpSlider:require("../components/bui-ep-slider.vue"),
+    buiTimeline:require("../components/bui-timeline.vue"),
+    buiTimelineItem:require("../components/bui-timeline-item.vue"),
+    buiTag:require("../components/bui-tag.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -185,6 +190,7 @@ let buiweex = {
      */
     push(url, params) {
         let paramsStr = "";
+        let _this = buiweex;
         if (params) {
             for (let key in params) {
                 paramsStr += key + "=" + encodeURIComponent(params[key]) + "&";
@@ -196,10 +202,10 @@ let buiweex = {
         url += paramsStr;
         //link平台中使用navigatorEx,debugtool中使用navigator
         try {
-            navigatorEx.push(url);
+            navigatorEx.push(_this.getContextPath()+ '/'+url);
         } catch (ex) {
             navigator.push({
-                url: url,
+                url: _this.getContextPath()+ '/'+url,
                 animated: 'true'
             }, e => {
             });
@@ -361,7 +367,12 @@ let buiweex = {
                 'bui-grid-select':that.buiGridSelect,
                 'bui-flow':that.buiFlow,
                 'bui-swipe-cell':that.buiSwipeCell,
-                'icon':that.icon
+                'icon':that.icon,
+                'bui-tabbar-scroller': that.buiTabbarScroller,
+                // 'bui-ep-slider': that.buiEpSlider,
+                'bui-timeline': that.buiTimeline,
+                'bui-timeline-item': that.buiTimelineItem,
+                'bui-tag': that.buiTag,
             }
         });
 
