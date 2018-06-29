@@ -349,9 +349,6 @@ let buiweex = {
     install(Vue, options) {
         let that = buiweex;
         Vue.mixin({
-            created: () => {
-                that.fixViewport();
-            },
             components: {
                 'bui-header': that.buiHeader,
                 'bui-icon': that.buiIcon,
