@@ -41,12 +41,12 @@ let buiweex = {
     buiGridSelect: require("../components/bui-grid-select.vue"),
     buiFlow: require("../components/bui-flow.vue"),
     buiSwipeCell: require("../components/bui-swipe-cell.vue"),
-    icon:require("../components/icon.vue"),
-    buiTabbarScroller:require("../components/bui-tabbar-scroller.vue"),
+    icon: require("../components/icon.vue"),
+    buiTabbarScroller: require("../components/bui-tabbar-scroller.vue"),
     // buiEpSlider:require("../components/bui-ep-slider.vue"),
-    buiTimeline:require("../components/bui-timeline.vue"),
-    buiTimelineItem:require("../components/bui-timeline-item.vue"),
-    buiTag:require("../components/bui-tag.vue"),
+    buiTimeline: require("../components/bui-timeline.vue"),
+    buiTimelineItem: require("../components/bui-timeline-item.vue"),
+    buiTag: require("../components/bui-tag.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -175,8 +175,8 @@ let buiweex = {
      */
     getContextPath() {
         let url = weex.config.bundleUrl;
-        if(url.indexOf('?')>0){
-            url = url.substring(0,url.indexOf('?'));
+        if (url.indexOf('?') > 0) {
+            url = url.substring(0, url.indexOf('?'));
         }
         url = url.split('/').slice(0, -1).join('/');
         return url;
@@ -196,16 +196,16 @@ let buiweex = {
                 paramsStr += key + "=" + encodeURIComponent(params[key]) + "&";
             }
         }
-        if (url.indexOf('?') < 0 && paramsStr!="") {
+        if (url.indexOf('?') < 0 && paramsStr != "") {
             url += "?";
         }
         url += paramsStr;
         //link平台中使用navigatorEx,debugtool中使用navigator
         try {
-            navigatorEx.push(_this.getContextPath()+ '/'+url);
+            navigatorEx.push(_this.getContextPath() + '/' + url);
         } catch (ex) {
             navigator.push({
-                url: _this.getContextPath()+ '/'+url,
+                url: _this.getContextPath() + '/' + url,
                 animated: 'true'
             }, e => {
             });
@@ -331,6 +331,21 @@ let buiweex = {
         return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
     },
 
+    /**
+     * 适配viewport
+     */
+    fixViewport(){
+        const meta = weex.requireModule('meta');
+        const platform = weex.config.env.platform;
+        let width = 750;
+        if (platform == "iOS") {
+            width = weex.config.env.deviceWidth
+        }
+        meta.setViewport({
+            width:width
+        });
+    },
+
     install(Vue, options) {
         let that = buiweex;
         Vue.mixin({
@@ -359,15 +374,15 @@ let buiweex = {
                 'bui-content': that.buiContent,
                 'bui-content-scroll': that.buiContentScroll,
                 'bui-image-slider': that.buiImageSlider,
-                'bui-cell':that.buiCell,
-                'bui-popup':that.buiPopup,
+                'bui-cell': that.buiCell,
+                'bui-popup': that.buiPopup,
                 'bui-number-input': that.buiNumberInput,
-                'bui-richcell':that.buiRichcell,
-                'bui-popupshow':that.buiPopupShow,
-                'bui-grid-select':that.buiGridSelect,
-                'bui-flow':that.buiFlow,
-                'bui-swipe-cell':that.buiSwipeCell,
-                'icon':that.icon,
+                'bui-richcell': that.buiRichcell,
+                'bui-popupshow': that.buiPopupShow,
+                'bui-grid-select': that.buiGridSelect,
+                'bui-flow': that.buiFlow,
+                'bui-swipe-cell': that.buiSwipeCell,
+                'icon': that.icon,
                 'bui-tabbar-scroller': that.buiTabbarScroller,
                 // 'bui-ep-slider': that.buiEpSlider,
                 'bui-timeline': that.buiTimeline,
