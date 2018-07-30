@@ -9,10 +9,6 @@ var bannerPlugin = new webpack.BannerPlugin(
     {raw: true}
 )
 
-//自动浏览器预览最后生成的js boundles的内容
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-var bundleAnalyzerPlugin=new BundleAnalyzerPlugin({analyzerMode: 'static'});
-
 //  文件拷贝插件,将图片和字体拷贝到dist目录
 var copyPlugin = new copy([
     {from: './src/image', to: "./image"},
@@ -59,7 +55,7 @@ function getBaseConfig() {
             ]
         },
         // vue: {},
-        plugins: [bannerPlugin, copyPlugin,bundleAnalyzerPlugin]
+        plugins: [bannerPlugin, copyPlugin]
     }
 }
 
