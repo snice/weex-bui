@@ -7,6 +7,9 @@ const navigator = weex.requireModule('navigator');
 const navigatorEx = weex.requireModule("NavigatorExModule");
 const stream = weex.requireModule('stream');
 
+
+import util from './util.js';
+
 let buiweex = {
     //components下的组件
     buiActionSheet: require("../components/bui-actionsheet.vue"),
@@ -202,10 +205,12 @@ let buiweex = {
         url += paramsStr;
         //link平台中使用navigatorEx,debugtool中使用navigator
         try {
-            navigatorEx.push(_this.getContextPath() + '/' + url);
+            if(url.indexOf('http') != 0) url = _this.getContextPath() + '/' + url;
+            navigatorEx.push(url);
         } catch (ex) {
+            if(url.indexOf('http') != 0) url = _this.getContextPath() + '/' + url;
             navigator.push({
-                url: _this.getContextPath() + '/' + url,
+                url: url,
                 animated: 'true'
             }, e => {
             });
@@ -323,32 +328,37 @@ let buiweex = {
         });
     },
 
-    /**
-     * 判断是否是 iphone x
-     * @return {*|boolean}
-     */
-    isIPhoneX() {
-        return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
-    },
+    // /**
+    //  * 判断是否是 iphone x
+    //  * @return {*|boolean}
+    //  */
+    // isIPhoneX() {
+    //     return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
+    // },
 
     /**
      * 适配viewport
      */
     fixViewport(){
+        let _this = buiweex;
         const meta = weex.requireModule('meta');
-        const platform = weex.config.env.platform;
         let width = 750;
-        if (platform == "iOS") {
-            width = weex.config.env.deviceWidth
+
+        if(util.isIPad()) {
+            width = 1280;
         }
+
         meta.setViewport({
-            width:width
+            width: width
         });
     },
 
     install(Vue, options) {
         let that = buiweex;
         Vue.mixin({
+            created: () => {
+                that.fixViewport();
+            },
             components: {
                 'bui-header': that.buiHeader,
                 'bui-icon': that.buiIcon,
@@ -413,7 +423,18 @@ let buiweex = {
 
         Vue.prototype.$get = that.get;
 
-        Vue.prototype.$isIPhoneX = that.isIPhoneX;
+        Vue.prototype.$formatDate = util.formatDate;
+
+        Vue.prototype.$isIPad = util.isIPad();
+
+        Vue.prototype.$isIPhoneX = util.isIPhoneX();
+
+        Vue.prototype.$isIPhone = util.isIPhone();
+
+        Vue.prototype.$isAndroid = util.isAndroid();
+
+        Vue.prototype.$fixStyle = util.fixStyle();
+
     }
 }
 
