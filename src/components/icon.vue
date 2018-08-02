@@ -13,9 +13,11 @@
                 url = url.substring(0,url.indexOf('?'));
             }
             url = url.split('/').slice(0, -1).join('/');
-            if(!url.startsWith("http") && !url.startsWith("file")){
-                if(url.startsWith("/")){
-                    url = url.substring(url.indexOf("/")+1);
+
+
+            if (url.indexOf("http") != 0 && url.indexOf("file") != 0) {
+                if (url.indexOf("/") == 0) {
+                    url = url.substring(url.indexOf("/") + 1);
                 }
                 url = "local://" + (url == "" ? '' : "/") + url;
             }
