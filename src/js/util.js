@@ -26,7 +26,7 @@ let util = {
         return format;
     },
     isIPad() {
-        return WXEnvironment && (WXEnvironment.deviceModel.indexOf('IPad') === 0);
+        return WXEnvironment && (WXEnvironment.deviceModel.indexOf('iPad') === 0);
     },
     isIPhoneX() {
         return WXEnvironment && (WXEnvironment.deviceModel === 'iPhone10,3' || WXEnvironment.deviceModel === 'iPhone10,6');

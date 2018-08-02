@@ -345,6 +345,7 @@ let buiweex = {
         let width = 750;
 
         if(util.isIPad()) {
+            _this.alert(122);
             width = 1280;
         }
 
@@ -431,8 +432,6 @@ let buiweex = {
         Vue.prototype.$isAndroid = util.isAndroid();
 
         Vue.prototype.$fixStyle = util.fixStyle();
-
-        Vue.prototype.$fixViewport = that.fixViewport();
 
     }
 }
