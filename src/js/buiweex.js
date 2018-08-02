@@ -356,9 +356,6 @@ let buiweex = {
     install(Vue, options) {
         let that = buiweex;
         Vue.mixin({
-            created: () => {
-                that.fixViewport();
-            },
             components: {
                 'bui-header': that.buiHeader,
                 'bui-icon': that.buiIcon,
@@ -434,6 +431,8 @@ let buiweex = {
         Vue.prototype.$isAndroid = util.isAndroid();
 
         Vue.prototype.$fixStyle = util.fixStyle();
+
+        Vue.prototype.$fixViewport = that.fixViewport();
 
     }
 }
