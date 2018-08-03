@@ -205,10 +205,10 @@ let buiweex = {
         url += paramsStr;
         //link平台中使用navigatorEx,debugtool中使用navigator
         try {
-            if(url.indexOf('http') != 0) url = _this.getContextPath() + '/' + url;
+            if(url.indexOf('http') != 0 || url.indexOf('file') != 0) url = _this.getContextPath() + '/' + url;
             navigatorEx.push(url);
         } catch (ex) {
-            if(url.indexOf('http') != 0) url = _this.getContextPath() + '/' + url;
+            if(url.indexOf('http') != 0 || url.indexOf('file') != 0) url = _this.getContextPath() + '/' + url;
             navigator.push({
                 url: url,
                 animated: 'true'
