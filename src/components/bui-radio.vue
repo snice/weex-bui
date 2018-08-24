@@ -3,18 +3,18 @@
         <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'']" v-for="(v, index) in items" :key="index" @click="select(v)">
             <div v-if="textDirection === 'right'">
                 <div class="bui-icon-box">
-                    <bui-icon @click="select(v)"  :size="iconSize" :name="v.value === value ? selectIcon : unSelectedIcon" :color="v.value === value ? selectedColor : unSelectedColor"></bui-icon>
+                    <bui-icon @click="select(v)"  :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
                 </div>
             </div>
 
 
-            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': v.value === value ? selectedColor : unSelectedColor}, textStyles)">{{v.title || v.value}}</text>
+            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': (v.value === value) ? selectedColor : unSelectedColor}, textStyles)">{{v.title || v.value}}</text>
 
 
             <div v-if="textDirection === 'left'" :class="[leftColumn ? 'cb-flex-1': '']">
 
                 <div class="bui-icon-box">
-                    <bui-icon @click="select(v)"  :size="iconSize" :name="v.value === value ? selectIcon : unSelectedIcon" :color="v.value === value ? selectedColor : unSelectedColor"></bui-icon>
+                    <bui-icon @click="select(v)"  :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
                 </div>
 
             </div>
@@ -62,7 +62,18 @@
             },
             "unSelectedColor":{
                 type: String,
-                default:"#e2e2e2"
+                default:"#9ea7b4"
+            },
+            "textStyles": {
+                type: Object
+            },
+            "selectIcon": {
+                type: String,
+                default:"ion-android-radio-button-on"
+            },
+            "unSelectedIcon": {
+                type: String,
+                default:"ion-android-radio-button-off"
             }
         },
         computed:{
