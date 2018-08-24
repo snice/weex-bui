@@ -1,7 +1,7 @@
 {
   "name": "bui-weex",
   "description": "UI Component for weex framework",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "main": "src/js/buiweex.js",
   "keywords": [
     "weex",
@@ -43,7 +43,7 @@
     "css-loader": "^0.26.1",
     "ip": "^1.1.4",
     "json-loader": "^0.5.7",
-    "linkapi": "^0.1.0",
+    "linkapi": "^0.3.11",
     "node-sass": "^4.5.2",
     "sass-loader": "^6.0.3",
     "serve": "^1.4.0",

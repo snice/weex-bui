@@ -191,7 +191,7 @@ let buiweex = {
      * @param url {string} bundle js 地址
      * @param params {object} 传递的参数
      */
-    push(url, params) {
+    push(url, params, callback) {
         let paramsStr = "";
         let _this = buiweex;
         if (params) {
@@ -215,15 +215,13 @@ let buiweex = {
                 navigator.push({
                     url: url,
                     animated: 'true'
-                }, e => {
-                });
+                }, callback);
             }else{
                 url = _this.getContextPath() + '/' + url;
                 navigator.push({
                     url: url,
                     animated: 'true'
-                }, e => {
-                });
+                }, callback);
             }
         }
     },
@@ -232,11 +230,10 @@ let buiweex = {
      * 返回上个页面
      * @method pop
      */
-    pop() {
+    pop(callback) {
         navigator.pop({
             animated: 'true'
-        }, e => {
-        });
+        },callback);
     },
 
     /**

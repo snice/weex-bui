@@ -2,25 +2,21 @@
     <div :class="[changeDirection,'flex-fluid']">
         <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'']" v-for="(v, index) in items" :key="index" @click="select(v)">
             <div v-if="textDirection === 'right'">
-                <div class="bui-icon-box" v-if="v.value === value">
-                    <bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-on" :color="selectedColor"></bui-icon>
-                </div>
-                <div class="bui-icon-box" v-if="v.value !== value">
-                    <bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-off" :color="unSelectedColor"></bui-icon>
+                <div class="bui-icon-box">
+                    <bui-icon @click="select(v)"  :size="iconSize" :name="v.value === value ? selectIcon : unSelectedIcon" :color="v.value === value ? selectedColor : unSelectedColor"></bui-icon>
                 </div>
             </div>
 
 
-            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="{'font-size':fontSize}">{{v.title || v.value}}</text>
+            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': v.value === value ? selectedColor : unSelectedColor}, textStyles)">{{v.title || v.value}}</text>
 
 
             <div v-if="textDirection === 'left'" :class="[leftColumn ? 'cb-flex-1': '']">
-                <div class="bui-icon-box" v-if="v.value === value">
-                    <bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-on" :color="selectedColor"></bui-icon>
+
+                <div class="bui-icon-box">
+                    <bui-icon @click="select(v)"  :size="iconSize" :name="v.value === value ? selectIcon : unSelectedIcon" :color="v.value === value ? selectedColor : unSelectedColor"></bui-icon>
                 </div>
-                <div class="bui-icon-box" v-if="v.value !== value">
-                    <bui-icon @click="select(v)"  :size="iconSize" name="ion-android-radio-button-off" :color="unSelectedColor"></bui-icon>
-                </div>
+
             </div>
         </div>
     </div>
@@ -57,6 +53,9 @@
                 type:[String,Number],
                 default:48
             },
+            "textStyles": {
+                type: Object
+            },
             "selectedColor":{
                 type: String,
                 default:"#00cc66"
@@ -82,7 +81,7 @@
         methods: {
             select (v) {
                 if(v.disabled || this.disabled) return;
-                this.$emit("change", v.value);
+                this.$emit("change", v.value, v);
                 this.$emit("input", v.value);
             }
         },
