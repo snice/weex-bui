@@ -1,20 +1,9 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
-        <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'']" @click="select(v)" v-for="(v, i) in items">
-            <div v-if="textDirection === 'right'">
-                <div>
-                    <bui-icon @click="select(v)" :size="iconSize" :name="(value.indexOf(v.value) != -1) ? selectIcon : unSelectedIcon" :color="(value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor"></bui-icon>
-                </div>
-
-                <!--<div v-if="value.indexOf(v.value) != -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark" :color="selectedColor"></bui-icon></div>-->
-                <!--<div v-if="value.indexOf(v.value) == -1"><bui-icon @click="select(v)" :size="iconSize" name="ion-ios-checkmark-outline" :color="unSelectedColor"></bui-icon></div>-->
-            </div>
-            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': (value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor}, textStyles)">{{v.title || v.value}}</text>
-            <div v-if="textDirection === 'left'":class="[leftColumn ? 'cb-flex-1': '']">
-                <div>
-                    <bui-icon @click="select(v)" :size="iconSize" :name="(value.indexOf(v.value) != -1) ? selectIcon : unSelectedIcon" :color="(value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor"></bui-icon>
-                </div>
-            </div>
+        <div class="radio-box flex-row" :style="containerStyle" :class="[(v.disabled || disabled) ? 'disabled':'']" @click="select(v)" v-for="(v, i) in items">
+            <bui-icon v-if="textDirection === 'right'" @click="select(v)" :size="iconSize" :name="(value.indexOf(v.value) != -1) ? selectIcon : unSelectedIcon" :color="(value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor"></bui-icon>
+            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': width120]" :style="Object.assign({}, {'font-size':fontSize, 'color': (value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}</text>
+            <bui-icon v-if="textDirection === 'left'" @click="select(v)" :size="iconSize" :name="(value.indexOf(v.value) != -1) ? selectIcon : unSelectedIcon" :color="(value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor"></bui-icon>
         </div>
     </div>
 </template>
@@ -65,6 +54,13 @@
                 type: String,
                 default:"#9ea7b4"
             },
+            "width120": {
+                type: String,
+                default: 'width120'
+            },
+            "containerStyle": {
+                type: Object
+            },
             "textStyles": {
                 type: Object
             },
@@ -78,6 +74,9 @@
             }
         },
         computed:{
+            newTextStyles(){
+                return Object.assign({}, {'height': this.fontSize+5}, this.textStyle);
+            },
             leftColumn (){
                 return this.direction=="horizontal" ? false : true
             },
@@ -133,3 +132,10 @@
     }
 </script>
 <style lang="sass" src="../css/radio.scss"></style>
+<style scoped>
+    .width120{
+        width: 120px;
+        text-overflow: ellipsis;
+        lines: 1;
+    }
+</style>

@@ -1,27 +1,21 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
-        <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'']" v-for="(v, index) in items" :key="index" @click="select(v)">
-            <div v-if="textDirection === 'right'">
-                <div class="bui-icon-box">
-                    <bui-icon @click="select(v)"  :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
-                </div>
-            </div>
+        <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'', leftColumn ? '' : width250]" :style="containerStyle" v-for="(v, index) in items" :key="index" @click="select(v)">
+            <bui-icon v-if="textDirection === 'right'" @click="select(v)"  :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
 
+            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': width120]" :style="Object.assign({}, {'font-size':fontSize, 'color': (v.value === value) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}</text>
 
-            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': (v.value === value) ? selectedColor : unSelectedColor}, textStyles)">{{v.title || v.value}}</text>
+            <bui-icon @click="select(v)" v-if="textDirection === 'left'" :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
 
-
-            <div v-if="textDirection === 'left'" :class="[leftColumn ? 'cb-flex-1': '']">
-
-                <div class="bui-icon-box">
-                    <bui-icon @click="select(v)"  :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
-                </div>
-
-            </div>
         </div>
     </div>
 </template>
 <style lang="sass" src="../css/radio.scss"></style>
+<style scoped>
+    .width120{
+        width: 120px;
+    }
+</style>
 
 <script>
     module.exports = {
@@ -53,7 +47,11 @@
                 type:[String,Number],
                 default:48
             },
-            "textStyles": {
+            "width120": {
+                type: String,
+                default: 'width120'
+            },
+            "containerStyle": {
                 type: Object
             },
             "selectedColor":{
@@ -77,6 +75,9 @@
             }
         },
         computed:{
+            newTextStyles(){
+                return Object.assign({}, {'height': this.fontSize+5}, this.textStyle);
+            },
             changeDirection () {
                 return this.direction=="horizontal"? "flex-row":"flex-column";
             },

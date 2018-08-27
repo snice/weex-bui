@@ -101,9 +101,6 @@
         },
         methods: {
             _leftClick (e) {
-                if (this.useDefaultReturn) {
-                    this.$pop();
-                }
                 this.$emit('leftClick', e);
             },
             _rightClick (e) {
