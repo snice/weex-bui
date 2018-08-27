@@ -229,11 +229,28 @@ let buiweex = {
     /**
      * 返回上个页面
      * @method pop
+     * @param options {object} 配置参数
+     * @param options.animated {bool} 是否需要过渡动画，默认true
+     * @param options.level {int} 返回层级，默认1
+     * @param callback {function} 回调函数
      */
-    pop(callback) {
+    pop(callback,options) {
+        options = options||{};
         navigator.pop({
-            animated: 'true'
+            animated:options.animated || 'true',
+            level:options.level || 1
         },callback);
+    },
+
+    /**
+     * 返回根页面
+     * @param options {object} 配置参数
+     */
+    close(options){
+        options = options||{};
+        navigator.close({
+            animated:options.animated || "true"
+        });
     },
 
     /**
@@ -336,14 +353,6 @@ let buiweex = {
         });
     },
 
-    // /**
-    //  * 判断是否是 iphone x
-    //  * @return {*|boolean}
-    //  */
-    // isIPhoneX() {
-    //     return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
-    // },
-
     /**
      * 适配viewport
      */
@@ -422,6 +431,8 @@ let buiweex = {
         Vue.prototype.$push = that.push;
 
         Vue.prototype.$pop = that.pop;
+
+        Vue.prototype.$close = that.close;
 
         Vue.prototype.$getPageParams = that.getPageParams;
 
