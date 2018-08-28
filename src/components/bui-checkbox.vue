@@ -2,7 +2,7 @@
     <div :class="[changeDirection,'flex-fluid']">
         <div class="radio-box flex-row" :style="containerStyle" :class="[(v.disabled || disabled) ? 'disabled':'']" @click="select(v)" v-for="(v, i) in items">
             <bui-icon v-if="textDirection === 'right'" @click="select(v)" :size="iconSize" :name="(value.indexOf(v.value) != -1) ? selectIcon : unSelectedIcon" :color="(value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor"></bui-icon>
-            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': width120]" :style="Object.assign({}, {'font-size':fontSize, 'color': (value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}</text>
+            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': (value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}</text>
             <bui-icon v-if="textDirection === 'left'" @click="select(v)" :size="iconSize" :name="(value.indexOf(v.value) != -1) ? selectIcon : unSelectedIcon" :color="(value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor"></bui-icon>
         </div>
     </div>
@@ -53,10 +53,6 @@
             "unSelectedColor":{
                 type: String,
                 default:"#9ea7b4"
-            },
-            "width120": {
-                type: String,
-                default: 'width120'
             },
             "containerStyle": {
                 type: Object
@@ -132,10 +128,3 @@
     }
 </script>
 <style lang="sass" src="../css/radio.scss"></style>
-<style scoped>
-    .width120{
-        width: 120px;
-        text-overflow: ellipsis;
-        lines: 1;
-    }
-</style>

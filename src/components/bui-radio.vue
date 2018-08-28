@@ -1,9 +1,9 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
-        <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'', leftColumn ? '' : width250]" :style="containerStyle" v-for="(v, index) in items" :key="index" @click="select(v)">
+        <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'']" :style="containerStyle" v-for="(v, index) in items" :key="index" @click="select(v)">
             <bui-icon v-if="textDirection === 'right'" @click="select(v)"  :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
 
-            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': width120]" :style="Object.assign({}, {'font-size':fontSize, 'color': (v.value === value) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}</text>
+            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': (v.value === value) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}</text>
 
             <bui-icon @click="select(v)" v-if="textDirection === 'left'" :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
 
@@ -11,12 +11,6 @@
     </div>
 </template>
 <style lang="sass" src="../css/radio.scss"></style>
-<style scoped>
-    .width120{
-        width: 120px;
-    }
-</style>
-
 <script>
     module.exports = {
         props: {
@@ -46,10 +40,6 @@
             "iconSize":{
                 type:[String,Number],
                 default:48
-            },
-            "width120": {
-                type: String,
-                default: 'width120'
             },
             "containerStyle": {
                 type: Object
@@ -94,7 +84,7 @@
             select (v) {
                 if(v.disabled || this.disabled) return;
                 this.$emit("change", v.value, v);
-                this.$emit("input", v.value);
+                this.$emit("input", v.value, v);
             }
         },
     }
