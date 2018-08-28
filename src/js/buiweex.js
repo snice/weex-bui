@@ -203,7 +203,7 @@ let buiweex = {
             url += "?";
         }
         url += paramsStr;
-        //link平台中使用navigatorEx,debugtool中使用navigator
+        //link平台中使用navigatorEx,playground中使用navigator
         try {
             if(url.indexOf('http') == 0 || url.indexOf('file') == 0) navigatorEx.push(url);
             else{
@@ -243,14 +243,18 @@ let buiweex = {
     },
 
     /**
-     * 返回根页面
+     * 退出当前轻应用
      * @param options {object} 配置参数
      */
     close(options){
         options = options||{};
-        navigator.close({
-            animated:options.animated || "true"
-        });
+        try{
+            navigatorEx.close();
+        }catch (ex){
+            navigator.close({
+                animated:options.animated || "true"
+            });
+        }
     },
 
     /**
