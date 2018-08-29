@@ -66,7 +66,7 @@
         },
         computed:{
             newTextStyles(){
-                return Object.assign({}, {'height': this.fontSize-0+5}, this.textStyle);
+                return Object.assign({}, {'height': this.fontSize-0+5, 'line-height': this.fontSize-0+5}, this.textStyle);
             },
             changeDirection () {
                 return this.direction=="horizontal"? "flex-row":"flex-column";
