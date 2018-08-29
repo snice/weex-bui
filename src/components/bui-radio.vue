@@ -1,6 +1,6 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
-        <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'']" :style="containerStyle" v-for="(v, index) in items" :key="index" @click="select(v)">
+        <div class="radio-box flex-row" :class="[(v.disabled || disabled) ? 'disabled':'undisabled']" :style="containerStyle" v-for="(v, index) in items" :key="index" @click="select(v)">
             <bui-icon v-if="textDirection === 'right'" @click="select(v)"  :size="iconSize" :name="(v.value === value) ? selectIcon : unSelectedIcon" :color="(v.value === value) ? selectedColor : unSelectedColor"></bui-icon>
 
             <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': (v.value === value) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}</text>

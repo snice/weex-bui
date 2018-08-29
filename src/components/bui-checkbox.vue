@@ -1,8 +1,8 @@
 <template>
     <div :class="[changeDirection,'flex-fluid']">
-        <div class="radio-box flex-row" :style="containerStyle" :class="[(v.disabled || disabled) ? 'disabled':'']" @click="select(v)" v-for="(v, i) in items">
+        <div class="radio-box flex-row" :style="containerStyle" :class="[(disabled) ? 'disabled':'undisabled']" @click="select(v)" v-for="(v, i) in items">
             <bui-icon v-if="textDirection === 'right'" @click="select(v)" :size="iconSize" :name="(value.indexOf(v.value) != -1) ? selectIcon : unSelectedIcon" :color="(value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor"></bui-icon>
-            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': (value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}</text>
+            <text class="radio-label" :class="[leftColumn ? 'cb-flex-9': '']" :style="Object.assign({}, {'font-size':fontSize, 'color': (value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor}, newTextStyles)">{{v.title || v.value}}{{disabled}}{{v.disabled}}</text>
             <bui-icon v-if="textDirection === 'left'" @click="select(v)" :size="iconSize" :name="(value.indexOf(v.value) != -1) ? selectIcon : unSelectedIcon" :color="(value.indexOf(v.value) != -1) ? selectedColor : unSelectedColor"></bui-icon>
         </div>
     </div>
