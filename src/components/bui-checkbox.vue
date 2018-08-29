@@ -71,7 +71,7 @@
         },
         computed:{
             newTextStyles(){
-                return Object.assign({}, {'height': this.fontSize+5}, this.textStyle);
+                return Object.assign({}, {'height': this.fontSize-0+5}, this.textStyle);
             },
             leftColumn (){
                 return this.direction=="horizontal" ? false : true
