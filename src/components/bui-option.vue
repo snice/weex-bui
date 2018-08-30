@@ -115,6 +115,7 @@
                     color: disabled ? disabledColor : selected ? selectedColor : color
                 }
             },
+
         },
         methods: {
             _click () {

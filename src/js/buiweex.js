@@ -50,6 +50,9 @@ let buiweex = {
     buiTimeline: require("../components/bui-timeline.vue"),
     buiTimelineItem: require("../components/bui-timeline-item.vue"),
     buiTag: require("../components/bui-tag.vue"),
+    buiOptionList: require("../components/bui-option-list.vue"),
+    // buiCheckboxs: require("../components/bui-checkboxs.vue"),
+    // buiRadios: require("../components/bui-radios.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -417,6 +420,9 @@ let buiweex = {
                 'bui-timeline': that.buiTimeline,
                 'bui-timeline-item': that.buiTimelineItem,
                 'bui-tag': that.buiTag,
+                'bui-option-list': that.buiOptionList,
+                // 'bui-checkboxs': that.buiCheckboxs,
+                // 'bui-radios': that.buiRadios,
             }
         });
 
