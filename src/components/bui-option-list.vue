@@ -1,6 +1,7 @@
 <template>
     <div class="radio-box flex-row"
          :class="[isOpacity]"
+         :style="Object.assign({}, cWrapperStyle, containerStyle)"
          @click="_click"
          :accessible="true"
          :aria-label="`${title},${checked?'已选中':'未选中'}`">
@@ -78,16 +79,13 @@
                 type: String,
                 default:"ion-ios-checkmark-outline"
             },
-            "containerStyle": {
-                type: Object
-            },
             "textStyles": {
                 type: Object
             },
         },
         computed: {
             //多格筛选项外框样式
-            cWrapperStyle () {
+            isOpacity () {
                 const { disabled } = this;
                 return disabled ? 'disabled' : 'undisabled'
             },

@@ -73,9 +73,12 @@
             }
         },
         watch: {
-            items () {
+            value (){
                 this.newList = this.initList();
-            }
+            },
+            // items () {
+            //     this.newList = this.initList();
+            // }
         },
         computed: {
             customStyles(){

@@ -41,7 +41,10 @@
                 default: false
             },
             "containerStyle": {
-                type: Object
+                type: Object,
+                default: function () {
+                    return {}
+                }
             },
             "textStyles": {
                 type: Object
@@ -77,15 +80,21 @@
                 default:"ion-ios-checkmark-outline"
             },
         },
+        mounted(){
+
+        },
         data () {
             return {
                 newItems: this.initList()
             }
         },
         watch: {
-            items () {
+            value (){
                 this.newList = this.initList();
-            }
+            },
+            // items () {
+            //     this.newList = this.initList();
+            // }
         },
         computed: {
             customStyles(){
@@ -100,6 +109,8 @@
                     "unSelectedIcon": this.unSelectedIcon,
                     "textStyles": this.textStyles,
                     "leftColumn": this.leftColumn,
+                    "cWrapperStyle": this.cWrapperStyle,
+                    "containerStyle": this.containerStyle,
                 }
             },
             cWrapperStyle () {
