@@ -75,10 +75,7 @@
         watch: {
             value (){
                 this.newList = this.initList();
-            },
-            // items () {
-            //     this.newList = this.initList();
-            // }
+            }
         },
         computed: {
             customStyles(){
@@ -98,7 +95,9 @@
             cWrapperStyle () {
                 const { disabled } = this;
                 return {
-                    opacity: disabled ? 0.5 : 1
+                    opacity: disabled ? 0.5 : 1,
+                    paddingTop : '15px',
+                    paddingBottom : '15px',
                 }
             },
             changeDirection(){
@@ -133,8 +132,9 @@
             select(index){
                 if(this.disabled) return;
                 this.updateList(index);
-                this.$emit('selected', this.value , this.newItems.filter(item => item.selected)
-                );
+                this.$emit('selected', this.value, this.newItems.filter(item => item.selected));
+                this.$emit('input', this.value, this.newItems.filter(item => item.selected));
+                this.$emit("change", this.value, this.newItems.filter(item => item.selected));
             },
             //筛选时数据渲染
             updateList(index){

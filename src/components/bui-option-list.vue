@@ -1,7 +1,6 @@
 <template>
     <div class="radio-box flex-row"
          :class="[isOpacity]"
-         :style="Object.assign({}, cWrapperStyle, containerStyle)"
          @click="_click"
          :accessible="true"
          :aria-label="`${title},${checked?'已选中':'未选中'}`">
@@ -95,7 +94,8 @@
                 const { selected } = this;
                 return {
                     "font-size": fontSize,
-                    "color": selected ? selectedColor : color
+                    "color": selected ? selectedColor : color,
+                    "marginLeft" : '5px'
                 }
             },
             lasetColor(){

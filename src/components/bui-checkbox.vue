@@ -109,14 +109,14 @@
                     "unSelectedIcon": this.unSelectedIcon,
                     "textStyles": this.textStyles,
                     "leftColumn": this.leftColumn,
-                    "cWrapperStyle": this.cWrapperStyle,
-                    "containerStyle": this.containerStyle,
                 }
             },
             cWrapperStyle () {
                 const { disabled } = this;
                 return {
-                    opacity: disabled ? 0.5 : 1
+                    opacity: disabled ? 0.5 : 1,
+                    paddingTop : '15px',
+                    paddingBottom : '15px',
                 }
             },
             changeDirection(){
@@ -163,8 +163,9 @@
                     }else{
                         this.value.push(this.newItems[index].value);
                     }
-                    this.$emit('selected', this.value , this.newItems.filter(item => item.selected)
-                    );
+                    this.$emit('selected', this.value , this.newItems.filter(item => item.selected));
+                    this.$emit('input', this.value, this.newItems.filter(item => item.selected));
+                    this.$emit("change", this.value, this.newItems.filter(item => item.selected));
                 }
             },
             //筛选时数据渲染
