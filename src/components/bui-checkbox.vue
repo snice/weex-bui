@@ -16,7 +16,10 @@
         components: { 'bui-option-list' : buiOptionlist },
         props: {
             "items": {
-                type: Array
+                type: Array,
+                default: function () {
+                    return []
+                }
             },
             // 是否可选
             "disabled": {
@@ -24,7 +27,10 @@
                 default: false
             },
             "value": {
-                type: Array
+                type: Array,
+                default: function () {
+                    return []
+                }
             },
             "direction": {
                 type: String,
