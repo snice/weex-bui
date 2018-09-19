@@ -208,18 +208,18 @@ let buiweex = {
         url += paramsStr;
         //link平台中使用navigatorEx,playground中使用navigator
         try {
-            if(url.indexOf('http') == 0 || url.indexOf('file') == 0) navigatorEx.push(url);
-            else{
+            if (url.indexOf('http') == 0 || url.indexOf('file') == 0) navigatorEx.push(url);
+            else {
                 url = _this.getContextPath() + '/' + url;
                 navigatorEx.push(url);
             }
         } catch (ex) {
-            if(url.indexOf('http') == 0 || url.indexOf('file') == 0) {
+            if (url.indexOf('http') == 0 || url.indexOf('file') == 0) {
                 navigator.push({
                     url: url,
                     animated: 'true'
                 }, callback);
-            }else{
+            } else {
                 url = _this.getContextPath() + '/' + url;
                 navigator.push({
                     url: url,
@@ -237,12 +237,12 @@ let buiweex = {
      * @param options.level {int} 返回层级，默认1
      * @param callback {function} 回调函数
      */
-    pop(callback,options) {
-        options = options||{};
+    pop(callback, options) {
+        options = options || {};
         navigator.pop({
-            animated:options.animated || 'true',
-            level:options.level || 1
-        },callback);
+            animated: options.animated || 'true',
+            level: options.level || 1
+        }, callback);
     },
 
     /**
@@ -250,12 +250,12 @@ let buiweex = {
      * @param options {object} 配置参数
      */
     close(options){
-        options = options||{};
-        try{
+        options = options || {};
+        try {
             navigatorEx.close();
-        }catch (ex){
+        } catch (ex) {
             navigator.close({
-                animated:options.animated || "true"
+                animated: options.animated || "true"
             });
         }
     },
@@ -341,8 +341,14 @@ let buiweex = {
                 url += "?";
             }
             if (typeof data == "object") {
-                for (let key in data) {
-                    url += `&${key}=${encodeURIComponent(data[key])}`;
+                let dLength = Object.keys(data).length;
+                for (let i = 0; i < dLength; i++) {
+                    let key = Object.keys(data)[i];
+                    let value = encodeURIComponent(data[key]);
+                    url += `${key}=${value}`;
+                    if (i != dLength - 1) {
+                        url += "&";
+                    }
                 }
             }
             stream.fetch({
@@ -368,7 +374,7 @@ let buiweex = {
         const meta = weex.requireModule('meta');
         let width = 750;
 
-        if(util.isIPad()) {
+        if (util.isIPad()) {
             _this.alert(122);
             width = 1280;
         }
