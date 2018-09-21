@@ -2,11 +2,6 @@
 
 .radio-box {
   align-items: center;
-  padding-top: $nb15;
-  padding-bottom: $nb15;
-  padding-left: $nb5;
-  //margin-right: $nb40;
-  //padding-right: $nb20;
 }
 .checkbox{
   border-bottom-width: 1px;
@@ -18,11 +13,13 @@
 
 .radio-label {
   font-size: $nb30;
-  margin-left: $nb5;
 }
 
 .disabled {
   opacity: 0.5;
+}
+.undisabled{
+  opacity: 1;
 }
 
 .switch-box {

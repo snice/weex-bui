@@ -52,7 +52,7 @@
                 this.$emit('load');
             },
             _isHttpOrFile(path){
-                return path.startsWith("http")||path.startsWith("file");
+                return path.indexOf("http")==0 || path.indexOf("file")==0;
             },
             _getContext(){
                 let url = weex.config.bundleUrl;
@@ -63,7 +63,7 @@
                 if(this._isHttpOrFile(url)){
                     return url;
                 }else{
-                    if(url.startsWith("/")){
+                    if(url.indexOf("/")==0){
                         url=url.substring(url.indexOf("/")+1);
                     }
                     url =`file:///android_asset${ url==""?'':"/"}${url}`;

@@ -7,6 +7,9 @@ const navigator = weex.requireModule('navigator');
 const navigatorEx = weex.requireModule("NavigatorExModule");
 const stream = weex.requireModule('stream');
 
+
+import util from './util.js';
+
 let buiweex = {
     //components下的组件
     buiActionSheet: require("../components/bui-actionsheet.vue"),
@@ -41,12 +44,15 @@ let buiweex = {
     buiGridSelect: require("../components/bui-grid-select.vue"),
     buiFlow: require("../components/bui-flow.vue"),
     buiSwipeCell: require("../components/bui-swipe-cell.vue"),
-    icon:require("../components/icon.vue"),
-    buiTabbarScroller:require("../components/bui-tabbar-scroller.vue"),
+    icon: require("../components/icon.vue"),
+    buiTabbarScroller: require("../components/bui-tabbar-scroller.vue"),
     // buiEpSlider:require("../components/bui-ep-slider.vue"),
-    buiTimeline:require("../components/bui-timeline.vue"),
-    buiTimelineItem:require("../components/bui-timeline-item.vue"),
-    buiTag:require("../components/bui-tag.vue"),
+    buiTimeline: require("../components/bui-timeline.vue"),
+    buiTimelineItem: require("../components/bui-timeline-item.vue"),
+    buiTag: require("../components/bui-tag.vue"),
+    buiOptionList: require("../components/bui-option-list.vue"),
+    // buiCheckboxs: require("../components/bui-checkboxs.vue"),
+    // buiRadios: require("../components/bui-radios.vue"),
     /**
      * 吐司信息
      * @param msg {string} 提示文本
@@ -175,8 +181,8 @@ let buiweex = {
      */
     getContextPath() {
         let url = weex.config.bundleUrl;
-        if(url.indexOf('?')>0){
-            url = url.substring(0,url.indexOf('?'));
+        if (url.indexOf('?') > 0) {
+            url = url.substring(0, url.indexOf('?'));
         }
         url = url.split('/').slice(0, -1).join('/');
         return url;
@@ -188,7 +194,7 @@ let buiweex = {
      * @param url {string} bundle js 地址
      * @param params {object} 传递的参数
      */
-    push(url, params) {
+    push(url, params, callback) {
         let paramsStr = "";
         let _this = buiweex;
         if (params) {
@@ -196,31 +202,62 @@ let buiweex = {
                 paramsStr += key + "=" + encodeURIComponent(params[key]) + "&";
             }
         }
-        if (url.indexOf('?') < 0 && paramsStr!="") {
+        if (url.indexOf('?') < 0 && paramsStr != "") {
             url += "?";
         }
         url += paramsStr;
-        //link平台中使用navigatorEx,debugtool中使用navigator
+        //link平台中使用navigatorEx,playground中使用navigator
         try {
-            navigatorEx.push(_this.getContextPath()+ '/'+url);
+            if (url.indexOf('http') == 0 || url.indexOf('file') == 0) navigatorEx.push(url);
+            else {
+                url = _this.getContextPath() + '/' + url;
+                navigatorEx.push(url);
+            }
         } catch (ex) {
-            navigator.push({
-                url: _this.getContextPath()+ '/'+url,
-                animated: 'true'
-            }, e => {
-            });
+            if (url.indexOf('http') == 0 || url.indexOf('file') == 0) {
+                navigator.push({
+                    url: url,
+                    animated: 'true'
+                }, callback);
+            } else {
+                url = _this.getContextPath() + '/' + url;
+                navigator.push({
+                    url: url,
+                    animated: 'true'
+                }, callback);
+            }
         }
     },
 
     /**
      * 返回上个页面
      * @method pop
+     * @param options {object} 配置参数
+     * @param options.animated {bool} 是否需要过渡动画，默认true
+     * @param options.level {int} 返回层级，默认1
+     * @param callback {function} 回调函数
      */
-    pop() {
+    pop(callback, options) {
+        options = options || {};
         navigator.pop({
-            animated: 'true'
-        }, e => {
-        });
+            animated: options.animated || 'true',
+            level: options.level || 1
+        }, callback);
+    },
+
+    /**
+     * 退出当前轻应用
+     * @param options {object} 配置参数
+     */
+    close(options){
+        options = options || {};
+        try {
+            navigatorEx.close();
+        } catch (ex) {
+            navigator.close({
+                animated: options.animated || "true"
+            });
+        }
     },
 
     /**
@@ -304,8 +341,14 @@ let buiweex = {
                 url += "?";
             }
             if (typeof data == "object") {
-                for (let key in data) {
-                    url += `&${key}=${encodeURIComponent(data[key])}`;
+                let dLength = Object.keys(data).length;
+                for (let i = 0; i < dLength; i++) {
+                    let key = Object.keys(data)[i];
+                    let value = encodeURIComponent(data[key]);
+                    url += `${key}=${value}`;
+                    if (i != dLength - 1) {
+                        url += "&";
+                    }
                 }
             }
             stream.fetch({
@@ -324,11 +367,21 @@ let buiweex = {
     },
 
     /**
-     * 判断是否是 iphone x
-     * @return {*|boolean}
+     * 适配viewport
      */
-    isIPhoneX() {
-        return weex && (weex.config.env.deviceModel === 'iPhone10,3' || weex.config.env.deviceModel === 'iPhone10,6');
+    fixViewport(){
+        let _this = buiweex;
+        const meta = weex.requireModule('meta');
+        let width = 750;
+
+        if (util.isIPad()) {
+            _this.alert(122);
+            width = 1280;
+        }
+
+        meta.setViewport({
+            width: width
+        });
     },
 
     install(Vue, options) {
@@ -359,20 +412,23 @@ let buiweex = {
                 'bui-content': that.buiContent,
                 'bui-content-scroll': that.buiContentScroll,
                 'bui-image-slider': that.buiImageSlider,
-                'bui-cell':that.buiCell,
-                'bui-popup':that.buiPopup,
+                'bui-cell': that.buiCell,
+                'bui-popup': that.buiPopup,
                 'bui-number-input': that.buiNumberInput,
-                'bui-richcell':that.buiRichcell,
-                'bui-popupshow':that.buiPopupShow,
-                'bui-grid-select':that.buiGridSelect,
-                'bui-flow':that.buiFlow,
-                'bui-swipe-cell':that.buiSwipeCell,
-                'icon':that.icon,
+                'bui-richcell': that.buiRichcell,
+                'bui-popupshow': that.buiPopupShow,
+                'bui-grid-select': that.buiGridSelect,
+                'bui-flow': that.buiFlow,
+                'bui-swipe-cell': that.buiSwipeCell,
+                'icon': that.icon,
                 'bui-tabbar-scroller': that.buiTabbarScroller,
                 // 'bui-ep-slider': that.buiEpSlider,
                 'bui-timeline': that.buiTimeline,
                 'bui-timeline-item': that.buiTimelineItem,
                 'bui-tag': that.buiTag,
+                'bui-option-list': that.buiOptionList,
+                // 'bui-checkboxs': that.buiCheckboxs,
+                // 'bui-radios': that.buiRadios,
             }
         });
 
@@ -392,13 +448,26 @@ let buiweex = {
 
         Vue.prototype.$pop = that.pop;
 
+        Vue.prototype.$close = that.close;
+
         Vue.prototype.$getPageParams = that.getPageParams;
 
         Vue.prototype.$post = that.post;
 
         Vue.prototype.$get = that.get;
 
-        Vue.prototype.$isIPhoneX = that.isIPhoneX;
+        Vue.prototype.$formatDate = util.formatDate;
+
+        Vue.prototype.$isIPad = util.isIPad();
+
+        Vue.prototype.$isIPhoneX = util.isIPhoneX();
+
+        Vue.prototype.$isIPhone = util.isIPhone();
+
+        Vue.prototype.$isAndroid = util.isAndroid();
+
+        Vue.prototype.$fixStyle = util.fixStyle();
+
     }
 }
 

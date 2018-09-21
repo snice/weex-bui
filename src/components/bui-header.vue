@@ -59,11 +59,11 @@
             },
             leftItem: {
                 type: Object,
-                default: ""
+                default: defaultItem
             },
             rightItem: {
                 type: Object,
-                default: ""
+                default: defaultItem
             },
             textColor: {
                 type: String,
@@ -88,11 +88,7 @@
             maxTitleWidth: {
                 type: String,
                 default: "400px"
-            },
-            useDefaultReturn: {
-                type: Boolean,
-                default: true
-            },
+            }
         },
         computed: {
             iosFixed () {
@@ -101,9 +97,6 @@
         },
         methods: {
             _leftClick (e) {
-                if (this.useDefaultReturn) {
-                    this.$pop();
-                }
                 this.$emit('leftClick', e);
             },
             _rightClick (e) {
