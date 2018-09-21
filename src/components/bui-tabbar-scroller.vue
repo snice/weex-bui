@@ -1,12 +1,12 @@
 <template>
     <scroller :show-scrollbar="false" scroll-direction="horizontal" class="tab-bar" :style="{height:(tabStyles().height)+'px',width:width+'px'}">
         <div class="tab-bar-item" :ref="'tabbar-item'+index" v-for="(item,index) in tabs" @click="handleClick($event,item,index)" :style="tabStyles(index)">
-            <bui-image v-if="item.pic || item.selectedPic" class="tab-bar-image" :src="index === current ? item.selectedPic || item.pic : item.pic" :width="imageStyles().width" :height="imageStyles().height" :radius="imageStyles().radius" @click="handleClick($event,item,index)"></bui-image>
+            <bui-image v-if="item.pic || item.selectedPic" class="tab-bar-image" :src="index === value ? item.selectedPic || item.pic : item.pic" :width="imageStyles().width" :height="imageStyles().height" :radius="imageStyles().radius" @click="handleClick($event,item,index)"></bui-image>
             <bui-icon v-else-if="item.icon" :name="item.icon"
-                      :color="index === current ? iconStyles().selectedColor : iconStyles().color"
+                      :color="index === value ? iconStyles().selectedColor : iconStyles().color"
                       @click="handleClick($event,item,index)" :size="iconStyles().size">
             </bui-icon>
-            <text class="tab-bar-text" :style="{color : index == current ? tabStyle.selectedColor : tabStyle.color,fontSize:tabStyle.fontSize}">{{item.title}}</text>
+            <text class="tab-bar-text" :style="{color : index == value ? tabStyle.selectedColor : tabStyle.color,fontSize:tabStyle.fontSize}">{{item.title}}</text>
         </div>
     </scroller>
 </template>
@@ -66,7 +66,7 @@
                 type : Number,
                 default : 750
             },
-            current : {
+            value : {
                 type : Number,
                 default : 0
             }
@@ -79,14 +79,15 @@
         },
         methods : {
             handleClick(e,item,index){
-                this.prevIndex = this.current;
+                this.prevIndex = this.value;
                 this.to(index);
-                this.$emit('change',e,item,index);
+                this.$emit('change',index);
+                this.$emit('input',index);
             },
             to(index){
                 const prev = this.prevIndex;
                 const currentTabEl = this.$refs[`tabbar-item${index}`][0];
-                this.current = index;
+                this.value = index;
                 const width = parseInt(this.tabStyles().width);
                 const visibleNum = Math.floor(this.width / width);
                 const tabsNum = this.tabs.length;
@@ -104,21 +105,21 @@
                 }
             },
             next(){
-                let index = this.current;
+                let index = this.value;
                 if (index < this.tabs.length - 1) {
                     index++;
                 }
                 this.to(index);
             },
             prev(){
-                let index = this.current;
+                let index = this.value;
                 if (index > 0) {
                     index--;
                 }
                 this.to(index);
             },
             tabStyles(index){
-                let selected = index == this.current;
+                let selected = index == this.value;
 
                 this.tabStyle = Object.assign(tableDefaultStyle,this.tabStyle);
 
@@ -159,7 +160,7 @@
             },
         },
         watch : {
-            current (newVal,oldValue){
+            value (newVal,oldValue){
                 this.prevIndex = oldValue || 0;
                 this.to(newVal);
             }
