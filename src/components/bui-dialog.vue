@@ -18,7 +18,7 @@
     </div>
 </template>
 
-<style lang="sass" src="../css/dialog.scss"></style>
+<style lang="scss" src="../css/dialog.scss"></style>
 <script>
     module.exports = {
         props: {

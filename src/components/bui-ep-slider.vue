@@ -28,9 +28,6 @@
 <script>
     const swipeBack = weex.requireModule('swipeBack');
     const animation = weex.requireModule('animation');
-    import Utils from '../utils/index.js';
-    import BindEnv from '../utils/bind-env.js';
-    import Binding from 'weex-bindingx/lib/index.weex.js';
     module.exports = {
         props: {
             sliderId: {

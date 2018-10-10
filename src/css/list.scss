@@ -61,7 +61,7 @@
   padding-left: $nb20;
   flex: 1;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: #fffffffff;
 }
 
 .bui-list-right {
@@ -101,32 +101,16 @@
   width: 750px;
   height: 150px;
   flex-direction: column;
-  display: -ms-flex;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
   align-items: center;
   justify-content: center;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 .bui-refresh{
-  //position: absolute;
-  //left: 0px;
-  //right: 0px;
-  //height: 100px;
   justify-content: center;
   flex-direction: row;
   width: 750px;
   height: 100px;
-  display: -ms-flex;
-  display: -webkit-flex;
-  display: flex;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;

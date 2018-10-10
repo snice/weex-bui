@@ -95,4 +95,4 @@
     }
 </script>
 
-<style lang="sass" src="../css/actionsheet.scss"/>
+<style lang="scss" src="../css/actionsheet.scss"/>

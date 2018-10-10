@@ -59,4 +59,4 @@
         },
     }
 </script>
-<style lang="sass" src="../css/radio.scss"></style>
+<style lang="scss" src="../css/radio.scss"></style>

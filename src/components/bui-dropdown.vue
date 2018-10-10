@@ -9,7 +9,7 @@
         </div>
     </div>
 </template>
-<style lang="sass" src="../css/dropdown.scss"></style>
+<style lang="scss" src="../css/dropdown.scss"></style>
 <script>
     var animation = weex.requireModule('animation');
     var platform = weex.config.env.platform;

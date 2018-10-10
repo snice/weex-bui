@@ -36,8 +36,8 @@
         </div>
     </div>
 </template>
-<style lang="sass" src="../css/header.scss"></style>
-<style lang="sass" src="../css/layout.scss"></style>
+<style lang="scss" src="../css/header.scss"></style>
+<style lang="scss" src="../css/layout.scss"></style>
 
 <script>
     var defaultItem = {

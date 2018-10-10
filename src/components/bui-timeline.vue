@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<style lang="sass" src="../css/timeline.scss"></style>
+<style lang="scss" src="../css/timeline.scss"></style>
 
 <script>
     const prefixCls = 'bui-timeline';
