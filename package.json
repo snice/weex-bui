@@ -22,9 +22,8 @@
     "start": "npm run serve",
     "build": "webpack --env.NODE_ENV=production",
     "dev": "webpack --env.NODE_ENV=common --progress --watch",
-    "serve": "webpack-dev-server --env.NODE_ENV=development --progress",
+    "serve": "webpack-dev-server --env.NODE_ENV=development --progress"
   },
-  "license": "MIT",
   "dependencies": {
     "phantom-limb": "0.0.1",
     "vue": "^2.5.11",
