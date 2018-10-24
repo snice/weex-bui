@@ -4,7 +4,7 @@
          @longpress="_longPress"
          @click="_click">
         <slot></slot>
-        <text class="btn-text" :style="exTextStyle" v-if="value!=''" :value="value"></text>
+        <text class="btn-text" :style="exTextStyle" v-if="value!=''">{{value}}</text>
     </div>
 </template>
 
