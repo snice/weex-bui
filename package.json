@@ -1,7 +1,7 @@
 {
   "name": "bui-weex",
   "description": "UI Component for weex framework",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "src/js/buiweex.js",
   "keywords": [
     "weex",
@@ -38,7 +38,6 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.2",
-    "happypack": "^5.0.0",
     "ip": "^1.1.5",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.9.3",

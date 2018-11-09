@@ -4,7 +4,7 @@
 .bui-timeline{
   margin: 0;
   padding: 0;
-  flex-direction: column;
+  /*flex-direction: column;*/
 }
 
 .bui-timeline-item{
@@ -72,7 +72,7 @@
   padding-right: 0px;
   text-align: center;
   line-height: 1;
-  border: 0;
+  border-width: 0;
   border-radius: 0;
   font-size: 28px;
   position: absolute;
@@ -86,7 +86,7 @@
   padding-top: 1px;
   padding-bottom: 1px;
   font-size: 28px;
-  position: relative;
+  /*position: relative;*/
 }
 
 .timeline-text{

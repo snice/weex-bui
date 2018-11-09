@@ -18,11 +18,16 @@
 /release
 /platforms
 /webpack.config.js
+/configs
+/plugins
+
 
 /src/entry
 /src/entry.js
 /src/js/mixins.js
 /src/views
 /src/image
+
+
 
 /web

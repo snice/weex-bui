@@ -6,7 +6,7 @@
 
 <style>
     .icon-block {
-        justify-content: flex-start;
+        /*justify-content: flex-start;*/
     }
 
     .icon {
