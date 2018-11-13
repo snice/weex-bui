@@ -7,7 +7,8 @@
 /src/css/*.css.map
 *log
 **/.DS_Store
-/.temp
+/src/entry/weex
+/src/entry/web
 /release
 /platforms
 /package-lock.json

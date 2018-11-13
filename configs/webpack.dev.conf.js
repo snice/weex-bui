@@ -177,7 +177,7 @@ module.exports = new Promise((resolve, reject) => {
             devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
                 compilationSuccessInfo: {
                     messages: [
-                        `Your application is running here: ${chalk.yellow(`http://${devWebpackConfig.devServer.host}:${port}`)}.`
+                        `Your application is running here:***http://${devWebpackConfig.devServer.host}:${port}/${openPage}`
                     ],
                 },
                 onErrors: config.dev.notifyOnErrors

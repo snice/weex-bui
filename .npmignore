@@ -21,9 +21,7 @@
 /configs
 /plugins
 
-
 /src/entry
-/src/entry.js
 /src/js/mixins.js
 /src/views
 /src/image

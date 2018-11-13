@@ -9,8 +9,9 @@ const config = {
   // router
   // common
   sourceDir: 'src',
-  templateDir: '.temp',
-  entryFilePath: 'entry.js',
+  templateWebDir: './src/entry/web',
+  templateWeexDir: './src/entry/weex',
+  entryFilePath: './src/entry/module/**',    //入口文件
   // Module exclude from compile process
   excludeModuleReg: /node_modules(?!(\/|\\).*(weex).*)/,
   // Filter for entry files
