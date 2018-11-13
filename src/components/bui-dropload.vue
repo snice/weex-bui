@@ -169,9 +169,18 @@ export default {
       this.$emit('loadmore',event);
       
     },
+    setRefreshTextMap(val){
+      this.refreshTextDefault =  Object.assign({},this.refreshTextDefault,val||{});
+      this.refreshText = this.refreshTextDefault.start;
+    },
+    setLoadingTextMap(val){
+      this.loadingTextDefault = Object.assign({},this.loadingTextDefault,val || {});
+      this.loadingText = this.loadingTextDefault.start;
+    }
   },
   created(){
-
+    this.setRefreshTextMap(this.refreshTextMap)
+    this.setLoadingTextMap(this.loadingTextMap);
   },
   mounted(){
     
@@ -214,16 +223,17 @@ export default {
       }else{
         return this.hasLoading;
       }
-    }
+    },
+    
   },
   watch : {
     refreshTextMap(val){
-      this.refreshTextDefault =  Object.assign({},this.refreshTextDefault,val);
-      this.refreshText = this.refreshTextDefault.start;
+
+      this.setRefreshTextMap(val);
     },
-    loadingTextDefault(val){
-      this.loadingTextDefault = Object.assign({},this.loadingTextDefault,val);
-      this.loadingText = this.loadingTextDefault.start;
+    loadingTextMap(val){
+      this.setLoadingTextMap(val);
+
     }
 
   }
