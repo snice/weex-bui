@@ -50,6 +50,7 @@
     "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.0",
     "weex-loader": "^0.7.2",
-    "weex-vue-precompiler": "^0.1.17"
+    "weex-vue-precompiler": "^0.1.17",
+    "html-webpack-plugin-for-multihtml": "^2.30.2",
   }
 }
