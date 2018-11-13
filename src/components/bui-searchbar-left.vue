@@ -9,8 +9,8 @@
     </div>
 </template>
 
-<style lang="sass" src="../css/layout.scss"></style>
-<style lang="sass" src="../css/searchbar.scss"></style>
+<style lang="scss" src="../css/layout.scss"></style>
+<style lang="scss" src="../css/searchbar.scss"></style>
 
 <script>
     module.exports = {

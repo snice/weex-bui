@@ -6,7 +6,7 @@
     </div>
 </template>
 
-<style lang="sass" src="../css/buiweex.scss"></style>
+<style lang="scss" src="../css/buiweex.scss"></style>
 
 <script>
     const globalEvent = weex.requireModule('globalEvent');

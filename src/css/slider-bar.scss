@@ -6,7 +6,7 @@
   top: 0px;
   bottom: 0px;
   background-color: $color_white;
-  flex-direction: column;
+  /*flex-direction: column;*/
 }
 .bui-left-slider-bar-box{
   left: -600px;
@@ -16,6 +16,6 @@
 }
 
 .bui-slider-content{
-  flex-direction: column;
+  /*flex-direction: column;*/
   flex: 1;
 }

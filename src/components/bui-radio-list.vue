@@ -7,7 +7,7 @@
         </div>
     </div>
 </template>
-<style lang="sass" src="../css/radio.scss"/>
+<style lang="scss" src="../css/radio.scss"/>
 
 <script>
     module.exports = {

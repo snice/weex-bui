@@ -10,13 +10,11 @@
 }
 
 .bui-dropdown-content{
-  position: relative;
   margin-top: $nb40;
   border-radius: $nb10;
-  flex-direction: column;
-  overflow: hidden;
+  /*flex-direction: column;*/
   padding: 15px;
-  flex-direction: column;
+  /*flex-direction: column;*/
   flex: 1;
 }
 

@@ -167,4 +167,4 @@
         }
     }
 </script>
-<style lang="sass" src="../css/tab-bar.scss"></style>
+<style lang="scss" src="../css/tab-bar.scss"></style>

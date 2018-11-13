@@ -127,4 +127,4 @@
     }
 </script>
 
-<style lang="sass" src="../css/gridselect.scss"/>
+<style lang="scss" src="../css/gridselect.scss"/>

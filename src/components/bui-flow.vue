@@ -79,4 +79,4 @@
     }
 </script>
 
-<style lang="sass" src="../css/flow.scss"/>
+<style lang="scss" src="../css/flow.scss"/>

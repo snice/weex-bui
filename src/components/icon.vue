@@ -1,5 +1,5 @@
 <template>
-    <text :value="getFontName" :style="getStyle"></text>
+    <text :style="getStyle">{{getFontName}}</text>
 </template>
 
 <script>
