@@ -51,6 +51,7 @@ let buiweex = {
     buiTimelineItem: require("../components/bui-timeline-item.vue"),
     buiTag: require("../components/bui-tag.vue"),
     buiOptionList: require("../components/bui-option-list.vue"),
+    buiDropload : require("../components/bui-dropload.vue"),
     // buiCheckboxs: require("../components/bui-checkboxs.vue"),
     // buiRadios: require("../components/bui-radios.vue"),
     /**
@@ -427,6 +428,7 @@ let buiweex = {
                 'bui-timeline-item': that.buiTimelineItem,
                 'bui-tag': that.buiTag,
                 'bui-option-list': that.buiOptionList,
+                'bui-dropload' : that.buiDropload,
                 // 'bui-checkboxs': that.buiCheckboxs,
                 // 'bui-radios': that.buiRadios,
             }
