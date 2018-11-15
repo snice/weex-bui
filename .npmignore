@@ -9,7 +9,7 @@
 /.idea
 /src/css/.sass-cache
 *log
-**/.DS_Store
+**/.DS_Storeg
 /.babelrc
 /.eslintrc
 /.gitignore
@@ -22,6 +22,7 @@
 /plugins
 
 /src/entry
+/src/router
 /src/js/mixins.js
 /src/views
 /src/image
