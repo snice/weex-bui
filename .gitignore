@@ -7,11 +7,10 @@
 /src/css/*.css.map
 *log
 **/.DS_Store
-/src/entry/weex
-/src/entry/web
 /release
 /platforms
 /package-lock.json
 /publish.zip
 /publish
+/.temp
 

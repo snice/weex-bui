@@ -8,18 +8,23 @@ const copy = require('copy-webpack-plugin');
 const vueLoaderConfig = require('./vue-loader.conf');
 const vueWebTemp = helper.rootNode(config.templateWebDir);
 const vueWeexTemp = helper.rootNode(config.templateWeexDir);
+const vueWebRouter = helper.rootNode(config.routerWebDir);
+const vueWeexRouter = helper.rootNode(config.routerWeexDir);
 const hasPluginInstalled = fs.existsSync(helper.rootNode(config.pluginFilePath));
 const isWin = /^win/.test(process.platform);
 const webEntry = {};
 const weexEntry = {};
 
 //web端入口文件的输出
-const getWebEntryFileContent = (entryPath, vueFilePath) => {
+const getWebEntryFileContent = (entryPath, vueFilePath, routerB) => {
     let relativeEntryPath = helper.root(vueFilePath.replace('./src', ''));
     let contents = '';
     let entryContents = fs.readFileSync(relativeEntryPath).toString();
     let lastContents = "";
-    lastContents = `
+    lastContents = routerB ? `
+new Vue(Vue.util.extend({el: '#root', router}, App));
+router.push('/');
+` : `
 new Vue(Vue.util.extend({el: '#root'}, App));
 `;
     contents += `
@@ -31,28 +36,65 @@ weex.init(Vue)
 };
 
 //weex端入口文件的输出
-const getWeexEntryFileContent = (entryPath, vueFilePath) => {
+const getWeexEntryFileContent = (entryPath, vueFilePath, routerB) => {
     let relativeEntryPath = helper.root(vueFilePath.replace('./src', ''));
     let entryContents = fs.readFileSync(relativeEntryPath).toString();
     let lastContents = "";
-    lastContents = `
-App.el = '#root'
-new Vue(App)
+    lastContents = routerB ? `
+new Vue(Vue.util.extend({el: '#root', router}, App));
+router.push('/');
+` : `
+new Vue(Vue.util.extend({el: '#root'}, App));
 `;
     return entryContents + lastContents;
 };
+
+
+//处理router内容
+const getRouterFileContent = (source, bullean) => {
+    const dependence = `import Vue from 'vue'\n`;
+    let routerContents = fs.readFileSync(source).toString();
+    routerContents = bullean ? (dependence + routerContents) : routerContents;
+    return routerContents;
+}
+
+
+
+// Retrieve router file mappings by function recursion
+const getRouterFile = (dir) => {
+    dir = dir || config.sourceDir;
+    const entrys = glob.sync(config.routerFilePath, { 'nodir': true});
+    entrys.forEach(entry => {
+        const basename = entry.split('/');
+        console.log(entry)
+        const len = basename.length;
+        const lastname = basename[len-1];
+        const routerPathForWeb = path.join(vueWebRouter, lastname);
+        const routerPathForNative = path.join(vueWeexRouter, lastname);
+        fs.outputFileSync(routerPathForWeb, getRouterFileContent(entry, true));
+        fs.outputFileSync(routerPathForNative, getRouterFileContent(entry, false));
+    })
+}
+
+
 
 // Retrieve entry file mappings by function recursion
 const getEntryFile = (dir) => {
     dir = dir || config.sourceDir;
     const entrys = glob.sync(config.entryFilePath, { 'nodir': true});
     entrys.forEach(entry => {
-        const basename = entry.split('module/')[1];
-        const filename = basename.substr(0, basename.lastIndexOf('.'));
+        const basename = entry.split('/');
+        const len = basename.length;
+        const lastname = basename[len-1];
+        const reg = new RegExp(".router");
+        let router = false;
+        router = reg.test(lastname) ? true : false;
+        if(router) getRouterFile();
+        const filename = lastname.substr(0, lastname.lastIndexOf('.'));
         const templatePathForWeb = path.join(vueWebTemp, filename + '.web.js');
         const templatePathForNative = path.join(vueWeexTemp, filename + '.js');
-        fs.outputFileSync(templatePathForWeb, getWebEntryFileContent(templatePathForWeb, entry));
-        fs.outputFileSync(templatePathForNative, getWeexEntryFileContent(templatePathForNative, entry));
+        fs.outputFileSync(templatePathForWeb, getWebEntryFileContent(templatePathForWeb, entry, router));
+        fs.outputFileSync(templatePathForNative, getWeexEntryFileContent(templatePathForNative, entry, router));
         webEntry[filename] = templatePathForWeb;
         weexEntry[filename] = templatePathForNative;
     })
@@ -60,7 +102,6 @@ const getEntryFile = (dir) => {
 
 // Generate an entry file array before writing a webpack configuration
 getEntryFile();
-
 
 
 /**
@@ -82,17 +123,6 @@ const plugins = [
         {from: './src/image', to: "./image"},
         {from: './src/font', to: "./font"}
     ]),
-
-    /*
-    * webpack中为了方便各种资源和类型的加载，设计了以loader加载器的形式读取资源，但是受限于node的编程模型影响，所有的loader虽然以async的形式来并发调用，但是还是运行在单个 node的进程以及在同一个事件循环中，这就直接导致了当我们需要同时读取多个loader文件资源时，比如babel-loader需要transform各种jsx，es6的资源文件。在这种同步计算同时需要大量耗费cpu运算的过程中，node的单进程模型就无优势了，那么happypack就针对解决此类问题而生。
-    * happypack的处理思路是将原有的webpack对loader的执行过程从单一进程的形式扩展多进程模式，原本的流程保持不变，这样可以在不修改原有配置的基础上来完成对编译过程的优化
-    */
-    // new HappyPack({
-    //     id: 'babel',
-    //     verbose: true,
-    //     loaders: ['babel-loader?cacheDirectory=true'],
-    //     threadPool: HappyThreadPool
-    // }),
 ];
 
 
@@ -117,11 +147,6 @@ const getBaseConfig = () => ({
     module: {
         // webpack 2.0
         rules: [
-            // {
-            //     test: /\.js$/,
-            //     use: 'happypack/loader?id=babel',
-            //     exclude: config.excludeModuleReg
-            // },
             {
                 test: /\.js$/,
                 use: [{
