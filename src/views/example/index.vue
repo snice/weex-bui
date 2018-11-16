@@ -4,23 +4,23 @@
         </bui-header>
         <scroller>
             <catalog title="Layout"></catalog>
-            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item,index) in layout">
+            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item, index) in layout">
                 <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
             </bui-cell>
             <catalog title="Base"></catalog>
-            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item,index) in base">
+            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item, index) in base">
                 <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
             </bui-cell>
             <catalog title="Form"></catalog>
-            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item,index) in form">
+            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item, index) in form">
                 <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
             </bui-cell>
             <catalog title="Popup"></catalog>
-            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item,index) in popup">
+            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item, index) in popup">
                 <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
             </bui-cell>
             <catalog title="More"></catalog>
-            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item,index) in more">
+            <bui-cell @cellClick="jumpTo(item.url)" :title="item.name" :key="index" v-for="(item, index) in more">
                 <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
             </bui-cell>
         </scroller>
@@ -73,6 +73,7 @@
                     {name: "多格筛选(bui-grid-select)",text:"",url:"grid-select-demo.js"},
                     {name: "流程图(bui-flow)",text:"",url:"flow-demo.js"},
                     {name: "标签(bui-tag)",text:"",url:"tag-demo.js"},
+                    {name: "列表刷新(bui-dropload)",text:"",url:"dropload-demo.js"},
                     {name: "路由(router)",text:"",url:"index.router.js"},
                 ]
             }

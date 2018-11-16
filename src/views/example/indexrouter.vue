@@ -45,6 +45,9 @@
             }
         },
         methods: {
+            back() {
+                this.$pop();
+            },
             linkTo(path){
                 //点击后改变路由
                 this.$router.push({

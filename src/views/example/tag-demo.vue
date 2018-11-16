@@ -41,6 +41,9 @@
             }
         },
         methods: {
+            back() {
+                this.$pop();
+            },
         }
     }
 </script>

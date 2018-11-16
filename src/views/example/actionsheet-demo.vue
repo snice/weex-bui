@@ -14,7 +14,7 @@
         <bui-actionsheet
                 :items="actionsheetItems"
                 v-model="showAction"
-                @itemClick="actionsheetItemClick"
+                @itemClick= "actionsheetItemClick"
                 @btnClick="actionsheetBtnClick"
         ></bui-actionsheet>
 
