@@ -315,8 +315,8 @@ let buiweex = {
                 headers: headers,
                 body: data
             }, (res) => {
-                if (res.ok) {
-                    resolve(res.data, res.status, res.statusText);
+                if (res.status >= 200 && res.status <= 299) {
+                    resolve(res.data, res.status, res.statusText, res);
                 } else {
                     reject(res.status, res.statusText);
                 }
@@ -360,8 +360,8 @@ let buiweex = {
                 url: url,
                 headers: headers
             }, (res) => {
-                if (res.ok) {
-                    resolve(res.data, res.status, res.statusText);
+                if (res.status >= 200 && res.status <= 299) {
+                    resolve(res.data, res.status, res.statusText, res);
                 } else {
                     reject(res.status, res.statusText);
                 }

@@ -1,7 +1,7 @@
 {
   "name": "bui-weex",
   "description": "UI Component for weex framework",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "main": "src/js/buiweex.js",
   "keywords": [
     "weex",
@@ -22,7 +22,8 @@
     "start": "npm run serve",
     "build": "webpack --env.NODE_ENV=production",
     "dev": "webpack --env.NODE_ENV=common --progress --watch",
-    "serve": "webpack-dev-server --env.NODE_ENV=development --progress"
+    "serve": "webpack-dev-server --env.NODE_ENV=development --progress",
+    "debug": "weex debug"
   },
   "dependencies": {
     "phantom-limb": "0.0.1",
