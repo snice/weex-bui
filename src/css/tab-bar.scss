@@ -1,13 +1,13 @@
 
 .tab-bar{
-  display: flex;
+  //display: flex;
   flex-direction: row;
-  flex-wrap : no-wrap;
+  /*flex-wrap : nowrap;*/
   align-items: center;
 }
 .tab-bar-item{
   padding: 10px;
-  display: flex;
+  //display: flex;
   align-items: center;
 }
 .tab-bar-text{

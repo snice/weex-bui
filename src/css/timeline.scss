@@ -2,10 +2,9 @@
 @import "common";
 
 .bui-timeline{
-  list-style: none;
   margin: 0;
   padding: 0;
-  flex-direction: column;
+  /*flex-direction: column;*/
 }
 
 .bui-timeline-item{
@@ -13,7 +12,6 @@
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  list-style: none;
   position: relative;
   flex-direction: row;
 }
@@ -37,8 +35,8 @@
 .bui-timeline-item-head{
   width: 25px;
   height: 25px;
-  background-color: #fff;
-  border-radius: 50%;
+  background-color: #ffffff;
+  border-radius: 25px;
   border-width: 5px;
   border-style: solid;
   border-color: transparent;
@@ -48,21 +46,21 @@
 }
 
 .bui-timeline-item-head-blue{
-  border-color: #39f;
-  //background-color: #fff;
+  border-color: #3399ff;
+  //background-color: #ffffff;
 }
 
 .bui-timeline-item-head-red{
-  border-color: #f30;
-  //background-color: #fff;
+  border-color: #ff3300;
+  //background-color: #ffffff;
 }
 .bui-timeline-item-head-green{
-  border-color: #0c6;
-  //background-color: #fff;
+  border-color: #00cc66;
+  //background-color: #ffffff;
 }
 .bui-timeline-item-head-gray{
   border-color: #c4c4c4;
-  //background-color: #fff;
+  //background-color: #ffffff;
 }
 
 .bui-timeline-item-head-custom{
@@ -74,7 +72,7 @@
   padding-right: 0px;
   text-align: center;
   line-height: 1;
-  border: 0;
+  border-width: 0;
   border-radius: 0;
   font-size: 28px;
   position: absolute;
@@ -88,7 +86,7 @@
   padding-top: 1px;
   padding-bottom: 1px;
   font-size: 28px;
-  position: relative;
+  /*position: relative;*/
 }
 
 .timeline-text{

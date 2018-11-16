@@ -13,7 +13,7 @@
     </div>
 </template>
 
-<style lang="sass" src="../css/slider-bar.scss"></style>
+<style lang="scss" src="../css/slider-bar.scss"></style>
 
 <script>
     var animation = weex.requireModule('animation');

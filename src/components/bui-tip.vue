@@ -5,7 +5,7 @@
     </div>
 </template>
 
-<style lang="sass" src="../css/tip.scss"></style>
+<style lang="scss" src="../css/tip.scss"></style>
 <script>
     module.exports = {
         props: {

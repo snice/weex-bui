@@ -209,3 +209,7 @@
   }
 }
 
+@mixin ellipsis($lines : 1){
+    text-overflow: ellipsis;
+    lines : $lines;
+}

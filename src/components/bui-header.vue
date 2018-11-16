@@ -9,16 +9,15 @@
                     <bui-icon @click="_leftClick($event)" :activeColor="activeColor"
                               v-if="leftItem.icon||leftItem.icons" :name="leftItem.icon||leftItem.icons" :size="iconSize"
                               :color="iconColor"></bui-icon>
-                    <text :style="{'color':textColor,'color:active':activeColor,'margin-left':'10px'}" v-if="leftItem.text"
-                          class="bui-header-text" :value="leftItem.text"></text>
+                    <text @click="_leftClick($event)" :style="{'color':textColor,'color:active':activeColor,'margin-left':'10px'}" v-if="leftItem.text"
+                          class="bui-header-text">{{leftItem.text}}</text>
                 </div>
                 <slot name="left"></slot>
             </div>
 
             <div class="bui-header-main">
                 <div :style="{width:maxTitleWidth}" v-if="title!==''">
-                    <text :value="title" class="bui-header-title" :style="{'color':textColor}" @click="_centerClick($event)">
-                    </text>
+                    <text class="bui-header-title" :style="{'color':textColor}" @click="_centerClick($event)">{{title}}</text>
                 </div>
                 <slot name="center"></slot>
             </div>
@@ -27,8 +26,8 @@
                 <div v-if="rightItem" @click="_rightClick($event)" class="flex-row column-center-top hot" :style="{'height': height}">
                     <bui-icon @click="_rightClick($event)" :activeColor="activeColor" v-if="rightItem.icon||rightItem.icons"
                               :name="rightItem.icon||rightItem.icons" :size="iconSize" :color="iconColor"></bui-icon>
-                    <text :style="{'color':textColor,'color:active':activeColor,'margin-left':'10px'}"
-                          v-if="rightItem.text" class="bui-header-text" :value="rightItem.text"></text>
+                    <text @click="_rightClick($event)" :style="{'color':textColor,'color:active':activeColor,'margin-left':'10px'}"
+                          v-if="rightItem.text" class="bui-header-text">{{rightItem.text}}</text>
                 </div>
                 <slot name="right"></slot>
             </div>
@@ -36,8 +35,8 @@
         </div>
     </div>
 </template>
-<style lang="sass" src="../css/header.scss"></style>
-<style lang="sass" src="../css/layout.scss"></style>
+<style lang="scss" src="../css/header.scss"></style>
+<style lang="scss" src="../css/layout.scss"></style>
 
 <script>
     var defaultItem = {

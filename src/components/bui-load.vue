@@ -48,4 +48,4 @@
     }
 </script>
 
-<style lang="sass" src="../css/loading.scss"></style>
+<style lang="scss" src="../css/loading.scss"></style>

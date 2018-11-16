@@ -19,7 +19,7 @@
         </div>
     </div>
 </template>
-<style lang="sass" src="../css/list.scss"></style>
+<style lang="scss" src="../css/list.scss"></style>
 <script>
     const animation = weex.requireModule('animation');
     let defaultAction=[

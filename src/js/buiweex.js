@@ -51,6 +51,9 @@ let buiweex = {
     buiTimelineItem: require("../components/bui-timeline-item.vue"),
     buiTag: require("../components/bui-tag.vue"),
     buiOptionList: require("../components/bui-option-list.vue"),
+    buiDropload : require("../components/bui-dropload.vue"),
+    buiPopover : require("../components/bui-popover.vue"),
+    buiPoptip : require("../components/bui-poptip.vue"),
     // buiCheckboxs: require("../components/bui-checkboxs.vue"),
     // buiRadios: require("../components/bui-radios.vue"),
     /**
@@ -312,8 +315,8 @@ let buiweex = {
                 headers: headers,
                 body: data
             }, (res) => {
-                if (res.ok) {
-                    resolve(res.data, res.status, res.statusText);
+                if (res.status >= 200 && res.status <= 299) {
+                    resolve(res.data, res.status, res.statusText, res);
                 } else {
                     reject(res.status, res.statusText);
                 }
@@ -357,8 +360,8 @@ let buiweex = {
                 url: url,
                 headers: headers
             }, (res) => {
-                if (res.ok) {
-                    resolve(res.data, res.status, res.statusText);
+                if (res.status >= 200 && res.status <= 299) {
+                    resolve(res.data, res.status, res.statusText, res);
                 } else {
                     reject(res.status, res.statusText);
                 }
@@ -427,6 +430,9 @@ let buiweex = {
                 'bui-timeline-item': that.buiTimelineItem,
                 'bui-tag': that.buiTag,
                 'bui-option-list': that.buiOptionList,
+                'bui-dropload' : that.buiDropload,
+                'bui-popover' : that.buiPopover,
+                'bui-poptip' : that.buiPoptip,
                 // 'bui-checkboxs': that.buiCheckboxs,
                 // 'bui-radios': that.buiRadios,
             }

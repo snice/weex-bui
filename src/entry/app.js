@@ -1,8 +1,7 @@
-import App from '../views/app.vue'
-import buiweex from '../js/buiweex.js'
-
+import App from 'src/views/app.vue'
+import buiweex from 'src/js/buiweex';
 Vue.use(buiweex);
 
-App.el = '#root'
 
-new Vue(App)
+
+
