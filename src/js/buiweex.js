@@ -52,6 +52,8 @@ let buiweex = {
     buiTag: require("../components/bui-tag.vue"),
     buiOptionList: require("../components/bui-option-list.vue"),
     buiDropload : require("../components/bui-dropload.vue"),
+    buiPopover : require("../components/bui-popover.vue"),
+    buiPoptip : require("../components/bui-poptip.vue"),
     // buiCheckboxs: require("../components/bui-checkboxs.vue"),
     // buiRadios: require("../components/bui-radios.vue"),
     /**
@@ -429,6 +431,8 @@ let buiweex = {
                 'bui-tag': that.buiTag,
                 'bui-option-list': that.buiOptionList,
                 'bui-dropload' : that.buiDropload,
+                'bui-popover' : that.buiPopover,
+                'bui-poptip' : that.buiPoptip,
                 // 'bui-checkboxs': that.buiCheckboxs,
                 // 'bui-radios': that.buiRadios,
             }

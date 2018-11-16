@@ -63,7 +63,10 @@
                     {name: "弹出框(bui-dialog)", text: "", url: "dialog-demo.js"},
                     {name: "上拉菜单(bui-actionsheet)", text: "", url: "actionsheet-demo.js"},
                     {name: "下拉菜单(bui-dropdown)", text: "", url: "dropdown-demo.js"},
-                    {name: "弹出层(bui-popup)", text: "", url: "popup-demo.js"}
+                    {name: "弹出层(bui-popup)", text: "", url: "popup-demo.js"},
+                    {name: "弹出框(bui-popover)", text:"",url:"popover-demo.js" },
+                    {name: "气泡提示(bui-poptip)", text:"",url:"poptip-demo.js" },
+
                 ],
                 more:[
                     {name: "懒加载(bui-lazy-render)", text: "", url: "lazy-render-demo.js"},
