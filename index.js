@@ -186,6 +186,9 @@ const buiweex = {
         if (url.indexOf('?') > 0) {
             url = url.substring(0, url.indexOf('?'));
         }
+        if (weex.config.env.platform === 'Web' && url.indexOf('/index.html') === -1) {
+            return url;
+        }
         url = url.split('/').slice(0, -1).join('/');
         return url;
     },

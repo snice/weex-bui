@@ -15,7 +15,7 @@
     </scroller>
 </template>
 <script>
-import buiIcom from "../bui-icon";
+import buiIcon from "../bui-icon";
 import buiImage from "../bui-image";
 const dom = weex.requireModule("dom");
 // 默认配置
@@ -46,7 +46,7 @@ const iconDefaultStyle = {
   size: 43
 };
 export default {
-  components: { buiIcom, buiImage },
+  components: { buiIcon, buiImage },
   props: {
     tabs: {
       type: Array,

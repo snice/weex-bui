@@ -39,8 +39,12 @@
 </style>
 
 <script>
+import BuiMask from '../bui-mask'
 const animation = weex.requireModule("animation");
 export default {
+  components: {
+    BuiMask
+  },
   props: {
     rgba: {
       type: [String, Number]

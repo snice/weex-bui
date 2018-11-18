@@ -2,13 +2,13 @@
     <div class="bui-grid-select-box">
         <bui-option v-for="(item, index) in newItems"
                     v-bind="Object.assign({}, customStyles, item)"
-                    :key="index"
+                    :key="'0' + index"
                     :style="{marginTop: index >= cols ? lineSpacing : null}"
                     :index="index"
                     @select="select(index)"></bui-option>
         <bui-option v-for="(item, index) in hackList"
                     v-bind="Object.assign({}, customStyles, item)"
-                    :key="index"
+                    :key="'1' + index"
                     :style="{opacity: 0, marginTop: index >= cols ? lineSpacing : null}"></bui-option>
     </div>
 

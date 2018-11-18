@@ -34,21 +34,23 @@ export default {
   props: {
     sliderStyle: {
       type: Object,
-      default: {
-        width: "750px",
-        height: "400px"
+      default: () => {
+        return {
+          width: "750px",
+          height: "400px"
+        }
       }
     },
     indicatorStyle: {
       type: Object,
-      default: function() {
-        return {};
+      default: () => {
+        return {}
       }
     },
     items: {
       type: Array,
-      default: function() {
-        return [];
+      default: () => {
+        return []
       }
     },
     interval: {

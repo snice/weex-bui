@@ -3,7 +3,7 @@
          :style="cWrapperStyle"
          @click="_click"
          :accessible="true"
-         :aria-label="`${title},${checked?'已选中':'未选中'}`">
+         :aria-label="`${title},${selected?'已选中':'未选中'}`">
         <text class="bui-grid-select-title"
               :style="cTitleStyle">{{title}}</text>
         <bui-icon

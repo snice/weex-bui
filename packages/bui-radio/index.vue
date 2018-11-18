@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import buiOptionlist from "../bui-option-list";
+import buiOptionList from "../bui-option-list";
 export default {
-  components: { buiOptionlist },
+  components: { buiOptionList },
   props: {
     items: {
       type: Array

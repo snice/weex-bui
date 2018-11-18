@@ -3,8 +3,8 @@
         v-bind:placeholder="placeholderPath"
         v-bind:style="{'border-radius':radius, 'width': width, 'height': height}"
         v-bind:resize="resize"
-        @click="_click($event)"
-        @load="_load()" />
+        @click="_click"
+        @load="_load" />
 </template>
 
 <script>
@@ -52,8 +52,8 @@ export default {
     _click(e) {
       this.$emit("click", e);
     },
-    _load() {
-      this.$emit("load");
+    _load(e) {
+      this.$emit("load", e);
     },
     _isHttpOrFile(path) {
       return path.indexOf("http") == 0 || path.indexOf("file") == 0;
