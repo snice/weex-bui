@@ -22,7 +22,7 @@ export default {
   beforeCreate() {
     domModule.addRule("fontFace", {
       fontFamily: fontFamily,
-      src: "url('https://oss.zhuzhe.wang/fonts/ionicons.ttf')"
+      src: "url('https://snice.oss-cn-hangzhou.aliyuncs.com/fonts/ionicons.ttf')"
     });
   },
   props: {
